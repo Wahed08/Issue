@@ -1,0 +1,22 @@
+.main-footer{
+    background-color: gray;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 70px;
+}
+
+.footer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: var(--bs-light);
+    height: 100px;
+}
+
+.footer h3 {
+    text-align: center;
+    padding-top: 20px;
+    opacity: 0.6;
+    font-size: medium;
+}

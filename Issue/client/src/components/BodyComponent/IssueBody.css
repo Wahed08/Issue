@@ -1,0 +1,11 @@
+.container{
+    position: relative;
+}
+
+.inner-container{
+    margin-top: 100px;
+}
+
+.card-body{
+    padding-top: 10%;
+}
