@@ -71,9 +71,6 @@
     cursor: pointer;
     margin-top: 10%;
 }
-/* #cancelBtn{
-    background-color: crimson;
-} */
 
 @media (max-width:1368px) {
     .modal-background {
