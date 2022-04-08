@@ -1,8 +1,22 @@
 import React from "react";
-import { TextField, Typography, Button } from "@material-ui/core";
+import { TextField, Typography, Button, ButtonGroup} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import "./SignUp.css";
 
 const SignUp = () => {
+  const useStyles = makeStyles((theme) => ({
+    textFiled: {
+      width: "30%",
+      paddingBottom: "20px",
+    },
+    buttonFiled: {
+      marginRight: "20px",
+      flexGrow: '1'
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div className="main-container">
       <form action="">
@@ -14,48 +28,44 @@ const SignUp = () => {
           <TextField
             type="text"
             label="Name"
-            style={{
-              width: "30%",
-              paddingBottom: "20px",
-            }}
+            className={classes.textFiled}
             required
           />
           <TextField
             type="email"
             label="Email"
-            style={{
-              width: "30%",
-              paddingBottom: "20px",
-            }}
+            className={classes.textFiled}
             required
           />
           <TextField
             type="password"
             label="Password"
-            style={{
-              width: "30%",
-              paddingBottom: "20px",
-            }}
+            className={classes.textFiled}
             required
           />
           <TextField
             type="password"
             label="Confirm Password"
-            style={{
-              width: "30%",
-              paddingBottom: "20px",
-            }}
+            className={classes.textFiled}
             required
           />
         </div>
-
-        <div className="button-container">
-          <Button variant="contained" color="secondary" style={{
-            marginRight: "20px",
-          }}>Cancel</Button>
-          <Button variant="contained" color="primary">Submit</Button>
-        </div>
       </form>
+
+      <div className="button-container">
+        <ButtonGroup>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.buttonFiled}
+          >
+            Cancel
+          </Button>
+          <Button variant="contained" color="primary">
+            Submit
+          </Button>
+        </ButtonGroup>
+      </div>
     </div>
   );
 };
