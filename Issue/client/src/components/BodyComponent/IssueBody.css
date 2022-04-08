@@ -9,3 +9,12 @@
 .card-body{
     padding-top: 10%;
 }
+.no-post{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 7%;
+}
+.no-post h2{
+    font-size: 40px;
+}

@@ -29,6 +29,9 @@ const IssueBody = () => {
   return (
     <div className="container">
       <div className="card-body">
+        {!posts.length && <div className="no-post"><h2>
+          There is no Issue!
+          </h2></div>}
         {posts && posts.map((post) =>(
             <PostCard key = {post} title={post.title} description={post.description}/>
         ))}
