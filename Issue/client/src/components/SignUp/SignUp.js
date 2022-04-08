@@ -1,5 +1,5 @@
-import React from "react";
-import { TextField, Typography, Button, ButtonGroup} from "@material-ui/core";
+import React, {useState}from "react";
+import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import "./SignUp.css";
 
@@ -11,26 +11,33 @@ const SignUp = () => {
     },
     buttonFiled: {
       marginRight: "20px",
-      flexGrow: '1'
+    },
+    loginButton: {
+      marginLeft: "10px",
     },
   }));
 
   const classes = useStyles();
+  const [login, setLogIn] = useState(false);
+
+  const handlerLogin = () =>{
+    setLogIn((prevMode) => !prevMode);
+  }
 
   return (
     <div className="main-container">
       <form action="">
         <div className="form-container">
           <div className="sign-up">
-            <Typography variant="h4">Sign Up</Typography>
+            <Typography variant="h4">{login? "Sign Up":"Log In"}</Typography>
           </div>
 
-          <TextField
+          {login && <TextField
             type="text"
             label="Name"
             className={classes.textFiled}
             required
-          />
+          />}
           <TextField
             type="email"
             label="Email"
@@ -43,12 +50,12 @@ const SignUp = () => {
             className={classes.textFiled}
             required
           />
-          <TextField
+          {login && <TextField
             type="password"
             label="Confirm Password"
             className={classes.textFiled}
             required
-          />
+          />}
         </div>
       </form>
 
@@ -65,6 +72,12 @@ const SignUp = () => {
             Submit
           </Button>
         </ButtonGroup>
+      </div>
+      <div className="login-text">
+        <h2>{!login? "Doesn't have account?":"Already have an accout?"}</h2>
+        <Button variant="text" color="primary" className={classes.loginButton} onClick={handlerLogin}>
+          {login? "Log In": "Sign Up"}
+        </Button>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ const Header = () => {
               <Link to="/create_issue">Create Issue</Link>
             </li>
             <li>
-              <Link to="/signup" >Signup</Link>
+              <Link to="/auth" >Authentication</Link>
             </li>
           </ul>
         </nav>

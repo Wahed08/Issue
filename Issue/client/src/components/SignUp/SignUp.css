@@ -16,12 +16,25 @@
     align-items: center;
 }
 
+.login-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: -16%;
+}
+
+/* media */
 @media (max-width:1368px) {
     .form-container {
         padding-top: 130px;
     }
     .button-container{
         margin-left: 160px;
+    }
+    .login-text{
+        margin-bottom: 100px;
+        margin-left: -10%;
     }
 }
 
