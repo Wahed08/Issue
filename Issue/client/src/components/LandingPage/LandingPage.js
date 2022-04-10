@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import "./LandingPage.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,7 +25,7 @@ const LandingPage = () => {
             color="indigo"
             className={classes.buttonFiled}
           >
-            Sign Up
+            <Link to="/auth">Sign Up</Link>
           </Button>
           <Button variant="contained" color="indigo">
             Log In

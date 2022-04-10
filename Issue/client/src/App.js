@@ -1,5 +1,10 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Switch,
+} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import IssueBody from "./components/BodyComponent/IssueBody";
@@ -16,15 +21,11 @@ const App = () => {
     </Routes>
   );
   return (
-    <React.Fragment>
-      <Routes>
-        <Route path="/" element={<LandingPage />}>
-          {/* <Header />
-          <main>{routes}</main>
-          <Footer /> */}
-        </Route>
-      </Routes>
-    </React.Fragment>
+    <div>
+      <Header />
+      <main>{routes}</main>
+      <Footer />
+    </div>
   );
 };
 
