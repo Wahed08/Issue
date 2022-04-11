@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import "../BodyComponent/CreateIssue.css";
+import { AuthContext } from '../Auth/auth-context';
 
 const CreateIssue = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
-
+  const auth = useContext(AuthContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const post = { title, description };
@@ -19,10 +20,11 @@ const CreateIssue = () => {
           body: JSON.stringify(post),
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
           },
         });
         if (response.ok) {
-          navigate('/');
+          navigate('/issue');
         }
       } catch (err) {
         throw err;
@@ -37,7 +39,7 @@ const CreateIssue = () => {
           <h1>Create An Issue?</h1>
         </div>
         <div className="body">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate={true}>
             <div className="form-group">
               <label for="context">Context</label>
               <input

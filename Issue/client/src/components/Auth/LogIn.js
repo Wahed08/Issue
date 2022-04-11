@@ -1,9 +1,10 @@
-import React, {useState}from "react";
+import React from "react";
 import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
+import{Link} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import "./SignUp.css";
 
-const SignUp = () => {
+const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
     textFiled: {
       width: "30%",
@@ -18,26 +19,14 @@ const SignUp = () => {
   }));
 
   const classes = useStyles();
-  const [login, setLogIn] = useState(false);
-
-  const handlerLogin = () =>{
-    setLogIn((prevMode) => !prevMode);
-  }
 
   return (
     <div className="main-container">
       <form action="">
         <div className="form-container">
           <div className="sign-up">
-            <Typography variant="h4">{login? "Sign Up":"Log In"}</Typography>
+            <Typography variant="h4">Log In</Typography>
           </div>
-
-          {login && <TextField
-            type="text"
-            label="Name"
-            className={classes.textFiled}
-            required
-          />}
           <TextField
             type="email"
             label="Email"
@@ -50,12 +39,6 @@ const SignUp = () => {
             className={classes.textFiled}
             required
           />
-          {login && <TextField
-            type="password"
-            label="Confirm Password"
-            className={classes.textFiled}
-            required
-          />}
         </div>
       </form>
 
@@ -74,13 +57,13 @@ const SignUp = () => {
         </ButtonGroup>
       </div>
       <div className="login-text">
-        <h2>{!login? "Doesn't have account?":"Already have an accout?"}</h2>
-        <Button variant="text" color="primary" className={classes.loginButton} onClick={handlerLogin}>
-          {login? "Log In": "Sign Up"}
+        <h2>Doesn't have account?</h2>
+        <Button variant="text" color="primary" className={classes.loginButton}>
+          <Link to="/auth/signup">Sign Up</Link>
         </Button>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default LogIn;

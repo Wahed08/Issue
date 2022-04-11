@@ -13,16 +13,16 @@ const Header = () => {
           </Link>
           <ul className="right-menu">
             <li>
-              <Link to="">About</Link>
+              <Link to="/issue">About</Link>
             </li>
             <li>
-              <Link to="">Services</Link>
+              <Link to="/issue">Services</Link>
             </li>
             <li>
               <Link to="/create_issue">Create Issue</Link>
             </li>
             <li>
-              <Link to="/auth" >Authentication</Link>
+              <Link to="/auth/signup" >Authentication</Link>
             </li>
           </ul>
         </nav>

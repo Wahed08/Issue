@@ -38,7 +38,7 @@ const createPost = async (req, res, next) => {
     await createdPost.save();
   } catch (err) {
     const error = new HttpError(
-      "Post Uploaded failed, please try again later",
+      "Post Uploaded failed, please try again",
       501
     );
     return next(error);
