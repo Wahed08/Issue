@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const HttpError = require("../ErrorModel/errorModel");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //user SignUp
 const SignUp = async (req, res, next) => {
@@ -49,13 +50,71 @@ const SignUp = async (req, res, next) => {
   try {
     await createUser.save();
   } catch (err) {
-    const error = new HttpError("Signing up failes, please try again", 501);
+    const error = new HttpError("Signing up failed, please try again", 501);
     return next(error);
   }
 
   res.status(201).json({ message: "Sign up Succesful" });
 };
 
+//log in
+const logIn = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  let existingUser;
+  try {
+    existingUser = await User.findOne({ email: email });
+  } catch (err) {
+    const error = new HttpError("Logging in failed, please try again", 500);
+    return next(error);
+  }
+
+  if (!existingUser) {
+    const error = new HttpError(
+      "Invalid credentials, could not log you in",
+      401
+    );
+    return next(error);
+  }
+
+  //password compare
+  let isValidPassword = false;
+  try {
+    isValidPassword = await bcrypt.compare(password, existingUser.password);
+  } catch (err) {
+    const error = new HttpError(
+      "Could not log you in, please check again",
+      500
+    );
+    return next(error);
+  }
+
+  if (!isValidPassword) {
+    const error = new HttpError(
+      "Invalid Credentials, could not log you in",
+      401
+    );
+    return next(error);
+  }
+
+  //token
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: existingUser.id, email: existingUser.email },
+      process.env.Secret_Key
+    );
+  } catch (err) {
+    const error = new HttpError("logging in failed, please try again", 500);
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ userId: existingUser.id, email: existingUser.email, token: token });
+};
+
 module.exports = {
   SignUp,
+  logIn,
 };

@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const HttpError = require("./ErrorModel/errorModel");
 const postRoutes = require("./routes/postRoutes");
+const userRoutes = require("./routes/userRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors());
 
 //routes
 app.use("/api/posts", postRoutes);
+app.use("/api/accounts", userRoutes);
 
 
 app.use((req, res, next) => {
