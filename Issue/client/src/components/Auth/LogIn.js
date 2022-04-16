@@ -44,6 +44,7 @@ const LogIn = () => {
           throw new Error(responseData.message);
         }
         if (response.ok) {
+          console.log(responseData.token);
           auth.login(responseData.userId, responseData.token);
           navigate("/issue");
         }
