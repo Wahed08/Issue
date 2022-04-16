@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
-import{Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "./auth-context";
 import { makeStyles } from "@material-ui/core/styles";
 import "./SignUp.css";
 
@@ -19,10 +20,42 @@ const LogIn = () => {
   }));
 
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const users = { email, password };
+    if (users) {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/accounts/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(users),
+          }
+        );
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        if (response.ok) {
+          auth.login(responseData.userId, responseData.token);
+          navigate("/issue");
+        }
+      } catch (err) {
+        throw err;
+      }
+    }
+  };
 
   return (
     <div className="main-container">
-      <form action="">
+      <form onSubmit={submitHandler}>
         <div className="form-container">
           <div className="sign-up">
             <Typography variant="h4">Log In</Typography>
@@ -32,30 +65,33 @@ const LogIn = () => {
             label="Email"
             className={classes.textFiled}
             required
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             type="password"
             label="Password"
             className={classes.textFiled}
             required
+            onChange={(e) => setPassword(e.target.value)}
           />
+        </div>
+
+        <div className="button-container">
+          <ButtonGroup>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.buttonFiled}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </ButtonGroup>
         </div>
       </form>
 
-      <div className="button-container">
-        <ButtonGroup>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.buttonFiled}
-          >
-            Cancel
-          </Button>
-          <Button variant="contained" color="primary">
-            Submit
-          </Button>
-        </ButtonGroup>
-      </div>
       <div className="login-text">
         <h2>Doesn't have account?</h2>
         <Button variant="text" color="primary" className={classes.loginButton}>

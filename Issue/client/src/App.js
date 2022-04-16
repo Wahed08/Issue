@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Switch,
 } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -20,6 +19,7 @@ const App = () => {
       <Route path="/issue" element={<IssueBody />}></Route>
       <Route path="/auth/signup" element={<SignUp />}></Route>
       <Route path="/auth/login" element={<LogIn />}></Route>
+      <Route path="/" element={<LandingPage />}></Route>
     </Routes>
   );
   return (

@@ -9,6 +9,7 @@ const CreateIssue = () => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const post = { title, description };

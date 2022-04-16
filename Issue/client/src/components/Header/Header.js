@@ -8,7 +8,7 @@ const Header = () => {
     <div className="header">
       <div className="container">
         <nav className="main-nav">
-          <Link to="/issue">
+          <Link to="/">
             <h2>SUST ISSUES</h2>
           </Link>
           <ul className="right-menu">

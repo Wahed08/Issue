@@ -25,10 +25,10 @@ const LandingPage = () => {
             color="indigo"
             className={classes.buttonFiled}
           >
-            <Link to="/auth">Sign Up</Link>
+            <Link to="/auth/signup">Sign Up</Link>
           </Button>
           <Button variant="contained" color="indigo">
-            Log In
+            <Link to="/auth/login">Log In</Link>
           </Button>
         </div>
       </div>
