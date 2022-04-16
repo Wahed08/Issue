@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { AuthContext } from "../Auth/auth-context";
+import { Button } from "@material-ui/core";
 
 const Header = () => {
-  
+  const auth = useContext(AuthContext);
+
   return (
     <div className="header">
       <div className="container">
@@ -13,17 +16,29 @@ const Header = () => {
           </Link>
           <ul className="right-menu">
             <li>
-              <Link to="/issue">About</Link>
+              <Link to="/about">About</Link>
             </li>
-            <li>
-              <Link to="/issue">Services</Link>
-            </li>
-            <li>
-              <Link to="/create_issue">Create Issue</Link>
-            </li>
-            <li>
-              <Link to="/auth/signup" >Authentication</Link>
-            </li>
+            {auth.isLoggedIn && (
+              <li>
+                <Link to="/create_issue">Create Issue</Link>
+              </li>
+            )}
+            {auth.isLoggedIn ? (
+              <Link to="/">
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  size="small"
+                  onClick={auth.logout}
+                >
+                  Log Out
+                </Button>
+              </Link>
+            ) : (
+              <li>
+                <Link to="/auth/signup">Authentication</Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

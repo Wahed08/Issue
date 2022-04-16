@@ -17,6 +17,9 @@ const LogIn = () => {
     loginButton: {
       marginLeft: "10px",
     },
+    bottomPad:{
+      marginTop: "150px"
+    }
   }));
 
   const classes = useStyles();
@@ -75,6 +78,7 @@ const LogIn = () => {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
+          
         </div>
 
         <div className="button-container">
@@ -86,6 +90,7 @@ const LogIn = () => {
             >
               Cancel
             </Button>
+            
             <Button type="submit" variant="contained" color="primary">
               Submit
             </Button>
@@ -99,6 +104,7 @@ const LogIn = () => {
           <Link to="/auth/signup">Sign Up</Link>
         </Button>
       </div>
+      <div className={classes.bottomPad}></div>
     </div>
   );
 };

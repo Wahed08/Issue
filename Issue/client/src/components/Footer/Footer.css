@@ -1,9 +1,9 @@
 .main-footer{
     background-color: gray;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
-    bottom: 0;
-    height: 70px;
+    /* bottom: 0; */
+    height: 50px;
 }
 
 .footer {
@@ -11,12 +11,12 @@
     text-align: center;
     justify-content: center;
     background-color: var(--bs-light);
-    height: 100px;
+    bottom: 0;
 }
 
 .footer h3 {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 12px;
     opacity: 0.6;
     font-size: medium;
 }
