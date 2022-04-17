@@ -58,7 +58,7 @@ h1 {
     color:lightcyan;
 }
 
-.main-nav ul.right-menu .about:hover{
+.main-nav ul.right-menu .about:hover, .create:hover{
     border-radius: 20px;
     border: 1px solid;
     background-color: darkgrey;

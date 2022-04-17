@@ -3,10 +3,12 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className="main-footer">
-      <section className="footer">
-        <h3>Copyright &copy; 2022 - SUST</h3>
-      </section>
+    <div className="main-foo">
+      <div className="main-footer">
+        <div className="footer">
+          <h3>Copyright &copy; 2022 - SUST</h3>
+        </div>
+      </div>
     </div>
   );
 };

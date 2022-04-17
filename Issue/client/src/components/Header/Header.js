@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { AuthContext } from "../Auth/auth-context";
-import { Button, ButtonGroup, makeStyles } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const Header = () => {
               <Link to="/about">About</Link>
             </li>
             {auth.isLoggedIn && (
-              <li>
+              <li className="create">
                 <Link to="/create_issue">Create Issue</Link>
               </li>
             )}
