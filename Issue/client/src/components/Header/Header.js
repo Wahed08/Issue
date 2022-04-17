@@ -22,7 +22,7 @@ const Header = () => {
             <h2>SUST ISSUES</h2>
           </Link>
           <ul className="right-menu">
-            <li>
+            <li className="about">
               <Link to="/about">About</Link>
             </li>
             {auth.isLoggedIn && (
