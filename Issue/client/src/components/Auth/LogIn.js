@@ -16,9 +16,6 @@ const LogIn = () => {
     },
     loginButton: {
       marginLeft: "10px",
-    },
-    pad:{
-      paddingTop:"100px",
     }
   }));
 
@@ -104,7 +101,6 @@ const LogIn = () => {
           <Link to="/auth/signup">Sign Up</Link>
         </Button>
       </div>
-      <div className={classes.pad}></div>
     </div>
   );
 };
