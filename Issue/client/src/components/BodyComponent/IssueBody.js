@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import "../BodyComponent/IssueBody.css";
 import PostCard from "./PostCard";
 

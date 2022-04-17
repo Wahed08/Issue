@@ -18,19 +18,6 @@ const LandingPage = () => {
         <div className="heading">
           <h2>Welcome to SUST Issue</h2>
         </div>
-
-        <div className="button">
-          <Button
-            variant="contained"
-            color="indigo"
-            className={classes.buttonFiled}
-          >
-            <Link to="/auth/signup">Sign Up</Link>
-          </Button>
-          <Button variant="contained" color="indigo">
-            <Link to="/auth/login">Log In</Link>
-          </Button>
-        </div>
       </div>
     </React.Fragment>
   );

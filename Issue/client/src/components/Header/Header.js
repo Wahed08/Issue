@@ -2,9 +2,16 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { AuthContext } from "../Auth/auth-context";
-import { Button } from "@material-ui/core";
+import { Button, ButtonGroup, makeStyles } from "@material-ui/core";
 
 const Header = () => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      marginRight: theme.spacing(2),
+    },
+  }));
+
+  const classes = useStyles();
   const auth = useContext(AuthContext);
 
   return (
@@ -24,19 +31,35 @@ const Header = () => {
               </li>
             )}
             {auth.isLoggedIn ? (
-              <Link to="/">
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  size="small"
-                  onClick={auth.logout}
-                >
-                  Log Out
-                </Button>
-              </Link>
+              <li>
+                <Link to="/">
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    size="small"
+                    onClick={auth.logout}
+                  >
+                    Log Out
+                  </Button>
+                </Link>
+              </li>
             ) : (
               <li>
-                <Link to="/auth/signup">Authentication</Link>
+                <Link to="/auth/signup">
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    size="small"
+                    className={classes.root}
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+                <Link to="/auth/login">
+                  <Button color="primary" variant="contained" size="small">
+                    Log IN
+                  </Button>
+                </Link>
               </li>
             )}
           </ul>
