@@ -1,8 +1,3 @@
-.container{
-    position: relative;
-    min-height: 100vh;
-}
-
 .inner-container{
     margin-top: 100px;
 }
