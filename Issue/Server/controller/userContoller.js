@@ -5,7 +5,14 @@ const jwt = require("jsonwebtoken");
 
 //user SignUp
 const SignUp = async (req, res, next) => {
+  const regEx = /^([a-z\d\.-]+)@([a-z\d-]+)\.(sust)\.(edu)$/g;
   const { name, email, password, confirmPassword } = req.body;
+
+  //email validation check
+  if (!regEx.test(email)) {
+    const error = new HttpError("You should provide proper university email", 402);
+    return next(error);
+  }
 
   //pasword match
   if (password !== confirmPassword) {
