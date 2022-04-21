@@ -1,9 +1,13 @@
+.issue-container{
+    min-height: 100vh;
+}
+
 .inner-container{
     margin-top: 100px;
 }
 
 .card-body{
-    padding-top: 10%;
+    padding-top: 6em;
 }
 .no-post{
     display: flex;

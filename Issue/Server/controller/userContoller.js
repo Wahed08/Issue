@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 //user SignUp
 const SignUp = async (req, res, next) => {
+  
   const regEx = /^([a-z\d\.-]+)@([a-z\d-]+)\.(sust)\.(edu)$/g;
   const { name, email, password, confirmPassword } = req.body;
 

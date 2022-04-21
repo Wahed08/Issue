@@ -25,7 +25,7 @@ const IssueBody = () => {
 
   
   return (
-    <div className="container">
+    <div className="issue-container">
       <div className="card-body">
         {!posts.length && <div className="no-post"><h2>
           There is no Issue!

@@ -59,8 +59,8 @@ h1 {
 }
 
 .main-nav ul.right-menu .about:hover, .create:hover{
-    border-radius: 20px;
-    border: 1px solid;
+    border-radius: 10px;
+    border: 0px solid;
     background-color: darkgrey;
     transition-delay: 200ms;
 }
