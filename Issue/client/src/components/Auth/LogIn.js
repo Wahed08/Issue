@@ -3,6 +3,7 @@ import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./auth-context";
 import { makeStyles } from "@material-ui/core/styles";
+import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import "./SignUp.css";
 
 const LogIn = () => {
@@ -16,12 +17,13 @@ const LogIn = () => {
     },
     loginButton: {
       marginLeft: "10px",
-    }
+    },
   }));
 
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState();
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
 
@@ -41,7 +43,7 @@ const LogIn = () => {
         );
         const responseData = await response.json();
         if (!response.ok) {
-          throw new Error(responseData.message);
+          setError(responseData.message);
         }
         if (response.ok) {
           console.log(responseData.token);
@@ -49,59 +51,66 @@ const LogIn = () => {
           navigate("/issue");
         }
       } catch (err) {
+        setError(err.message);
         throw err;
       }
     }
   };
 
   return (
-    <div className="main-container">
-      <form onSubmit={submitHandler}>
-        <div className="form-container">
-          <div className="sign-up">
-            <Typography variant="h4">Log In</Typography>
+    <React.Fragment>
+      <ErrorModal error={error} />
+      <div className="main-container">
+        <form onSubmit={submitHandler}>
+          <div className="form-container">
+            <div className="sign-up">
+              <Typography variant="h4">Log In</Typography>
+            </div>
+            <TextField
+              type="email"
+              label="Email"
+              className={classes.textFiled}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              type="password"
+              label="Password"
+              className={classes.textFiled}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <TextField
-            type="email"
-            label="Email"
-            className={classes.textFiled}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            type="password"
-            label="Password"
-            className={classes.textFiled}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          
-        </div>
 
-        <div className="button-container">
-          <ButtonGroup>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.buttonFiled}
-            >
-              Cancel
-            </Button>
-            
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </ButtonGroup>
-        </div>
-      </form>
+          <div className="button-container">
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.buttonFiled}
+              >
+                Cancel
+              </Button>
 
-      <div className="login-text">
-        <h2>Doesn't have account?</h2>
-        <Button variant="text" color="primary" className={classes.loginButton}>
-          <Link to="/auth/signup">Sign Up</Link>
-        </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </ButtonGroup>
+          </div>
+        </form>
+
+        <div className="login-text">
+          <h2>Doesn't have account?</h2>
+          <Button
+            variant="text"
+            color="primary"
+            className={classes.loginButton}
+          >
+            <Link to="/auth/signup">Sign Up</Link>
+          </Button>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

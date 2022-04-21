@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -23,6 +24,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState();
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
@@ -41,75 +43,83 @@ const SignUp = () => {
         );
         const responseData = await response.json();
         if (!response.ok) {
-          throw new Error(responseData.message);
+          setError(responseData.message);
         }
         if (response.ok) {
           navigate("/auth/login");
         }
       } catch (err) {
+        setError(err.message);
         throw err;
       }
     }
   };
   return (
-    <div className="main-container">
-      <form onSubmit={submitHandler}>
-        <div className="form-container">
-          <div className="sign-up">
-            <Typography variant="h4">Sign Up</Typography>
-          </div>
+    <React.Fragment>
+      <ErrorModal error={error}/>
+      <div className="main-container">
+        <form onSubmit={submitHandler}>
+          <div className="form-container">
+            <div className="sign-up">
+              <Typography variant="h4">Sign Up</Typography>
+            </div>
 
-          <TextField
-            type="text"
-            label="Name"
-            className={classes.textFiled}
-            required
-            onChange={(e) => setName(e.target.value)}
-          />
-          <TextField
-            type="email"
-            label="Email"
-            className={classes.textFiled}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            type="password"
-            label="Password"
-            className={classes.textFiled}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <TextField
-            type="password"
-            label="Confirm Password"
-            className={classes.textFiled}
-            required
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+            <TextField
+              type="text"
+              label="Name"
+              className={classes.textFiled}
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
+            <TextField
+              type="email"
+              label="Email"
+              className={classes.textFiled}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              type="password"
+              label="Password"
+              className={classes.textFiled}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <TextField
+              type="password"
+              label="Confirm Password"
+              className={classes.textFiled}
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div className="button-container">
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.buttonFiled}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </ButtonGroup>
+          </div>
+        </form>
+        <div className="login-text">
+          <h2>Already have an account?</h2>
+          <Button
+            variant="text"
+            color="primary"
+            className={classes.loginButton}
+          >
+            <Link to="/auth/login">Log In</Link>
+          </Button>
         </div>
-        <div className="button-container">
-          <ButtonGroup>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.buttonFiled}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </ButtonGroup>
-        </div>
-      </form>
-      <div className="login-text">
-        <h2>Already have an account?</h2>
-        <Button variant="text" color="primary" className={classes.loginButton}>
-          <Link to="/auth/login">Log In</Link>
-        </Button>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

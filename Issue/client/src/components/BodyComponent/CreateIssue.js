@@ -46,7 +46,7 @@ const CreateIssue = () => {
         <div className="title">
           <h1>Create An Issue?</h1>
         </div>
-        <form onSubmit={handleSubmit} noValidate={true}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="context"
