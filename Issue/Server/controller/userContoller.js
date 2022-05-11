@@ -64,7 +64,6 @@ const SignUp = async (req, res, next) => {
   });
   
   //save to db
-
   try {
     await verificationUser.save();
   } catch (err) {
@@ -89,6 +88,71 @@ const SignUp = async (req, res, next) => {
 
   res.status(201).json({ message: "Sign up Successful" });
 };
+
+
+
+//verify email
+const verifyEmail = async (req, res, next) =>{
+  const {userId, otp} = req.body;
+
+  if(!userId || !otp.trim()){
+    const error = new HttpError("Invalid parameters", 402);
+    return next(error);
+  }
+
+  let verifyUser;
+  try{
+    verifyUser = await User.findById(userId);
+  }catch(err){
+    const error = new HttpError("Invalid credentials", 500);
+    return next(error);
+  }
+
+  if (!verifyUser) {
+    const error = new HttpError(
+      "Invalid credentials, user not found",
+      401
+    );
+    return next(error);
+  }
+
+  if(verifyUser.verified){
+      const error = new HttpError(
+        "This account is already verified",
+        401
+      );
+      return next(error);
+  }
+
+  const token = await Verification.findOne({userId: verifyUser._id});
+  if(!token){
+    const error = new HttpError("Invalid! sorry user not found", 402);
+    return next(error);
+  }
+
+  const isMatched = await token.compareToken(otp);
+  if(!isMatched){
+    const error = new HttpError("please provide a valid otp", 401);
+    return next(error);
+  }
+
+  verifyUser.verified = true;
+  await Verification.findByIdAndDelete(token._id);
+  await verifyUser.save();
+
+  mailTransPort().sendMail({
+    from: "no-reply@verification.com",
+    to: verifyUser.email,
+    subject: "Eamil Verification",
+    html: `<h1>Your email is verified Succesfully</h1>`
+  });
+
+  res
+  .status(201)
+  .json({ message: "Email verified"});
+}
+
+
 
 //log in
 const logIn = async (req, res, next) => {
@@ -149,5 +213,6 @@ const logIn = async (req, res, next) => {
 
 module.exports = {
   SignUp,
+  verifyEmail,
   logIn,
 };
