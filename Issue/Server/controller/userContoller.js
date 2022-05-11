@@ -1,4 +1,6 @@
 const User = require("../models/userModel");
+const Verification = require("../models/userVerification");
+const {generateOTP, mailTransPort} = require("../utils/helper");
 const HttpError = require("../ErrorModel/errorModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -7,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const SignUp = async (req, res, next) => {
   
   const regEx = /^([a-z\d\.-]+)@([a-z\d-]+)\.(sust)\.(edu)$/g;
-  const { name, email, password, confirmPassword } = req.body;
+  const { name, email, password, confirmPassword, verified} = req.body;
 
   //email validation check
   if (!regEx.test(email)) {
@@ -52,9 +54,24 @@ const SignUp = async (req, res, next) => {
     name,
     email,
     password: hashedPassword,
+    verified
   });
 
+  const OTP = generateOTP();
+  const verificationUser = new Verification({
+    userId : createUser._id,
+    token: OTP
+  });
+  
   //save to db
+
+  try {
+    await verificationUser.save();
+  } catch (err) {
+    const error = new HttpError("Signing up failed, please try again", 501);
+    return next(error);
+  }
+
   try {
     await createUser.save();
   } catch (err) {
@@ -62,7 +79,15 @@ const SignUp = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ message: "Sign up Succesful" });
+  //
+  mailTransPort().sendMail({
+    from: "no-reply@verification.com",
+    to: createUser.email,
+    subject: "Please verify your Email",
+    html: `<h1>Your OTP is ${OTP}</h1>`
+  });
+
+  res.status(201).json({ message: "Sign up Successful" });
 };
 
 //log in
