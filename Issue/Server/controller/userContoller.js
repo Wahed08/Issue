@@ -93,7 +93,8 @@ const SignUp = async (req, res, next) => {
 
 //verify email
 const verifyEmail = async (req, res, next) =>{
-  const {userId, otp} = req.body;
+  const { otp} = req.body;
+  const userId = req.params.uid;
 
   if(!userId || !otp.trim()){
     const error = new HttpError("Invalid parameters", 402);

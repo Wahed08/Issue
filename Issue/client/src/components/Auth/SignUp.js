@@ -46,7 +46,7 @@ const SignUp = () => {
           setError(responseData.message);
         }
         if (response.ok) {
-          navigate("/auth/login");
+          navigate("/auth/:userId/verify-email");
         }
       } catch (err) {
         setError(err.message);

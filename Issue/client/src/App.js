@@ -7,6 +7,7 @@ import CreateIssue from "./components/BodyComponent/CreateIssue";
 import SignUp from "./components/Auth/SignUp";
 import LogIn from "./components/Auth/LogIn";
 import LandingPage from "./components/LandingPage/LandingPage";
+import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/auth/signup" element={<SignUp />}></Route>
+        <Route path="/auth/:userId/verify-email" element={<ProvideOtp />}></Route>
         <Route path="/auth/login" element={<LogIn />}></Route>
       </Routes>
     );

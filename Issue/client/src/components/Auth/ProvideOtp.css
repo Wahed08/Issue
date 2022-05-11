@@ -1,0 +1,26 @@
+.parent{
+    width: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.parent .child-1{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.parent .child-1{
+    font-size: 2em;
+}
+
+.parent .child-2{
+    position: absolute;
+    margin-top: 2em;
+    width: 50%;
+    left: 28em;
+}
