@@ -1,54 +1,43 @@
-.main-container{
-    height: 100vh;
-}
-
-.form-container{
-    padding-top: 200px;
+.main_container{
+    min-width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    position: relative;
 }
 
 .sign-up{
-    padding-bottom: 20px;
-}
-
-.button-container{
+    top: 20%;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.form_container{
+    top: 27%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form_container div{
+    width: 30em;
+    margin: 0.3em 0;
 }
 
 .login-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-    margin-left: -16%;
+    display: inline-flex;
+    margin-top: 3em;
 }
 
-/* media */
-@media (max-width:1368px) {
-    .form-container {
-        padding-top: 130px;
-    }
-    .button-container{
-        margin-left: 160px;
-    }
-    .login-text{
-        margin-bottom: 100px;
-        margin-left: -10%;
-    }
+.login-text a{
+    margin-left: 20px;
+    text-decoration: underline;
+    font-size: 1em;
+    font-weight: 400;
 }
-
-@media (max-width:1108px) {
-    .button-container{
-        margin-left: 60px;
-    }
-}
-@media (max-width:750px) {
-    .button-container{
-        margin-left: 30px;
-    }
+.login-text a:hover{
+    text-decoration: none;
 }

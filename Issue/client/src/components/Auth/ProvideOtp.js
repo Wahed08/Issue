@@ -62,6 +62,7 @@ const ProvideOtp = () => {
                 <TextField
                   type="number"
                   label="OTP"
+                  variant="outlined"
                   className={classes.textFiled}
                   required
                   onChange={(e) => setOtp(e.target.value)}

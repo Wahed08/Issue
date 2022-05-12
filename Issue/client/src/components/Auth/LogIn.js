@@ -8,15 +8,11 @@ import "./SignUp.css";
 
 const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
-    textFiled: {
-      width: "30%",
-      paddingBottom: "20px",
-    },
     buttonFiled: {
       marginRight: "20px",
     },
     loginButton: {
-      marginLeft: "10px",
+      marginLeft: "3em",
     },
   }));
 
@@ -60,54 +56,52 @@ const LogIn = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="main-container">
-        <form onSubmit={submitHandler}>
-          <div className="form-container">
-            <div className="sign-up">
-              <Typography variant="h4">Log In</Typography>
+      <div className="main_container">
+        <div className="sign-up">
+          <Typography variant="h4">Log In</Typography>
+        </div>
+        <div className="form_container">
+          <form onSubmit={submitHandler}>
+            <div>
+              <TextField
+                type="email"
+                label="Email"
+                variant="outlined"
+                className={classes.textFiled}
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <TextField
-              type="email"
-              label="Email"
-              className={classes.textFiled}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-              type="password"
-              label="Password"
-              className={classes.textFiled}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+            <div>
+              <TextField
+                type="password"
+                label="Password"
+                variant="outlined"
+                className={classes.textFiled}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-          <div className="button-container">
-            <ButtonGroup>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.buttonFiled}
-              >
-                Cancel
-              </Button>
-
-              <Button type="submit" variant="contained" color="primary">
-                Submit
-              </Button>
-            </ButtonGroup>
-          </div>
-        </form>
-
-        <div className="login-text">
-          <h2>Doesn't have account?</h2>
-          <Button
-            variant="text"
-            color="primary"
-            className={classes.loginButton}
-          >
-            <Link to="/auth/signup">Sign Up</Link>
-          </Button>
+            <div className="button-container">
+              <ButtonGroup>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.buttonFiled}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </ButtonGroup>
+            </div>
+            <div className="login-text">
+              <h2>Doesn't have account ?</h2>
+              <Link to="/auth/signup">Sign Up</Link>
+            </div>
+          </form>
         </div>
       </div>
     </React.Fragment>

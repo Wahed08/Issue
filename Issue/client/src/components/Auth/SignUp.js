@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
@@ -7,15 +7,11 @@ import "./SignUp.css";
 
 const SignUp = () => {
   const useStyles = makeStyles((theme) => ({
-    textFiled: {
-      width: "30%",
-      paddingBottom: "20px",
-    },
     buttonFiled: {
       marginRight: "20px",
     },
     loginButton: {
-      marginLeft: "10px",
+      marginLeft: "3em",
     },
   }));
 
@@ -56,67 +52,72 @@ const SignUp = () => {
   };
   return (
     <React.Fragment>
-      <ErrorModal error={error}/>
-      <div className="main-container">
-        <form onSubmit={submitHandler}>
-          <div className="form-container">
-            <div className="sign-up">
-              <Typography variant="h4">Sign Up</Typography>
+      <ErrorModal error={error} />
+      <div className="main_container">
+        <div className="sign-up">
+          <Typography variant="h4">Sign Up</Typography>
+        </div>
+        <div className="form_container">
+          <form onSubmit={submitHandler}>
+            <div>
+              <TextField
+                type="text"
+                label="Name"
+                variant="outlined"
+                className={classes.textFiled}
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-
-            <TextField
-              type="text"
-              label="Name"
-              className={classes.textFiled}
-              required
-              onChange={(e) => setName(e.target.value)}
-            />
-            <TextField
-              type="email"
-              label="Email"
-              className={classes.textFiled}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-              type="password"
-              label="Password"
-              className={classes.textFiled}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-              type="password"
-              label="Confirm Password"
-              className={classes.textFiled}
-              required
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
-          <div className="button-container">
-            <ButtonGroup>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.buttonFiled}
-              >
-                Cancel
-              </Button>
-              <Button type="submit" variant="contained" color="primary">
-                Submit
-              </Button>
-            </ButtonGroup>
-          </div>
-        </form>
-        <div className="login-text">
-          <h2>Already have an account?</h2>
-          <Button
-            variant="text"
-            color="primary"
-            className={classes.loginButton}
-          >
-            <Link to="/auth/login">Log In</Link>
-          </Button>
+            <div>
+              <TextField
+                type="email"
+                label="Email"
+                variant="outlined"
+                className={classes.textFiled}
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <TextField
+                type="password"
+                label="Password"
+                variant="outlined"
+                className={classes.textFiled}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div>
+              <TextField
+                type="password"
+                label="Confirm Password"
+                variant="outlined"
+                className={classes.textFiled}
+                required
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <div className="button">
+              <ButtonGroup>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.buttonFiled}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </ButtonGroup>
+            </div>
+            <div className="login-text">
+              <h2>Already have an account ?</h2>
+              <Link to="/auth/login">Log In</Link>
+            </div>
+          </form>
         </div>
       </div>
     </React.Fragment>
