@@ -1,6 +1,5 @@
 .parent{
     width: 100%;
-    min-width: 100vw;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,6 +8,7 @@
 }
 
 .parent .child-1{
+    top: 30%;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -19,8 +19,10 @@
 }
 
 .parent .child-2{
+    top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    margin-top: 2em;
-    width: 50%;
-    left: 28em;
+    margin-top: 10em;
 }

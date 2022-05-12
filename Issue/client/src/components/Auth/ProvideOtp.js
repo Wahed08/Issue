@@ -54,11 +54,11 @@ const ProvideOtp = () => {
       <ErrorModal error={error} />
       <div className="parent">
           <div className="child-1">
-            <Typography variant="h4">Provide a 4-digit OTP</Typography>
+            <Typography variant="h4">Verification code send to your email,provide a 4-digit OTP</Typography>
           </div>
           <div className="child-2">
             <form onSubmit={submitHandler}>
-              <div className="form-container">
+              <div className="">
                 <TextField
                   type="number"
                   label="OTP"
@@ -67,7 +67,7 @@ const ProvideOtp = () => {
                   onChange={(e) => setOtp(e.target.value)}
                 />
               </div>
-              <div className="button-container">
+              <div className="">
                 <Button type="submit" variant="contained" color="primary">
                   Submit
                 </Button>
