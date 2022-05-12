@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import IssueBody from "./components/BodyComponent/IssueBody";
@@ -48,7 +48,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/auth/signup" element={<SignUp />}></Route>
-        <Route path="/auth/:userId/verify-email" element={<ProvideOtp />}></Route>
+        <Route path="/auth/:uid/verify-email" element={<ProvideOtp />}></Route>
         <Route path="/auth/login" element={<LogIn />}></Route>
       </Routes>
     );

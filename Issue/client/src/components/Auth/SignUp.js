@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
@@ -42,11 +42,12 @@ const SignUp = () => {
           }
         );
         const responseData = await response.json();
+        console.log(responseData.user);
         if (!response.ok) {
           setError(responseData.message);
         }
         if (response.ok) {
-          navigate("/auth/:userId/verify-email");
+          navigate(`/auth/${responseData.user._id}/verify-email`);
         }
       } catch (err) {
         setError(err.message);

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext, } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { TextField, Typography, Button } from "@material-ui/core";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import { makeStyles } from "@material-ui/core/styles";
+import {AuthContext} from "./auth-context";
 import "./ProvideOtp.css";
 
 const ProvideOtp = () => {
@@ -16,7 +17,8 @@ const ProvideOtp = () => {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const uid = useParams().userId;
+  let {uid} = useParams();
+  const auth = useContext(AuthContext);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ const ProvideOtp = () => {
     if (OTP) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/accounts/${uid}/verify-email`,
+          `http://localhost:5000/api/accounts/${uid}/verify-email/`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -37,6 +39,7 @@ const ProvideOtp = () => {
           setError(responseData.message);
         }
         if (response.ok) {
+          auth.login();
           navigate("/issue");
         }
       } catch (err) {

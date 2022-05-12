@@ -86,7 +86,7 @@ const SignUp = async (req, res, next) => {
     html: `<h1>Your OTP is ${OTP}</h1>`
   });
 
-  res.status(201).json({ message: "Sign up Successful" });
+  res.status(201).json({ message: "Sign up Successful", user:createUser });
 };
 
 
