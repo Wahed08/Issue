@@ -13,6 +13,7 @@ const LogIn = () => {
     },
     loginButton: {
       marginLeft: "3em",
+     
     },
   }));
 
@@ -83,7 +84,7 @@ const LogIn = () => {
               />
             </div>
 
-            <div className="button-container">
+            <div className="button">
               <ButtonGroup>
                 <Button
                   variant="contained"

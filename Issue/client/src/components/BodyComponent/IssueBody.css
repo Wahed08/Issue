@@ -1,11 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .issue-container{
     min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.inner-container{
+/* .inner-container{
     margin-top: 100px;
+} */
+
+/*  */
+
+.heading{
+    position: absolute;
+    top: 7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heading h1{
+    font-size: 2em;
+}
+.table-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    margin-top: 7em;
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.table thead{
+    background-color: burlywood;
 }
 
+.table thead tr th{
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 0.35px;
+    padding: 0.5em;
+    vertical-align: top;
+    border: 1px solid;
+}
+
+.table tbody tr td{
+    background-color: azure;
+    font-weight: normal;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid;
+}
+
+/*  */
 .card-body{
     padding-top: 6em;
 }
