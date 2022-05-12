@@ -42,7 +42,6 @@ const SignUp = () => {
           }
         );
         const responseData = await response.json();
-        console.log(responseData.user);
         if (!response.ok) {
           setError(responseData.message);
         }

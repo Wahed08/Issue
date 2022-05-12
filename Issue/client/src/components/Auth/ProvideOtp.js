@@ -39,7 +39,7 @@ const ProvideOtp = () => {
           setError(responseData.message);
         }
         if (response.ok) {
-          auth.login();
+          auth.login(responseData.userId, responseData.token);
           navigate("/issue");
         }
       } catch (err) {
@@ -51,7 +51,7 @@ const ProvideOtp = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error={error} />
+      {/* <ErrorModal error={error} /> */}
       <div className="parent">
           <div className="child-1">
             <Typography variant="h4">Provide a 4-digit OTP</Typography>

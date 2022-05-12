@@ -93,7 +93,7 @@ const SignUp = async (req, res, next) => {
 
 //verify email
 const verifyEmail = async (req, res, next) =>{
-  const { otp} = req.body;
+  const {otp} = req.body;
   const userId = req.params.uid;
 
   if(!userId || !otp.trim()){
@@ -141,6 +141,21 @@ const verifyEmail = async (req, res, next) =>{
   await Verification.findByIdAndDelete(token._id);
   await verifyUser.save();
 
+  // json web token
+
+  let jwtToken;
+  try {
+    jwtToken = jwt.sign(
+      { userId: verifyUser.id, email: verifyUser.email },
+      process.env.Secret_Key
+    );
+  } catch (err) {
+    const error = new HttpError("verification failed, please try again", 500);
+    return next(error);
+  }
+
+  //
+
   mailTransPort().sendMail({
     from: "no-reply@verification.com",
     to: verifyUser.email,
@@ -150,7 +165,7 @@ const verifyEmail = async (req, res, next) =>{
 
   res
   .status(201)
-  .json({ message: "Email verified"});
+  .json({ message: "Email verified", userId: verifyUser.id, email: verifyUser.email, token: jwtToken });
 }
 
 
