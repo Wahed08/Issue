@@ -15,7 +15,7 @@ const ProvideOtp = () => {
 
   const classes = useStyles();
   const [otp, setOtp] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
   const navigate = useNavigate();
   let {uid} = useParams();
   const auth = useContext(AuthContext);
@@ -51,7 +51,7 @@ const ProvideOtp = () => {
 
   return (
     <React.Fragment>
-      {/* <ErrorModal error={error} /> */}
+      <ErrorModal error={error} />
       <div className="parent">
           <div className="child-1">
             <Typography variant="h4">Provide a 4-digit OTP</Typography>
