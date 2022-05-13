@@ -3,13 +3,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
-    /* background-color: cadetblue; */
+    position: relative;
 }
 
 .heading h2{
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 50px;
+    font-size: 3em;
 }

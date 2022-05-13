@@ -4,6 +4,7 @@ import PostCard from "./PostCard";
 
 const IssueBody = () => {
   const [posts, setPosts] = useState([]);
+  let index = 1;
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -32,20 +33,23 @@ const IssueBody = () => {
         <table className="table">
           <thead>
             <tr>
-              <th style={{width: "10%"}}>No.</th>
-              <th>Issue</th>
-              <th style={{width: "12%"}}>Date</th>
-              <th style={{width: "10%"}}>Status</th>
+              <th style={{ width: "10%" }}>No.</th>
+              <th>Issue Details</th>
+              <th style={{ width: "12%" }}>Date</th>
+              <th style={{ width: "10%" }}>Status</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>This is an issue</td>
-              <td>20 may 2022</td>
-              <td>pending</td>
-            </tr>
+            {posts &&
+              posts.map((post) => (
+                <tr key={post}>
+                  <td>{index++}</td>
+                  <td>{post.description}</td>
+                  <td>{post.date}</td>
+                  <td>{post.status}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -58,7 +62,7 @@ const IssueBody = () => {
             <PostCard key = {post} title={post.title} description={post.description}/>
         ))}
       </div> */}
-      <section className="inner-container"></section>
+      {/* <section className="inner-container"></section> */}
     </div>
   );
 };

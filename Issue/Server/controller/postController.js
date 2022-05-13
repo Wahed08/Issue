@@ -28,10 +28,18 @@ const getAllPost = async (req, res, next) => {
 //createPost
 const createPost = async (req, res, next) => {
   
-  const { title, description } = req.body;
+  const { title, description, status, date} = req.body;
   const createdPost = new Post({
     title,
     description,
+    date: new Date().toLocaleDateString('en-GB', {  
+      day:   'numeric',
+      month: 'short',
+      year:  'numeric',
+      hour:  '2-digit',
+      minute: '2-digit'
+  }),
+    status
   });
 
   try {
