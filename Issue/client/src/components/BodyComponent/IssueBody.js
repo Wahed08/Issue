@@ -52,6 +52,7 @@ const IssueBody = () => {
                   <td>{post.status}</td>
                 </tr>
               ))}
+              <div className="gap"></div>
           </tbody>
         </table>
       </div>
@@ -64,7 +65,6 @@ const IssueBody = () => {
             <PostCard key = {post} title={post.title} description={post.description}/>
         ))}
       </div> */}
-      <div className="gap"></div>
     </div>
   );
 };
