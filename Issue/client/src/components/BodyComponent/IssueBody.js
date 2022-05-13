@@ -32,20 +32,14 @@ const IssueBody = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>Issue No.</th>
+              <th style={{width: "10%"}}>No.</th>
               <th>Issue</th>
-              <th>Issue Date</th>
-              <th>Status</th>
+              <th style={{width: "12%"}}>Date</th>
+              <th style={{width: "10%"}}>Status</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>This is an issue</td>
-              <td>20 may 2022</td>
-              <td>pending</td>
-            </tr>
 
+          <tbody>
             <tr>
               <td>1</td>
               <td>This is an issue</td>
