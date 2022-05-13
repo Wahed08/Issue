@@ -1,8 +1,8 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .issue-container{
     min-height: 100vh;
@@ -12,10 +12,6 @@
     justify-content: center;
     align-items: center;
 }
-
-/* .inner-container{
-    margin-top: 100px;
-} */
 
 /*  */
 
@@ -63,8 +59,16 @@
     border: 1px solid;
 }
 
+.gap{
+    margin-top: 100px;
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    display: none;
+}
+
 /*  */
-.card-body{
+/* .card-body{
     padding-top: 6em;
 }
 .no-post{
@@ -75,4 +79,4 @@
 }
 .no-post h2{
     font-size: 40px;
-}
+} */

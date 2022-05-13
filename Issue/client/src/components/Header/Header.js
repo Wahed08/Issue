@@ -19,7 +19,7 @@ const Header = () => {
       <div className="container">
         <nav className="main-nav">
           <Link to="/">
-            <h2>SUST ISSUES</h2>
+            <h2>SUST Teacher's Association</h2>
           </Link>
           <ul className="right-menu">
             <li className="about">

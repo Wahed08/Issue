@@ -32,7 +32,7 @@ const CreateIssue = () => {
           },
         });
         if (response.ok) {
-          navigate("/issue");
+          navigate("/");
         }
       } catch (err) {
         throw err;

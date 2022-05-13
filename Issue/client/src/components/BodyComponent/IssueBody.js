@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../BodyComponent/IssueBody.css";
-import PostCard from "./PostCard";
+// import PostCard from "./PostCard";
 
 const IssueBody = () => {
   const [posts, setPosts] = useState([]);
   let index = 1;
 
   useEffect(() => {
+    const ac = new AbortController();
     const fetchPost = async () => {
       try {
         const postData = await fetch("http://localhost:5000/api/posts");
@@ -19,6 +20,7 @@ const IssueBody = () => {
       } catch (err) {
         throw err;
       }
+      return ac.abort();
     };
     fetchPost();
   }, [posts]);
@@ -43,7 +45,7 @@ const IssueBody = () => {
           <tbody>
             {posts &&
               posts.map((post) => (
-                <tr key={post}>
+                <tr key={index}>
                   <td>{index++}</td>
                   <td>{post.description}</td>
                   <td>{post.date}</td>
@@ -62,7 +64,7 @@ const IssueBody = () => {
             <PostCard key = {post} title={post.title} description={post.description}/>
         ))}
       </div> */}
-      {/* <section className="inner-container"></section> */}
+      <div className="gap"></div>
     </div>
   );
 };

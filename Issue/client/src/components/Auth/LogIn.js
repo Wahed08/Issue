@@ -45,7 +45,7 @@ const LogIn = () => {
         if (response.ok) {
           console.log(responseData.token);
           auth.login(responseData.userId, responseData.token);
-          navigate("/issue");
+          navigate("/");
         }
       } catch (err) {
         setError(err.message);

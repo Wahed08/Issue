@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import IssueBody from "./components/BodyComponent/IssueBody";
@@ -39,14 +39,14 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/create_issue" element={<CreateIssue />}></Route>
-        <Route path="/issue" element={<IssueBody />}></Route>
-        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/" element={<IssueBody />}></Route>
+        {/* <Route path="/" element={<LandingPage />}></Route> */}
       </Routes>
     );
   } else {
     routes = (
       <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/" element={<IssueBody />}></Route>
         <Route path="/auth/signup" element={<SignUp />}></Route>
         <Route path="/auth/:uid/verify-email" element={<ProvideOtp />}></Route>
         <Route path="/auth/login" element={<LogIn />}></Route>
