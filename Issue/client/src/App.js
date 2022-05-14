@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState, useEffect, useContext } from "react";
+import React, { Fragment, useCallback, useState, useEffect, Profiler } from "react";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -9,12 +9,10 @@ import LogIn from "./components/Auth/LogIn";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
-import jwt from "jsonwebtoken";
-
+import Profile from "./components/BodyComponent/Profile/Profile";
 
 const App = () => {
 
-  const auth = useContext(AuthContext);
   const [userId, setUserId] = useState(false);
   const [token, setToken] = useState(false);
 
@@ -44,6 +42,7 @@ const App = () => {
       <Routes>
         <Route path="/create_issue" element={<CreateIssue />}></Route>
         <Route path="/" element={<IssueBody />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path="/" element={<LandingPage />}></Route> */}
       </Routes>
     );

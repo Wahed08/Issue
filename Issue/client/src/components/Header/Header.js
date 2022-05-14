@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Profile from "../BodyComponent/Profile/Profile";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -13,6 +16,19 @@ const Header = () => {
 
   const classes = useStyles();
   const auth = useContext(AuthContext);
+
+  const [anchorEl, setAnchorEl] = useState(false);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const logOut = () =>{
+    auth.logout();
+  }
 
   return (
     <div className="header">
@@ -63,6 +79,27 @@ const Header = () => {
               </li>
             )}
           </ul>
+          <Button
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          >
+            Dashboard
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <Link to="/profile"><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
+            <MenuItem onClick={logOut}>Logout</MenuItem>
+          </Menu>
         </nav>
       </div>
     </div>
