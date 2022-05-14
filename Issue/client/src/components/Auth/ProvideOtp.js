@@ -40,7 +40,7 @@ const ProvideOtp = () => {
         }
         if (response.ok) {
           auth.login(responseData.userId, responseData.token);
-          navigate("/issue");
+          navigate("/");
         }
       } catch (err) {
         setError(err.message);

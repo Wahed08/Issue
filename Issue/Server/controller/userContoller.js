@@ -147,7 +147,7 @@ const verifyEmail = async (req, res, next) =>{
   try {
     jwtToken = jwt.sign(
       { userId: verifyUser.id, email: verifyUser.email },
-      process.env.Secret_Key
+      process.env.Secret_Key,{expiresIn: "1hr"}
     );
   } catch (err) {
     const error = new HttpError("verification failed, please try again", 500);
@@ -215,7 +215,7 @@ const logIn = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email },
-      process.env.Secret_Key
+      process.env.Secret_Key,{expiresIn: "1hr"}
     );
   } catch (err) {
     const error = new HttpError("logging in failed, please try again", 500);

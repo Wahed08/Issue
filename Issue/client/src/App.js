@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState, useEffect } from "react";
+import React, { Fragment, useCallback, useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -9,8 +9,12 @@ import LogIn from "./components/Auth/LogIn";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
+import jwt from "jsonwebtoken";
+
 
 const App = () => {
+
+  const auth = useContext(AuthContext);
   const [userId, setUserId] = useState(false);
   const [token, setToken] = useState(false);
 
