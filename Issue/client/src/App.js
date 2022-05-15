@@ -42,7 +42,7 @@ const App = () => {
       <Routes>
         <Route path="/create_issue" element={<CreateIssue />}></Route>
         <Route path="/" element={<IssueBody />}></Route>
-        <Route path="/update_profile" element={<Profile />}></Route>
+        <Route path="/update-profile" element={<Profile />}></Route>
         {/* <Route path="/" element={<LandingPage />}></Route> */}
       </Routes>
     );

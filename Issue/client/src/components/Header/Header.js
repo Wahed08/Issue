@@ -98,7 +98,7 @@ const Header = () => {
             }}
           >
             <Link to="/profile"><MenuItem onClick={handleClose}>My Account</MenuItem></Link>
-            <Link to="/update_profile"><MenuItem onClick={handleClose}>Update Profile</MenuItem></Link>
+            <Link to="/update-profile"><MenuItem onClick={handleClose}>Update Profile</MenuItem></Link>
             <MenuItem onClick={logOut}>Logout</MenuItem>
           </Menu>
         </nav>
