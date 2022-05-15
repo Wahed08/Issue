@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Typography, Button} from "@material-ui/core";
 import { Link, useNavigate } from "react-router-dom";
 import ErrorModal from "../ShowError/ErrorModal";
+import { AuthContext } from "../../Auth/auth-context";
 import "./Profile.css";
 
 const Profile = () => {
@@ -19,6 +20,8 @@ const Profile = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
 
+  const auth = useContext(AuthContext);
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -26,7 +29,7 @@ const Profile = () => {
     if (profile) {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/accounts/update-profile",
+          `http://localhost:5000/api/accounts/${auth.userId}/update-profile`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

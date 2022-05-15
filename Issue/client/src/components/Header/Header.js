@@ -5,7 +5,6 @@ import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Profile from "../BodyComponent/Profile/Profile";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -98,7 +97,7 @@ const Header = () => {
             }}
           >
             <Link to="/profile"><MenuItem onClick={handleClose}>My Account</MenuItem></Link>
-            <Link to="/update-profile"><MenuItem onClick={handleClose}>Update Profile</MenuItem></Link>
+            <Link to={`/${auth.userId}/update-profile`}><MenuItem onClick={handleClose}>Update Profile</MenuItem></Link>
             <MenuItem onClick={logOut}>Logout</MenuItem>
           </Menu>
         </nav>
