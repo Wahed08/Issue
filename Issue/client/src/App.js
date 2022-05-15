@@ -9,6 +9,7 @@ import LogIn from "./components/Auth/LogIn";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
+import UpdateProfile from "./components/BodyComponent/Profile/UpdateProfile";
 import Profile from "./components/BodyComponent/Profile/Profile";
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
     setToken(token);
     setUserId(uid);
 
-    localStorage.setItem("Data", JSON.stringify({ userId: uid, token: token }));
+    localStorage.setItem("Data", JSON.stringify({ userId: uid, token: token}));
   }, []);
 
   const logout = useCallback(() => {
@@ -42,8 +43,8 @@ const App = () => {
       <Routes>
         <Route path="/create_issue" element={<CreateIssue />}></Route>
         <Route path="/" element={<IssueBody />}></Route>
-        <Route path="/:uid/update-profile" element={<Profile />}></Route>
-        {/* <Route path="/" element={<LandingPage />}></Route> */}
+        <Route path="/:uid/update-profile" element={<UpdateProfile />}></Route>
+        <Route path="/:uid/profile" element={<Profile />}></Route>
       </Routes>
     );
   } else {

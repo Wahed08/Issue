@@ -96,7 +96,7 @@ const Header = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <Link to="/profile"><MenuItem onClick={handleClose}>My Account</MenuItem></Link>
+            <Link to={`/${auth.userId}/profile`}><MenuItem onClick={handleClose}>My Account</MenuItem></Link>
             <Link to={`/${auth.userId}/update-profile`}><MenuItem onClick={handleClose}>Update Profile</MenuItem></Link>
             <MenuItem onClick={logOut}>Logout</MenuItem>
           </Menu>

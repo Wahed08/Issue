@@ -141,7 +141,7 @@ const VerifyEmail = async (req, res, next) => {
   let jwtToken;
   try {
     jwtToken = jwt.sign(
-      { userId: verifyUser.id, email: verifyUser.email },
+      { userId: verifyUser.id, email: verifyUser.email},
       process.env.Secret_Key,
       { expiresIn: "1hr" }
     );
@@ -211,7 +211,7 @@ const LogIn = async (req, res, next) => {
   let token;
   try {
     token = jwt.sign(
-      { userId: existingUser.id, email: existingUser.email },
+      { userId: existingUser.id, email: existingUser.email},
       process.env.Secret_Key,
       { expiresIn: "1hr" }
     );
@@ -225,6 +225,8 @@ const LogIn = async (req, res, next) => {
     .json({ userId: existingUser.id, email: existingUser.email, token: token });
 };
 
+
+//update user profile
 const UpdateUserProfile = async (req, res, next) => {
   const {
     fullName,
@@ -282,9 +284,27 @@ const UpdateUserProfile = async (req, res, next) => {
     .json({ message: "Profile update Successful", profileDetails: profile });
 };
 
+const getProfile = async (req, res, next) =>{
+
+  let user;
+  const userId = req.params.uid;
+  try {
+    user = await Profile.findOne({userId: userId});
+  } catch (err) {
+    const error = new HttpError(
+      "Could not find any user",
+      420
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ userProfile: user});
+}
+
 module.exports = {
   SignUp,
   VerifyEmail,
   LogIn,
   UpdateUserProfile,
+  getProfile,
 };
