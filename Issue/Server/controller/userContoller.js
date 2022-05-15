@@ -1,19 +1,22 @@
 const User = require("../models/userModel");
 const Verification = require("../models/userVerification");
-const {generateOTP, mailTransPort} = require("../utils/helper");
+const Profile = require("../models/profileModel");
+const { generateOTP, mailTransPort } = require("../utils/helper");
 const HttpError = require("../ErrorModel/errorModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 //user SignUp
 const SignUp = async (req, res, next) => {
-  
   const regEx = /^([a-z\d\.-]+)@([a-z\d-]+)\.(sust)\.(edu)$/g;
-  const { name, email, password, confirmPassword, verified} = req.body;
+  const { name, email, password, confirmPassword, verified } = req.body;
 
   //email validation check
   if (!regEx.test(email)) {
-    const error = new HttpError("You should provide proper university email", 402);
+    const error = new HttpError(
+      "You should provide proper university email",
+      402
+    );
     return next(error);
   }
 
@@ -54,15 +57,15 @@ const SignUp = async (req, res, next) => {
     name,
     email,
     password: hashedPassword,
-    verified
+    verified,
   });
 
   const OTP = generateOTP();
   const verificationUser = new Verification({
-    userId : createUser._id,
-    token: OTP
+    userId: createUser._id,
+    token: OTP,
   });
-  
+
   //save to db
   try {
     await verificationUser.save();
@@ -83,56 +86,48 @@ const SignUp = async (req, res, next) => {
     from: "no-reply@verification.com",
     to: createUser.email,
     subject: "Please verify your Email",
-    html: `<h1>Your OTP is ${OTP}</h1>`
+    html: `<h1>Your OTP is ${OTP}</h1>`,
   });
 
-  res.status(201).json({ message: "Sign up Successful", user:createUser });
+  res.status(201).json({ message: "Sign up Successful", user: createUser });
 };
 
-
-
 //verify email
-const verifyEmail = async (req, res, next) =>{
-  const {otp} = req.body;
+const VerifyEmail = async (req, res, next) => {
+  const { otp } = req.body;
   const userId = req.params.uid;
 
-  if(!userId || !otp.trim()){
+  if (!userId || !otp.trim()) {
     const error = new HttpError("Invalid parameters", 402);
     return next(error);
   }
 
   let verifyUser;
-  try{
+  try {
     verifyUser = await User.findById(userId);
-  }catch(err){
+  } catch (err) {
     const error = new HttpError("Invalid credentials", 500);
     return next(error);
   }
 
   if (!verifyUser) {
-    const error = new HttpError(
-      "Invalid credentials, user not found",
-      401
-    );
+    const error = new HttpError("Invalid credentials, user not found", 401);
     return next(error);
   }
 
-  if(verifyUser.verified){
-      const error = new HttpError(
-        "This account is already verified",
-        401
-      );
-      return next(error);
+  if (verifyUser.verified) {
+    const error = new HttpError("This account is already verified", 401);
+    return next(error);
   }
 
-  const token = await Verification.findOne({userId: verifyUser._id});
-  if(!token){
+  const token = await Verification.findOne({ userId: verifyUser._id });
+  if (!token) {
     const error = new HttpError("Invalid! sorry user not found", 402);
     return next(error);
   }
 
   const isMatched = await token.compareToken(otp);
-  if(!isMatched){
+  if (!isMatched) {
     const error = new HttpError("please provide a valid otp", 401);
     return next(error);
   }
@@ -147,7 +142,8 @@ const verifyEmail = async (req, res, next) =>{
   try {
     jwtToken = jwt.sign(
       { userId: verifyUser.id, email: verifyUser.email },
-      process.env.Secret_Key,{expiresIn: "1hr"}
+      process.env.Secret_Key,
+      { expiresIn: "1hr" }
     );
   } catch (err) {
     const error = new HttpError("verification failed, please try again", 500);
@@ -160,18 +156,19 @@ const verifyEmail = async (req, res, next) =>{
     from: "no-reply@verification.com",
     to: verifyUser.email,
     subject: "Eamil Verification",
-    html: `<h1>Your email is verified Succesfully</h1>`
+    html: `<h1>Your email is verified Succesfully</h1>`,
   });
 
-  res
-  .status(201)
-  .json({ message: "Email verified", userId: verifyUser.id, email: verifyUser.email, token: jwtToken });
-}
-
-
+  res.status(201).json({
+    message: "Email verified",
+    userId: verifyUser.id,
+    email: verifyUser.email,
+    token: jwtToken,
+  });
+};
 
 //log in
-const logIn = async (req, res, next) => {
+const LogIn = async (req, res, next) => {
   const { email, password } = req.body;
 
   let existingUser;
@@ -215,7 +212,8 @@ const logIn = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email },
-      process.env.Secret_Key,{expiresIn: "1hr"}
+      process.env.Secret_Key,
+      { expiresIn: "1hr" }
     );
   } catch (err) {
     const error = new HttpError("logging in failed, please try again", 500);
@@ -227,8 +225,65 @@ const logIn = async (req, res, next) => {
     .json({ userId: existingUser.id, email: existingUser.email, token: token });
 };
 
+const UpdateUserProfile = async (req, res, next) => {
+  const {
+    fullName,
+    designation,
+    department,
+    school,
+    nid,
+    bloodGroup,
+    phoneNumber,
+    email,
+    libraryId,
+    profileLink,
+  } = req.body;
+
+  let existingName;
+  try {
+    existingName = await User.findOne({ email: email });
+  } catch (err) {
+    const error = new HttpError("User Doesn't exist, check again", 500);
+    return next(error);
+  }
+
+  if (!existingName) {
+    const error = new HttpError("User does not found for this email", 422);
+    return next(error);
+  }
+
+  const profile = new Profile({
+    fullName,
+    designation,
+    department,
+    school,
+    nid,
+    bloodGroup,
+    phoneNumber,
+    email,
+    libraryId,
+    profileLink,
+    userId: existingName._id,
+  });
+
+  try {
+    await profile.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Updating profile failed, please try again",
+      501
+    );
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ message: "Profile update Successful", profileDetails: profile });
+};
+
 module.exports = {
   SignUp,
-  verifyEmail,
-  logIn,
+  VerifyEmail,
+  LogIn,
+  UpdateUserProfile,
 };

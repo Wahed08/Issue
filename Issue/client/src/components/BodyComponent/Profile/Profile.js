@@ -7,11 +7,11 @@ import "./Profile.css";
 const Profile = () => {
 
   return (
-    <div className="main_container">
+    <div className="profile_container">
       <div className="profile_name">
         <Typography variant="h4">Update Profile</Typography>
       </div>
-      <div className="profile_container">
+      <div className="textfiled_container">
         <form>
           <div>
             <TextField

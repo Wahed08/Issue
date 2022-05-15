@@ -1,11 +1,11 @@
-.main_container{
+.profile_container{
     min-width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: -1;
+    z-index: 0;
 }
 
 .profile_name{
@@ -16,19 +16,19 @@
     align-items: center;
 }
 
-.profile_container{
+.textfiled_container{
     top: 25%;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.profile_container div{
+.textfiled_container div{
     width: 30em;
     margin: 0.3em 0;
 }
 
-.profile_container .button{
+.textfiled_container .button{
     margin-bottom: 10em;
 }
 
