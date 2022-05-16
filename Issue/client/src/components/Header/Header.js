@@ -5,6 +5,10 @@ import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -78,6 +82,7 @@ const Header = () => {
                   onClick={handleClick}
                 >
                   Dashboard
+                  <KeyboardArrowDown/>
                 </Button>
               </li>
             ) : null}
@@ -92,12 +97,12 @@ const Header = () => {
             }}
           >
             <Link to={`/${auth.userId}/profile`}>
-              <MenuItem onClick={handleClose}>My Account</MenuItem>
+              <MenuItem onClick={handleClose}><AccountCircleIcon style={{marginRight: "5px"}}/> My Account</MenuItem>
             </Link>
             <Link to={`/${auth.userId}/update-profile`}>
-              <MenuItem onClick={handleClose}>Update Profile</MenuItem>
+              <MenuItem onClick={handleClose}><EditIcon style={{marginRight: "5px"}}/>Update Profile</MenuItem>
             </Link>
-            <MenuItem onClick={logOut}>Logout</MenuItem>
+            <MenuItem onClick={logOut}><LogoutIcon style={{marginRight: "7px"}}/> Logout</MenuItem>
           </Menu>
         </nav>
       </div>

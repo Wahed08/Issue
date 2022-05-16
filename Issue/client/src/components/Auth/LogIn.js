@@ -43,7 +43,6 @@ const LogIn = () => {
           setError(responseData.message);
         }
         if (response.ok) {
-          console.log(responseData.token);
           auth.login(responseData.userId, responseData.token);
           navigate("/");
         }
