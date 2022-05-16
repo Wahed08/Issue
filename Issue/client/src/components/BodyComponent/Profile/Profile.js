@@ -1,15 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-// import { AuthContext } from "../../Auth/auth-context";
+import { makeStyles } from "@material-ui/core/styles";
 import "./Profile.css";
 
 const Profile = () => {
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      marginBottom:"1.5em",
+      color:"red"
+    },
+    contact:{
+      color: "green",
+      marginTop:"1.5em",
+    },
+    bottom:{
+      marginBottom:"6em",
+    }
+   
+  }));
+
   const [user, setUser] = useState();
   const { uid } = useParams();
+  const classes = useStyles();
 
   useEffect(() => {
-    // const ac = new AbortController();
     const fetchUser = async () => {
       try {
         const userData = await fetch(
@@ -23,7 +40,6 @@ const Profile = () => {
       } catch (err) {
         throw err;
       }
-      //   return ac.abort();
     };
     fetchUser();
   }, [uid]);
@@ -32,22 +48,30 @@ const Profile = () => {
     <React.Fragment>
       <div className="profile-body">
         <div className="heading">
-          <Typography variant="h4">Profile Details</Typography>
+          {/* <Typography variant="h4">Profile Details</Typography> */}
         </div>
-        <div>
+        <div className="items">
           {user && (
-            <ul>
-              <li>Full Name: {user.fullName}</li>
-              <li>Designation: {user.designation}</li>
-              <li>Department: {user.department}</li>
-              <li>School: {user.school}</li>
-              <li>NID: {user.nid}</li>
-              <li>Blood Group: {user.bloodGroup}</li>
-              <li>Phone Number: {user.phoneNumber}</li>
-              <li>Email: {user.email}</li>
-              <li>Library Id: {user.libraryId}</li>
-              <li>Profile Link: {user.profileLink}</li>
-            </ul>
+            <section>
+              <Typography variant="h4" className={classes.root}>Faculty Profile</Typography>
+
+              <Typography variant="h5">{user.fullName}</Typography> 
+              <Typography variant="body1">{user.designation}</Typography>
+              <Typography variant="body1">{user.department} Department</Typography>
+              <Typography variant="body1">{user.school}</Typography>
+
+              <Typography variant="h5" className={classes.contact}>Contact Information</Typography>
+              
+              <Typography variant="body1">NID : {user.nid}</Typography>
+              <Typography variant="body1">Phone Number : {user.phoneNumber}</Typography>
+              <Typography variant="body1">Email : {user.email}</Typography>
+
+              <Typography variant="h5" className={classes.contact}>More Details</Typography>
+
+              <Typography variant="body1">Blood Group : {user.bloodGroup}</Typography>
+              <Typography variant="body1">Library Id:  {user.libraryId}</Typography>
+              <Typography variant="body1" className={classes.bottom}>Profile Link : <Link to="">{user.profileLink}</Link></Typography>
+             </section>
           )}
         </div>
       </div>

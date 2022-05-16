@@ -1,5 +1,5 @@
 .profile-body{
-    /* width: 100%; */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,11 +7,15 @@
     min-height: 100vh;
 }
 
-.profile-body ul li{
-    font-size: 1.5em;
+.items{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px;
-    text-align: center;
+    position: absolute;
+    top: 20%;
+}
+
+.items a{
+    font-size: 1em;
+}
+.items a:hover{
+    text-decoration: underline;
 }
