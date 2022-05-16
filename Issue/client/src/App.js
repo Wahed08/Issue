@@ -41,7 +41,7 @@ const App = () => {
   if (token) {
     routes = (
       <Routes>
-        <Route path="/create_issue" element={<CreateIssue />}></Route>
+        <Route path="/create-issue" element={<CreateIssue />}></Route>
         <Route path="/" element={<IssueBody />}></Route>
         <Route path="/:uid/update-profile" element={<UpdateProfile />}></Route>
         <Route path="/:uid/profile" element={<Profile />}></Route>

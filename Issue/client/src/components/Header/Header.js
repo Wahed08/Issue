@@ -25,9 +25,10 @@ const Header = () => {
     setAnchorEl(null);
   };
 
-  const logOut = () =>{
+  const logOut = () => {
+    handleClose();
     auth.logout();
-  }
+  };
 
   return (
     <div className="header">
@@ -42,23 +43,10 @@ const Header = () => {
             </li>
             {auth.isLoggedIn && (
               <li className="create">
-                <Link to="/create_issue">Create Issue</Link>
+                <Link to="/create-issue">Create Issue</Link>
               </li>
             )}
-            {auth.isLoggedIn ? (
-              <li>
-                <Link to="/">
-                  <Button
-                    color="secondary"
-                    variant="contained"
-                    size="small"
-                    onClick={auth.logout}
-                  >
-                    Log Out
-                  </Button>
-                </Link>
-              </li>
-            ) : (
+            {!auth.isLoggedIn ? (
               <li>
                 <Link to="/auth/signup">
                   <Button
@@ -76,17 +64,24 @@ const Header = () => {
                   </Button>
                 </Link>
               </li>
-            )}
+            ) : null}
+            {auth.isLoggedIn ? (
+              <li>
+                <Button
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  size="small"
+                  color="secondary"
+                  variant="contained"
+                  onClick={handleClick}
+                >
+                  Dashboard
+                </Button>
+              </li>
+            ) : null}
           </ul>
-          <Button
-            id="basic-button"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          >
-            Dashboard
-          </Button>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -96,8 +91,12 @@ const Header = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <Link to={`/${auth.userId}/profile`}><MenuItem onClick={handleClose}>My Account</MenuItem></Link>
-            <Link to={`/${auth.userId}/update-profile`}><MenuItem onClick={handleClose}>Update Profile</MenuItem></Link>
+            <Link to={`/${auth.userId}/profile`}>
+              <MenuItem onClick={handleClose}>My Account</MenuItem>
+            </Link>
+            <Link to={`/${auth.userId}/update-profile`}>
+              <MenuItem onClick={handleClose}>Update Profile</MenuItem>
+            </Link>
             <MenuItem onClick={logOut}>Logout</MenuItem>
           </Menu>
         </nav>
