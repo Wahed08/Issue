@@ -244,7 +244,7 @@ const UpdateUserProfile = async (req, res, next) => {
   const uId = req.params.uid;
   let existingName;
   try {
-    existingName = await User.findById(uId);
+    existingName = await User.findOne({_id: uId, email: email});
   } catch (err) {
     const error = new HttpError("User Doesn't exist, check again", 500);
     return next(error);

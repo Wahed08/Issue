@@ -41,7 +41,7 @@ const Profile = () => {
           setError(responseData.message);
         }
         if (response.ok) {
-          navigate("/profile");
+          navigate(`/${auth.userId}/profile`);
         }
       } catch (err) {
         setError(err.message);
