@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import "./Header.css";
 import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
@@ -19,6 +19,7 @@ const Header = () => {
 
   const classes = useStyles();
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(false);
   const open = Boolean(anchorEl);
@@ -31,6 +32,7 @@ const Header = () => {
 
   const logOut = () => {
     handleClose();
+    navigate("/");
     auth.logout();
   };
 
