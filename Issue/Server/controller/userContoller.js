@@ -293,7 +293,7 @@ const getProfile = async (req, res, next) =>{
     user = await Profile.findOne({userId: userId});
   } catch (err) {
     const error = new HttpError(
-      "Could not find any user",
+      "Could not find any user Profile",
       420
     );
     return next(error);
@@ -302,10 +302,28 @@ const getProfile = async (req, res, next) =>{
   res.status(200).json({ userProfile: user});
 }
 
+const getUser = async (req, res, next) =>{
+
+  let singleUser;
+  const userId = req.params.uid;
+  try {
+    singleUser = await User.findById(userId, "-password");
+  } catch (err) {
+    const error = new HttpError(
+      "Could not find any user",
+      420
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ user: singleUser});
+}
+
 module.exports = {
   SignUp,
   VerifyEmail,
   LogIn,
   UpdateUserProfile,
   getProfile,
+  getUser,
 };

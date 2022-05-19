@@ -4,7 +4,7 @@ const router = express.Router();
 const {auth, admin} = require("../context/authentication");
 
 
-router.post("/create", [auth, admin], postController.createPost);
+router.post("/create", postController.createPost);
 router.get("/", postController.getAllPost);
 
 

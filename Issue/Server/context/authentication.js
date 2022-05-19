@@ -27,7 +27,6 @@ const auth = async (req, res, next) => {
 
 const admin = (req, res, next) =>{
     if(req.userId && req.user.isAdmin){
-      console.log(req.user.isAdmin);
       next();
     }else{
       const error = new HttpError("Admin Authentication failed", 403);

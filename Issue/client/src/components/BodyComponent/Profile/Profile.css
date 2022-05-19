@@ -7,10 +7,16 @@
     min-height: 100vh;
 }
 
+
+.userData{
+    display: flex;
+    position: absolute;
+    top: 15%;
+}
 .items{
     display: flex;
     position: absolute;
-    top: 20%;
+    top: 30%;
 }
 
 .items a{
