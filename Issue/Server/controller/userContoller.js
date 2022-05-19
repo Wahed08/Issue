@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const Verification = require("../models/userVerification");
 const Profile = require("../models/profileModel");
-const { generateOTP, mailTransPort } = require("../utils/helper");
+const { generateOTP, mailTransPort, checkAdmin } = require("../utils/helper");
 const HttpError = require("../ErrorModel/errorModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 //user SignUp
 const SignUp = async (req, res, next) => {
   const regEx = /^([a-z\d\.-]+)@([a-z\d-]+)\.(sust)\.(edu)$/g;
-  const { name, email, password, confirmPassword, verified } = req.body;
+  const { name, email, password, confirmPassword, isAdmin, verified } = req.body;
 
   //email validation check
   if (!regEx.test(email)) {
@@ -57,6 +57,7 @@ const SignUp = async (req, res, next) => {
     name,
     email,
     password: hashedPassword,
+    isAdmin: checkAdmin(email) ? true : false,
     verified,
   });
 
@@ -155,7 +156,7 @@ const VerifyEmail = async (req, res, next) => {
   mailTransPort().sendMail({
     from: "no-reply@verification.com",
     to: verifyUser.email,
-    subject: "Eamil Verification",
+    subject: "Email Verification",
     html: `<h1>Your email is verified Succesfully</h1>`,
   });
 

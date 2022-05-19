@@ -20,3 +20,7 @@ exports.mailTransPort = () => {
     });
     return transport;
 }
+
+exports.checkAdmin = (email) =>{
+    return email === "admin@student.sust.edu";
+}
