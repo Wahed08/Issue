@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
 import UpdateProfile from "./components/BodyComponent/Profile/UpdateProfile";
+import Account from "./components/BodyComponent/Profile/Account";
 import Profile from "./components/BodyComponent/Profile/Profile";
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/create-issue" element={<CreateIssue />}></Route>
         <Route path="/" element={<IssueBody />}></Route>
         <Route path="/:uid/update-profile" element={<UpdateProfile />}></Route>
+        <Route path="/:uid/account" element={<Account />}></Route>
         <Route path="/:uid/profile" element={<Profile />}></Route>
       </Routes>
     );

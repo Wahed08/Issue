@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { AuthContext } from "../../Auth/auth-context";
 import "./Profile.css";
 
 const Profile = () => {
@@ -18,12 +19,15 @@ const Profile = () => {
     bottom: {
       marginBottom: "6em",
     },
+    btn: {
+      marginTop: "20px",
+    },
   }));
 
-  const [user, setUser] = useState();
   const [profile, setProfile] = useState();
   const { uid } = useParams();
   const classes = useStyles();
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -31,14 +35,8 @@ const Profile = () => {
         const profileData = await fetch(
           `http://localhost:5000/api/accounts/${uid}/profile`
         );
-        const userData = await fetch(
-          `http://localhost:5000/api/accounts/${uid}/user`
-        );
         const responseProfileData = await profileData.json();
-        const responseUserData = await userData.json();
-
         setProfile(responseProfileData.userProfile);
-        setUser(responseUserData.user);
 
         if (!profileData.ok) {
           throw new Error(responseProfileData.message);
@@ -53,16 +51,8 @@ const Profile = () => {
   return (
     <React.Fragment>
       <div className="profile-body">
-        <div className="userData">
-          {user && (
-            <section>
-              <Typography variant="h5">Name : {user.name}</Typography>
-              <Typography variant="h5">Email : {user.email}</Typography>
-            </section>
-          )}
-        </div>
         <div className="items">
-          {profile && (
+          {profile ? (
             <section>
               <Typography variant="h4" className={classes.root}>
                 Faculty Profile
@@ -98,6 +88,21 @@ const Profile = () => {
               <Typography variant="body1" className={classes.bottom}>
                 Profile Link : <Link to="">{profile.profileLink}</Link>
               </Typography>
+            </section>
+          ) : (
+            <section>
+              <Typography variant="h4">
+                You did't update profile yet!
+              </Typography>
+              <Link to={`/${auth.userId}/update-profile`}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.btn}
+                >
+                  Update Profile
+                </Button>
+              </Link>
             </section>
           )}
         </div>

@@ -98,12 +98,12 @@ const Header = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <Link to={`/${auth.userId}/profile`}>
+            <Link to={`/${auth.userId}/account`}>
               <MenuItem onClick={handleClose}><AccountCircleIcon style={{marginRight: "5px"}}/> My Account</MenuItem>
             </Link>
-            <Link to={`/${auth.userId}/update-profile`}>
+            {/* <Link to={`/${auth.userId}/update-profile`}>
               <MenuItem onClick={handleClose}><EditIcon style={{marginRight: "5px"}}/>Update Profile</MenuItem>
-            </Link>
+            </Link> */}
             <MenuItem onClick={logOut}><LogoutIcon style={{marginRight: "7px"}}/> Logout</MenuItem>
           </Menu>
         </nav>

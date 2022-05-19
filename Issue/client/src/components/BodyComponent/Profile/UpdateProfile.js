@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { TextField, Typography, Button} from "@material-ui/core";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorModal from "../ShowError/ErrorModal";
 import { AuthContext } from "../../Auth/auth-context";
 import "./UpdateProfile.css";
