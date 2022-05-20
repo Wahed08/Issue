@@ -39,7 +39,7 @@ const ProvideOtp = () => {
           setError(responseData.message);
         }
         if (response.ok) {
-          auth.login(responseData.userId, responseData.token);
+          auth.login(responseData.userId, responseData.token, responseData.isAdmin);
           navigate("/");
         }
       } catch (err) {

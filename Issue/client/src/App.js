@@ -17,24 +17,27 @@ const App = () => {
 
   const [userId, setUserId] = useState(false);
   const [token, setToken] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  const login = useCallback((uid, token) => {
+  const login = useCallback((uid, token, isAdmin) => {
     setToken(token);
     setUserId(uid);
+    setIsAdmin(isAdmin);
 
-    localStorage.setItem("Data", JSON.stringify({ userId: uid, token: token}));
+    localStorage.setItem("Data", JSON.stringify({ userId: uid, token: token, isAdmin: isAdmin}));
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setUserId(null);
+    setIsAdmin(null);
     localStorage.removeItem("Data");
   }, []);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("Data"));
     if (storedData && storedData.token) {
-      login(storedData.userId, storedData.token);
+      login(storedData.userId, storedData.token, storedData.isAdmin);
     }
   }, [login]);
 
@@ -66,6 +69,7 @@ const App = () => {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
+        isAdmin: isAdmin,
         login: login,
         logout: logout,
       }}

@@ -165,6 +165,7 @@ const VerifyEmail = async (req, res, next) => {
     userId: verifyUser.id,
     email: verifyUser.email,
     token: jwtToken,
+    isAdmin: isAdmin,
   });
 };
 
@@ -223,7 +224,7 @@ const LogIn = async (req, res, next) => {
 
   res
     .status(201)
-    .json({ userId: existingUser.id, email: existingUser.email, token: token });
+    .json({ userId: existingUser.id, email: existingUser.email, token: token, isAdmin: existingUser.isAdmin});
 };
 
 

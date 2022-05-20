@@ -1,14 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
-import EditIcon from '@mui/icons-material/Edit';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PeopleIcon from "@mui/icons-material/People";
+import BugReportIcon from "@mui/icons-material/BugReport";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -83,8 +84,8 @@ const Header = () => {
                   variant="contained"
                   onClick={handleClick}
                 >
-                  Dashboard
-                  <KeyboardArrowDown/>
+                  {auth.isAdmin ? "Admin" : "Dashboard"}
+                  <KeyboardArrowDown />
                 </Button>
               </li>
             ) : null}
@@ -99,12 +100,26 @@ const Header = () => {
             }}
           >
             <Link to={`/${auth.userId}/account`}>
-              <MenuItem onClick={handleClose}><AccountCircleIcon style={{marginRight: "5px"}}/> My Account</MenuItem>
+              <MenuItem onClick={handleClose}>
+                <AccountCircleIcon style={{ marginRight: "5px" }} /> My Account
+              </MenuItem>
             </Link>
-            {/* <Link to={`/${auth.userId}/update-profile`}>
-              <MenuItem onClick={handleClose}><EditIcon style={{marginRight: "5px"}}/>Update Profile</MenuItem>
-            </Link> */}
-            <MenuItem onClick={logOut}><LogoutIcon style={{marginRight: "7px"}}/> Logout</MenuItem>
+
+            {auth.isAdmin && <Link to={``}>
+              <MenuItem onClick={handleClose}>
+                <PeopleIcon style={{ marginRight: "5px" }} /> Users
+              </MenuItem>
+            </Link>}
+
+            {auth.isAdmin && <Link to={``}>
+              <MenuItem onClick={handleClose}>
+                <BugReportIcon style={{ marginRight: "5px" }} /> Issues
+              </MenuItem>
+            </Link>}
+            
+            <MenuItem onClick={logOut}>
+              <LogoutIcon style={{ marginRight: "7px" }} /> Logout
+            </MenuItem>
           </Menu>
         </nav>
       </div>
