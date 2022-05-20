@@ -8,5 +8,6 @@ router.post("/login", userController.LogIn);
 router.post("/:uid/update-profile", userController.UpdateUserProfile);
 router.get("/:uid/profile", userController.getProfile);
 router.get("/:uid/user", userController.getUser);
+router.get("/admin/users-list", userController.getUsersAll);
 
 module.exports = router;

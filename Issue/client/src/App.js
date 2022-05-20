@@ -12,6 +12,7 @@ import { AuthContext } from "./components/Auth/auth-context";
 import UpdateProfile from "./components/BodyComponent/Profile/UpdateProfile";
 import Account from "./components/BodyComponent/Profile/Account";
 import Profile from "./components/BodyComponent/Profile/Profile";
+import UsersList from "./components/Admin/UsersList";
 
 const App = () => {
 
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/:uid/update-profile" element={<UpdateProfile />}></Route>
         <Route path="/:uid/account" element={<Account />}></Route>
         <Route path="/:uid/profile" element={<Profile />}></Route>
+        <Route path="/admin/users-list" element={<UsersList />}></Route>
       </Routes>
     );
   } else {

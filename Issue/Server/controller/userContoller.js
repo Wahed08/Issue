@@ -320,6 +320,22 @@ const getUser = async (req, res, next) =>{
   res.status(200).json({ user: singleUser});
 }
 
+const getUsersAll = async (req, res, next) =>{
+
+  let allUser;
+  try {
+    allUser = await User.find();
+  } catch (err) {
+    const error = new HttpError(
+      "Could not find any existing user",
+      420
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ usersList: allUser.map((user) => user.toObject({ getters: true }))});
+}
+
 module.exports = {
   SignUp,
   VerifyEmail,
@@ -327,4 +343,5 @@ module.exports = {
   UpdateUserProfile,
   getProfile,
   getUser,
+  getUsersAll,
 };

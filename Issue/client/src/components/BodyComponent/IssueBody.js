@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import "../BodyComponent/IssueBody.css";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
-// import PostCard from "./PostCard";
 
 const IssueBody = () => {
   
