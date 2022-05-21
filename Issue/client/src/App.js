@@ -13,6 +13,7 @@ import UpdateProfile from "./components/BodyComponent/Profile/UpdateProfile";
 import Account from "./components/BodyComponent/Profile/Account";
 import Profile from "./components/BodyComponent/Profile/Profile";
 import UsersList from "./components/Admin/UsersList";
+import IssuesList from "./components/Admin/IssuesList";
 
 const App = () => {
 
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/:uid/account" element={<Account />}></Route>
         <Route path="/:uid/profile" element={<Profile />}></Route>
         <Route path="/admin/users-list" element={<UsersList />}></Route>
+        <Route path="/admin/issues-list" element={<IssuesList />}></Route>
       </Routes>
     );
   } else {

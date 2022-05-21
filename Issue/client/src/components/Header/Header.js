@@ -111,7 +111,7 @@ const Header = () => {
               </MenuItem>
             </Link>}
 
-            {auth.isAdmin && <Link to={``}>
+            {auth.isAdmin && <Link to="/admin/issues-list">
               <MenuItem onClick={handleClose}>
                 <BugReportIcon style={{ marginRight: "5px" }} /> Issues
               </MenuItem>
