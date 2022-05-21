@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import "../BodyComponent/IssueBody.css";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Button } from "@material-ui/core";
 
-const IssueBody = () => {
-  
+const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState();
@@ -37,7 +39,7 @@ const IssueBody = () => {
 
   return (
     <React.Fragment>
-      <ErrorModal error = {error}/>
+      <ErrorModal error={error} />
       <div className="issue-container">
         <div className="heading">
           <h1>All Issues</h1>
@@ -51,6 +53,7 @@ const IssueBody = () => {
                 <th>Issue Details</th>
                 <th style={{ width: "12%" }}>Date</th>
                 <th style={{ width: "10%" }}>Status</th>
+                {admin ==="admin" && <th style={{ width: "13%" }}>Changes</th>}
               </tr>
             </thead>
 
@@ -62,21 +65,21 @@ const IssueBody = () => {
                     <td>{post.description}</td>
                     <td>{post.date}</td>
                     <td>{post.status}</td>
+                    {admin === "admin" &&
+                    <td>
+                      <Button variant="contained" size="small" color="primary">
+                        {<EditIcon />}
+                      </Button>
+                      <Button variant="contained" size="small" color="error">
+                        {<DeleteIcon />}
+                      </Button>
+                    </td>}
                   </tr>
                 ))}
               <div className="gap"></div>
             </tbody>
           </table>
         </div>
-
-        {/* <div className="card-body">
-        {!posts.length && <div className="no-post"><h2>
-          There is no Issue!
-          </h2></div>}
-        {posts && posts.map((post) =>(
-            <PostCard key = {post} title={post.title} description={post.description}/>
-        ))}
-      </div> */}
       </div>
     </React.Fragment>
   );

@@ -62,7 +62,7 @@ const UsersList = () => {
                     <td>
                       <Button variant="contained" size="small" color="primary">
                         {<EditIcon />}
-                      </Button>{" "}
+                      </Button>
                       <Button variant="contained" size="small" color="error">
                         {<DeleteIcon />}
                       </Button>

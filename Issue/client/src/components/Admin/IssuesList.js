@@ -9,7 +9,7 @@ const IssuesList = () => {
   return (
     <React.Fragment>
      <div>
-        <IssueBody/>
+        <IssueBody admin="admin"/>
      </div>
     </React.Fragment>
   );
