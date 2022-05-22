@@ -42,7 +42,7 @@ const Account = () => {
       }
     };
     fetchUser();
-  }, [uid]);
+  }, [uid, auth]);
 
   return (
     <React.Fragment>

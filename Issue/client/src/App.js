@@ -1,14 +1,14 @@
-import React, { Fragment, useCallback, useState, useEffect, Profiler } from "react";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import React, { Fragment, useCallback, useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import IssueBody from "./components/BodyComponent/IssueBody";
 import CreateIssue from "./components/BodyComponent/CreateIssue";
 import SignUp from "./components/Auth/SignUp";
 import LogIn from "./components/Auth/LogIn";
-import LandingPage from "./components/LandingPage/LandingPage";
 import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
+import jwt from "jsonwebtoken";
 import UpdateProfile from "./components/BodyComponent/Profile/UpdateProfile";
 import Account from "./components/BodyComponent/Profile/Account";
 import Profile from "./components/BodyComponent/Profile/Profile";
@@ -17,7 +17,6 @@ import IssuesList from "./components/Admin/IssuesList";
 import EditIssue from "./components/Admin/EditIssue";
 
 const App = () => {
-
   const [userId, setUserId] = useState(false);
   const [token, setToken] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -27,7 +26,10 @@ const App = () => {
     setUserId(uid);
     setIsAdmin(isAdmin);
 
-    localStorage.setItem("Data", JSON.stringify({ userId: uid, token: token, isAdmin: isAdmin}));
+    localStorage.setItem(
+      "Data",
+      JSON.stringify({ userId: uid, token: token, isAdmin: isAdmin })
+    );
   }, []);
 
   const logout = useCallback(() => {
@@ -46,6 +48,7 @@ const App = () => {
 
   let routes;
   if (token) {
+    
     routes = (
       <Routes>
         <Route path="/create-issue" element={<CreateIssue />}></Route>
