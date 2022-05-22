@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import {AuthContext} from "../../Auth/auth-context";
 import "./Profile.css";
 
 const Account = () => {
   const useStyles = makeStyles((theme) => ({
-   
     btn: {
       marginTop: "20px",
     },
@@ -16,12 +16,19 @@ const Account = () => {
   const [user, setUser] = useState();
   const { uid } = useParams();
   const classes = useStyles();
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await fetch(
-          `http://localhost:5000/api/accounts/${uid}/user`
+          `http://localhost:5000/api/accounts/${uid}/user`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + auth.token,
+            },
+          }
         );
 
         const responseUserData = await userData.json();

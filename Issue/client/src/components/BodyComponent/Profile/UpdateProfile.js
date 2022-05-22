@@ -32,7 +32,9 @@ const Profile = () => {
           `http://localhost:5000/api/accounts/${auth.userId}/update-profile`,
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
             body: JSON.stringify(profile),
           }
         );

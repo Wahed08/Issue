@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import { Button } from "@material-ui/core";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {AuthContext} from "../Auth/auth-context";
 
 const UsersList = () => {
+
   const [users, setUsers] = useState([]);
   const [error, setError] = useState();
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -17,6 +20,10 @@ const UsersList = () => {
           "http://localhost:5000/api/accounts/admin/users-list",
           {
             method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
           }
         );
         const responseData = await userData.json();
@@ -30,7 +37,7 @@ const UsersList = () => {
       }
     };
     fetchUsers();
-  }, [users]);
+  }, [users, auth]);
 
   return (
     <React.Fragment>

@@ -33,7 +33,14 @@ const Profile = () => {
     const fetchUser = async () => {
       try {
         const profileData = await fetch(
-          `http://localhost:5000/api/accounts/${uid}/profile`
+          `http://localhost:5000/api/accounts/${uid}/profile`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+          }
         );
         const responseProfileData = await profileData.json();
         setProfile(responseProfileData.userProfile);

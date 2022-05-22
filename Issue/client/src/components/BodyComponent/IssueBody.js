@@ -10,16 +10,19 @@ const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState();
-  let index = 1;
+  let index = 1, value;
+
+  value = admin==="admin" ? "api/posts/admin/issues-list" : "api/posts";
+  
 
   useEffect(() => {
     const ac = new AbortController();
     const fetchPost = async () => {
       try {
-        const postData = await fetch("http://localhost:5000/api/posts", {
+        const postData = await fetch(`http://localhost:5000/${value}`, {
           method: "GET",
           headers: {
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
             Authorization: "Bearer " + auth.token,
           },
         });
