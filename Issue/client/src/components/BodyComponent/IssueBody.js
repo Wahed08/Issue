@@ -80,7 +80,7 @@ const IssueBody = ({ admin }) => {
                 posts.map((post) => (
                   <tr key={index}>
                     <td>{index++}</td>
-                    <td>{post.description}</td>
+                    <td><Link to="">{post.description}</Link></td>
                     <td>{post.date}</td>
                     {post.status === "Processing" && (
                       <td style={{ color: "#1b5e20", fontWeight: "bold" }}>

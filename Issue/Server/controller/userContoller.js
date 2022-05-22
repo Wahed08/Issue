@@ -144,7 +144,7 @@ const VerifyEmail = async (req, res, next) => {
     jwtToken = jwt.sign(
       { userId: verifyUser.id, email: verifyUser.email},
       process.env.Secret_Key,
-      { expiresIn: "120s" }
+      { expiresIn: "1hr" }
     );
   } catch (err) {
     const error = new HttpError("verification failed, please try again", 500);
@@ -165,7 +165,7 @@ const VerifyEmail = async (req, res, next) => {
     userId: verifyUser.id,
     email: verifyUser.email,
     token: jwtToken,
-    isAdmin: isAdmin,
+    isAdmin: verifyUser.isAdmin
   });
 };
 
@@ -215,7 +215,7 @@ const LogIn = async (req, res, next) => {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email},
       process.env.Secret_Key,
-      { expiresIn: "120s" }
+      { expiresIn: "1hr" }
     );
   } catch (err) {
     const error = new HttpError("logging in failed, please try again", 500);
@@ -286,6 +286,7 @@ const UpdateUserProfile = async (req, res, next) => {
     .json({ message: "Profile update Successful", profileDetails: profile });
 };
 
+//get single user profile
 const getProfile = async (req, res, next) =>{
 
   let user;
@@ -303,6 +304,7 @@ const getProfile = async (req, res, next) =>{
   res.status(200).json({ userProfile: user});
 }
 
+//get single user
 const getUser = async (req, res, next) =>{
 
   let singleUser;
@@ -320,6 +322,7 @@ const getUser = async (req, res, next) =>{
   res.status(200).json({ user: singleUser});
 }
 
+//get users all
 const getUsersAll = async (req, res, next) =>{
 
   let allUser;
@@ -336,6 +339,31 @@ const getUsersAll = async (req, res, next) =>{
   res.status(200).json({ usersList: allUser.map((user) => user.toObject({ getters: true }))});
 }
 
+//delete Issue
+const deleteUser = async (req, res, next) => {
+
+  const uId = req.params.uid;
+  let user;
+  try {
+    user = await User.findByIdAndDelete(uId);
+    await Profile.findOneAndDelete({userId: uId});
+   
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete user.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!user) {
+    const error = new HttpError("Could not find user for this id.", 404);
+    return next(error);
+  }
+
+  res.status(200).json({ message: "Deleted User." });
+};
+
 module.exports = {
   SignUp,
   VerifyEmail,
@@ -344,4 +372,5 @@ module.exports = {
   getProfile,
   getUser,
   getUsersAll,
+  deleteUser,
 };

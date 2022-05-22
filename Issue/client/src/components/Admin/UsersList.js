@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import { Button } from "@material-ui/core";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -12,6 +13,7 @@ const UsersList = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState();
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const ac = new AbortController();
@@ -40,6 +42,20 @@ const UsersList = () => {
     };
     fetchUsers();
   }, [users, auth]);
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure')) {
+      await fetch(`http://localhost:5000/api/accounts/admin/${id}/delete-user`, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      const newPost = users.filter((post) => post.id !== id);
+      setUsers(newPost);
+      navigate("/admin/users-list");
+    }
+  };
 
   return (
     <React.Fragment>
@@ -72,7 +88,7 @@ const UsersList = () => {
                       <Button variant="contained" size="small" color="primary">
                         {<EditIcon />}
                       </Button>
-                      <Button variant="contained" size="small" color="error">
+                      <Button variant="contained" size="small" color="error" onClick={() => handleDelete(user._id)}>
                         {<DeleteIcon />}
                       </Button>
                     </td>
