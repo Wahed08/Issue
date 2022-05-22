@@ -14,6 +14,7 @@ import Account from "./components/BodyComponent/Profile/Account";
 import Profile from "./components/BodyComponent/Profile/Profile";
 import UsersList from "./components/Admin/UsersList";
 import IssuesList from "./components/Admin/IssuesList";
+import EditIssue from "./components/Admin/EditIssue";
 
 const App = () => {
 
@@ -54,6 +55,7 @@ const App = () => {
         <Route path="/:uid/profile" element={<Profile />}></Route>
         <Route path="/admin/users-list" element={<UsersList />}></Route>
         <Route path="/admin/issues-list" element={<IssuesList />}></Route>
+        <Route path="/admin/:pid/edit-issue" element={<EditIssue />}></Route>
       </Routes>
     );
   } else {

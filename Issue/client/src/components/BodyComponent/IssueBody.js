@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import "../BodyComponent/IssueBody.css";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
@@ -10,10 +11,10 @@ const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState();
-  let index = 1, value;
+  let index = 1,
+    value;
 
-  value = admin==="admin" ? "api/posts/admin/issues-list" : "api/posts";
-  
+  value = admin === "admin" ? "api/posts/admin/issues-list" : "api/posts";
 
   useEffect(() => {
     const ac = new AbortController();
@@ -56,7 +57,7 @@ const IssueBody = ({ admin }) => {
                 <th>Issue Details</th>
                 <th style={{ width: "12%" }}>Date</th>
                 <th style={{ width: "10%" }}>Status</th>
-                {admin ==="admin" && <th style={{ width: "13%" }}>Changes</th>}
+                {admin === "admin" && <th style={{ width: "13%" }}>Changes</th>}
               </tr>
             </thead>
 
@@ -67,16 +68,33 @@ const IssueBody = ({ admin }) => {
                     <td>{index++}</td>
                     <td>{post.description}</td>
                     <td>{post.date}</td>
-                    <td>{post.status}</td>
-                    {admin === "admin" &&
-                    <td>
-                      <Button variant="contained" size="small" color="primary">
-                        {<EditIcon />}
-                      </Button>
-                      <Button variant="contained" size="small" color="error">
-                        {<DeleteIcon />}
-                      </Button>
-                    </td>}
+                    {post.status === "Processing" && (
+                      <td style={{ color: "#1b5e20", fontWeight: "bold" }}>
+                        {post.status}
+                      </td>
+                    )}
+                    {post.status === "Pending" && <td>{post.status}</td>}
+                    {post.status === "Finished" && (
+                      <td style={{ color: "red", fontWeight: "bold" }}>
+                        {post.status}
+                      </td>
+                    )}
+                    {admin === "admin" && (
+                      <td>
+                        <Link to={`/admin/${post._id}/edit-issue`}>
+                          <Button
+                            variant="contained"
+                            size="small"
+                            color="primary"
+                          >
+                            {<EditIcon />}
+                          </Button>
+                        </Link>
+                        <Button variant="contained" size="small" color="error">
+                          {<DeleteIcon />}
+                        </Button>
+                      </td>
+                    )}
                   </tr>
                 ))}
               <div className="gap"></div>

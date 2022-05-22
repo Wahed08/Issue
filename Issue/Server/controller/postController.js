@@ -55,5 +55,37 @@ const createPost = async (req, res, next) => {
   res.status(201).json({ Post: createdPost });
 };
 
+//update Issue
+const updatePost = async (req, res, next) => {
 
-module.exports = { getAllPost, createPost};
+  const { status } = req.body;
+  const postId = req.params.pid;
+
+  let post;
+  try {
+    post = await Post.findById(postId);
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update post.',
+      500
+    );
+    return next(error);
+  }
+
+  post.status = status;
+
+  try {
+    await post.save();
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update post.',
+      500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ updatePost: post});
+};
+
+
+module.exports = { getAllPost, createPost, updatePost};

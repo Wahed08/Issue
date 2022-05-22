@@ -14,6 +14,7 @@ const UsersList = () => {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
+    const ac = new AbortController();
     const fetchUsers = async () => {
       try {
         const userData = await fetch(
@@ -35,6 +36,7 @@ const UsersList = () => {
       } catch (err) {
         throw err;
       }
+      return ac.abort();
     };
     fetchUsers();
   }, [users, auth]);
