@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../BodyComponent/IssueBody.css";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
@@ -11,10 +11,10 @@ const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState();
-  let index = 1,
-    value;
+  const navigate = useNavigate();
+  let index = 1;
 
-  value = admin === "admin" ? "api/posts/admin/issues-list" : "api/posts";
+  let value = admin === "admin" ? "api/posts/admin/issues-list" : "api/posts";
 
   useEffect(() => {
     const ac = new AbortController();
@@ -36,10 +36,24 @@ const IssueBody = ({ admin }) => {
       } catch (err) {
         throw err;
       }
-      return ac.abort();
+      return () => ac.abort();
     };
     fetchPost();
-  }, [posts, auth]);
+  }, [posts, auth, value]);
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure')) {
+      await fetch(`http://localhost:5000/api/posts/admin/${id}/delete-issue`, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      const newPost = posts.filter((post) => post.id !== id);
+      setPosts(newPost);
+      navigate("/admin/issues-list");
+    }
+  };
 
   return (
     <React.Fragment>
@@ -90,7 +104,12 @@ const IssueBody = ({ admin }) => {
                             {<EditIcon />}
                           </Button>
                         </Link>
-                        <Button variant="contained" size="small" color="error">
+                        <Button
+                          variant="contained"
+                          size="small"
+                          color="error"
+                          onClick={() => handleDelete(post._id)}
+                        >
                           {<DeleteIcon />}
                         </Button>
                       </td>

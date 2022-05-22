@@ -1,8 +1,8 @@
 const HttpError = require("../ErrorModel/errorModel");
 const Post = require("../models/postModel");
 
-//getAllPost
-const getAllPost = async (req, res, next) => {
+//getAllIssue
+const getAllIssue = async (req, res, next) => {
   let All;
   try {
     All = await Post.find();
@@ -26,7 +26,7 @@ const getAllPost = async (req, res, next) => {
 };
 
 //createPost
-const createPost = async (req, res, next) => {
+const createIssue = async (req, res, next) => {
   
   const { title, description, status, date} = req.body;
   const createdPost = new Post({
@@ -56,7 +56,7 @@ const createPost = async (req, res, next) => {
 };
 
 //update Issue
-const updatePost = async (req, res, next) => {
+const updateIssue = async (req, res, next) => {
 
   const { status } = req.body;
   const postId = req.params.pid;
@@ -78,7 +78,7 @@ const updatePost = async (req, res, next) => {
     await post.save();
   } catch (err) {
     const error = new HttpError(
-      'Something went wrong, could not update post.',
+      'Something went wrong, could not update issue.',
       500
     );
     return next(error);
@@ -87,5 +87,28 @@ const updatePost = async (req, res, next) => {
   res.status(200).json({ updatePost: post});
 };
 
+//delete Issue
+const deleteIssue = async (req, res, next) => {
 
-module.exports = { getAllPost, createPost, updatePost};
+  const postId = req.params.pid;
+  let post;
+  try {
+    post = await Post.findByIdAndDelete(postId);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete issue.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!post) {
+    const error = new HttpError("Could not find issue for this id.", 404);
+    return next(error);
+  }
+
+  res.status(200).json({ message: "Deleted Post." });
+};
+
+
+module.exports = { getAllIssue, createIssue, updateIssue, deleteIssue};

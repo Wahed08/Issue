@@ -53,7 +53,7 @@ const Profile = () => {
       }
     };
     fetchUser();
-  }, [uid]);
+  }, [uid, auth]);
 
   return (
     <React.Fragment>
@@ -99,7 +99,7 @@ const Profile = () => {
           ) : (
             <section>
               <Typography variant="h4">
-                You did't update profile yet!
+                You didn't update profile yet!
               </Typography>
               <Link to={`/${auth.userId}/update-profile`}>
                 <Button
