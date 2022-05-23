@@ -8,11 +8,10 @@ import "./IssueDetails.css";
 
 const IssueDetails = () => {
   const useStyles = makeStyles((theme) => ({
-    header: {},
-    details: {},
     status: {
       marginTop: "0.4em",
       marginLeft: "48em",
+      fontWeight: "bold"
     },
   }));
 
@@ -54,7 +53,7 @@ const IssueDetails = () => {
       <div className="main-issue">
         <div className="issue-header">
           <div>
-            <Typography variant="h5" className={classes.header}>
+            <Typography variant="h5" >
               About Issue
             </Typography>
           </div>
@@ -69,8 +68,8 @@ const IssueDetails = () => {
 
         <div className="issue-details">
           {issue && (
-            <Typography variant="body1" className={classes.details}>
-              Issue details: {issue.description}
+            <Typography variant="body1">
+              <Typography variant="h5" >Issue details: </Typography>{issue.description}
             </Typography>
           )}
         </div>
