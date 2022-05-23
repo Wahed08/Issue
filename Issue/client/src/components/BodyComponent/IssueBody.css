@@ -52,6 +52,9 @@
     text-align: center;
     border: 1px solid;
 }
+.table tbody tr td a:hover{
+    text-decoration: underline;
+}
 
 .gap{
     margin-bottom: 70%;
