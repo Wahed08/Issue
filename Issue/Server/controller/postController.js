@@ -22,33 +22,31 @@ const getAllIssue = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(200).json({ All_post: All.map((user) => user.toObject({ getters: true }))});
+  res
+    .status(200)
+    .json({ All_post: All.map((user) => user.toObject({ getters: true })) });
 };
 
-//createPost
+//createIssue
 const createIssue = async (req, res, next) => {
-  
-  const { title, description, status, date} = req.body;
+  const { title, description, status, date } = req.body;
   const createdPost = new Post({
     title,
     description,
-    date: new Date().toLocaleDateString('en-GB', {  
-      day:   'numeric',
-      month: 'short',
-      year:  'numeric',
-      hour:  '2-digit',
-      minute: '2-digit'
-  }),
-    status
+    date: new Date().toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
+    status,
   });
 
   try {
     await createdPost.save();
   } catch (err) {
-    const error = new HttpError(
-      "Post Uploaded failed, please try again",
-      501
-    );
+    const error = new HttpError("Post Uploaded failed, please try again", 501);
     return next(error);
   }
 
@@ -57,7 +55,6 @@ const createIssue = async (req, res, next) => {
 
 //update Issue
 const updateIssue = async (req, res, next) => {
-
   const { status } = req.body;
   const postId = req.params.pid;
 
@@ -66,7 +63,7 @@ const updateIssue = async (req, res, next) => {
     post = await Post.findById(postId);
   } catch (err) {
     const error = new HttpError(
-      'Something went wrong, could not update post.',
+      "Something went wrong, could not update post.",
       500
     );
     return next(error);
@@ -78,18 +75,17 @@ const updateIssue = async (req, res, next) => {
     await post.save();
   } catch (err) {
     const error = new HttpError(
-      'Something went wrong, could not update issue.',
+      "Something went wrong, could not update issue.",
       500
     );
     return next(error);
   }
 
-  res.status(200).json({ updatePost: post});
+  res.status(200).json({ updatePost: post });
 };
 
 //delete Issue
 const deleteIssue = async (req, res, next) => {
-
   const postId = req.params.pid;
   let post;
   try {
@@ -110,5 +106,35 @@ const deleteIssue = async (req, res, next) => {
   res.status(200).json({ message: "Deleted Post." });
 };
 
+//getIssueDetails
+const getIssueDetails = async (req, res, next) => {
+  let issue;
+  const pid = req.params.pid;
+  try {
+    issue = await Post.findById(pid);
+  } catch (err) {
+    const error = new HttpError(
+      "Could not find any issue, try again later",
+      420
+    );
+    return next(error);
+  }
 
-module.exports = { getAllIssue, createIssue, updateIssue, deleteIssue};
+  if (!issue) {
+    const error = new HttpError(
+      "do not have any issue provided with this id",
+      402
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ Issue: issue });
+};
+
+module.exports = {
+  getAllIssue,
+  createIssue,
+  updateIssue,
+  deleteIssue,
+  getIssueDetails,
+};

@@ -1,0 +1,25 @@
+.main-issue{
+    width: 80%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.main-issue .issue-header{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    top: 15%;
+}
+
+.main-issue .issue-details{
+    position: absolute;
+    top: 25%;
+    left: 0;
+    margin-top: 2em;
+}
