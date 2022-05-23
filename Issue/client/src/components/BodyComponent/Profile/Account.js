@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import {AuthContext} from "../../Auth/auth-context";
+import CircularProgress from "@mui/material/CircularProgress";
 import "./Profile.css";
 
 const Account = () => {
@@ -17,8 +18,10 @@ const Account = () => {
   const { uid } = useParams();
   const classes = useStyles();
   const auth = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchUser = async () => {
       try {
         const userData = await fetch(
@@ -37,7 +40,9 @@ const Account = () => {
         if (!userData.ok) {
           throw new Error(responseUserData.message);
         }
+        setIsLoading(false);
       } catch (err) {
+        setIsLoading(false);
         throw err;
       }
     };
@@ -47,7 +52,8 @@ const Account = () => {
   return (
     <React.Fragment>
       <div className="profile-body">
-        <div className="userData">
+        {isLoading && <CircularProgress/>}
+        {!isLoading && <div className="userData">
           {user && (
             <section>
               <Typography variant="h5">Name : {user.name}</Typography>
@@ -64,7 +70,7 @@ const Account = () => {
               </Link>
             </section>
           )}
-        </div>
+        </div>}
       </div>
     </React.Fragment>
   );

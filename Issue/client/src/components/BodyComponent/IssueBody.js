@@ -6,17 +6,20 @@ import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@material-ui/core";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState();
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   let index = 1;
 
   let value = admin === "admin" ? "api/posts/admin/issues-list" : "api/posts";
 
   useEffect(() => {
+    setIsloading(true);
     const ac = new AbortController();
     const fetchPost = async () => {
       try {
@@ -33,7 +36,9 @@ const IssueBody = ({ admin }) => {
         if (!postData.ok) {
           setError(responseData.message);
         }
+        setIsloading(false);
       } catch (err) {
+        setIsloading(false);
         throw err;
       }
       return () => ac.abort();
@@ -42,7 +47,7 @@ const IssueBody = ({ admin }) => {
   }, [posts, auth, value]);
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure')) {
+    if (window.confirm("Are you sure")) {
       await fetch(`http://localhost:5000/api/posts/admin/${id}/delete-issue`, {
         method: "DELETE",
         headers: {
@@ -62,7 +67,7 @@ const IssueBody = ({ admin }) => {
         <div className="heading">
           <h1>All Issues</h1>
         </div>
-
+        {isLoading && <CircularProgress />}
         <div className="table-container">
           <table className="table">
             <thead>
@@ -74,13 +79,16 @@ const IssueBody = ({ admin }) => {
                 {admin === "admin" && <th style={{ width: "13%" }}>Changes</th>}
               </tr>
             </thead>
-
             <tbody>
               {posts &&
                 posts.map((post) => (
                   <tr key={index}>
                     <td>{index++}</td>
-                    <td><Link to={`/${post._id}/issue-details`}>{post.title}</Link></td>
+                    <td>
+                      <Link to={`/${post._id}/issue-details`}>
+                        {post.title}
+                      </Link>
+                    </td>
                     <td>{post.date}</td>
                     {post.status === "Processing" && (
                       <td style={{ color: "#1b5e20", fontWeight: "bold" }}>

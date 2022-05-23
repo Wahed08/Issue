@@ -6,16 +6,18 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {AuthContext} from "../Auth/auth-context";
+import { AuthContext } from "../Auth/auth-context";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const UsersList = () => {
-
   const [users, setUsers] = useState([]);
   const [error, setError] = useState();
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const ac = new AbortController();
     const fetchUsers = async () => {
       try {
@@ -35,7 +37,9 @@ const UsersList = () => {
         if (!userData.ok) {
           setError(responseData.message);
         }
+        setIsLoading(false);
       } catch (err) {
+        setIsLoading(false);
         throw err;
       }
       return ac.abort();
@@ -44,13 +48,16 @@ const UsersList = () => {
   }, [users, auth]);
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure')) {
-      await fetch(`http://localhost:5000/api/accounts/admin/${id}/delete-user`, {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + auth.token,
-        },
-      });
+    if (window.confirm("Are you sure")) {
+      await fetch(
+        `http://localhost:5000/api/accounts/admin/${id}/delete-user`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          },
+        }
+      );
       const newPost = users.filter((post) => post.id !== id);
       setUsers(newPost);
       navigate("/admin/users-list");
@@ -60,10 +67,13 @@ const UsersList = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
+     
       <div className="issue-container">
+      {!isLoading && <CircularProgress />}
         <div className="heading">
           <h1>All Users</h1>
         </div>
+        
         <div className="table-container">
           <table className="table">
             <thead>
@@ -77,7 +87,8 @@ const UsersList = () => {
             </thead>
 
             <tbody>
-              {users &&
+              {
+                users &&
                 users.map((user) => (
                   <tr key={user._id}>
                     <td>{user._id}</td>
@@ -88,7 +99,12 @@ const UsersList = () => {
                       <Button variant="contained" size="small" color="primary">
                         {<EditIcon />}
                       </Button>
-                      <Button variant="contained" size="small" color="error" onClick={() => handleDelete(user._id)}>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="error"
+                        onClick={() => handleDelete(user._id)}
+                      >
                         {<DeleteIcon />}
                       </Button>
                     </td>
