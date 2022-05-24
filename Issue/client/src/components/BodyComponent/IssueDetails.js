@@ -4,6 +4,7 @@ import ErrorModal from "./ShowError/ErrorModal";
 import { useParams } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@mui/material/CircularProgress";
 import "./IssueDetails.css";
 
 const IssueDetails = () => {
@@ -11,7 +12,7 @@ const IssueDetails = () => {
     status: {
       marginTop: "0.4em",
       marginLeft: "48em",
-      fontWeight: "bold"
+      fontWeight: "bold",
     },
   }));
 
@@ -20,8 +21,10 @@ const IssueDetails = () => {
   const [error, setError] = useState();
   let { pid } = useParams();
   const auth = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchIssue = async () => {
       try {
         const response = await fetch(
@@ -40,7 +43,9 @@ const IssueDetails = () => {
         if (!response.ok) {
           setError(responseData.message);
         }
+        setIsLoading(false);
       } catch (err) {
+        setIsLoading(false);
         throw err;
       }
     };
@@ -50,12 +55,12 @@ const IssueDetails = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
+
       <div className="main-issue">
+        {isLoading && <CircularProgress />}
         <div className="issue-header">
           <div>
-            <Typography variant="h5" >
-              About Issue
-            </Typography>
+            <Typography variant="h5">About Issue</Typography>
           </div>
           <div>
             {issue && (
@@ -69,7 +74,8 @@ const IssueDetails = () => {
         <div className="issue-details">
           {issue && (
             <Typography variant="body1">
-              <Typography variant="h5" >Issue details: </Typography>{issue.description}
+              <Typography variant="h5">Issue details: </Typography>
+              {issue.description}
             </Typography>
           )}
         </div>

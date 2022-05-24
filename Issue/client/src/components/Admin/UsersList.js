@@ -67,13 +67,11 @@ const UsersList = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-     
       <div className="issue-container">
-      {!isLoading && <CircularProgress />}
         <div className="heading">
           <h1>All Users</h1>
         </div>
-        
+        {isLoading && <CircularProgress />}
         <div className="table-container">
           <table className="table">
             <thead>
@@ -87,8 +85,7 @@ const UsersList = () => {
             </thead>
 
             <tbody>
-              {
-                users &&
+              {users &&
                 users.map((user) => (
                   <tr key={user._id}>
                     <td>{user._id}</td>
