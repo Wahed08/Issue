@@ -85,7 +85,7 @@ const IssueBody = ({ admin }) => {
                   <tr key={index}>
                     <td>{index++}</td>
                     <td>
-                      <Link to={`/${post._id}/issue-details`}>
+                      <Link to={auth.isLoggedIn ? `/${post._id}/issue-details`: "/auth/login"}>
                         {post.title}
                       </Link>
                     </td>
