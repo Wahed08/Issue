@@ -336,6 +336,14 @@ const getUsersAll = async (req, res, next) =>{
     return next(error);
   }
 
+  if (!allUser) {
+    const error = new HttpError(
+      "do not have any user!",
+      402
+    );
+    return next(error);
+  }
+
   res.status(200).json({ usersList: allUser.map((user) => user.toObject({ getters: true }))});
 }
 

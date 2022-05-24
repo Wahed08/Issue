@@ -42,6 +42,7 @@ const UsersList = () => {
         setIsLoading(false);
         throw err;
       }
+      setIsLoading(false);
       return ac.abort();
     };
     fetchUsers();
@@ -68,6 +69,7 @@ const UsersList = () => {
     <React.Fragment>
       <ErrorModal error={error} />
       <div className="issue-container">
+       
         <div className="heading">
           <h1>All Users</h1>
         </div>
