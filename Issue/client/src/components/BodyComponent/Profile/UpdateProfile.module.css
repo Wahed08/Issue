@@ -1,4 +1,4 @@
-.profile_container{
+.profileContainer{
     min-width: 100%;
     min-height: 100vh;
     display: flex;
@@ -8,7 +8,7 @@
     z-index: 0;
 }
 
-.profile_name{
+.profileName{
     top: 17%;
     position: absolute;
     display: flex;
@@ -16,19 +16,19 @@
     align-items: center;
 }
 
-.textfiled_container{
+.textfiledContainer{
     top: 25%;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.textfiled_container div{
+.textfiledContainer div{
     width: 30em;
     margin: 0.3em 0;
 }
 
-.textfiled_container .button{
+.textfiledContainer .button{
     margin-bottom: 10em;
 }
 

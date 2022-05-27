@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
+import { TextField, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import Styles from "./SignUp.module.css";
 
 const SignUp = () => {
   const useStyles = makeStyles((theme) => ({
-    buttonFiled: {
-      marginRight: "20px",
-    },
-    loginButton: {
-      marginLeft: "3em",
-    },
+    button:{
+      width: "34.5em"
+    }
   }));
 
   const classes = useStyles();
@@ -99,21 +96,12 @@ const SignUp = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <div className="button">
-              <ButtonGroup>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.buttonFiled}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" variant="contained" color="primary">
-                  Submit
-                </Button>
-              </ButtonGroup>
+            <div>
+              <Button type="submit" variant="contained" color="primary" className={classes.button}>
+                Submit
+              </Button>
             </div>
-            <div className={Styles.logintext}>
+            <div className={Styles.loginText}>
               <h2>Already have an account ?</h2>
               <Link to="/auth/login">Log In</Link>
             </div>

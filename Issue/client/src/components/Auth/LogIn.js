@@ -8,13 +8,9 @@ import Styles from "./SignUp.module.css";
 
 const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
-    buttonFiled: {
-      marginRight: "20px",
-    },
-    loginButton: {
-      marginLeft: "3em",
-     
-    },
+    button:{
+      width: "34.5em"
+    }
   }));
 
   const classes = useStyles();
@@ -23,7 +19,6 @@ const LogIn = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -43,7 +38,11 @@ const LogIn = () => {
           setError(responseData.message);
         }
         if (response.ok) {
-          auth.login(responseData.userId, responseData.token, responseData.isAdmin);
+          auth.login(
+            responseData.userId,
+            responseData.token,
+            responseData.isAdmin
+          );
           navigate("/");
         }
       } catch (err) {
@@ -57,7 +56,7 @@ const LogIn = () => {
     <React.Fragment>
       <ErrorModal error={error} />
       <div className={Styles.container}>
-        <div className={Styles.sugnup}>
+        <div className={Styles.signup}>
           <Typography variant="h4">Log In</Typography>
         </div>
         <div className={Styles.formContainer}>
@@ -67,7 +66,7 @@ const LogIn = () => {
                 type="email"
                 label="Email"
                 variant="outlined"
-                className={classes.textFiled}
+                // className={classes.textFiled}
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -77,25 +76,16 @@ const LogIn = () => {
                 type="password"
                 label="Password"
                 variant="outlined"
-                className={classes.textFiled}
+                // className={classes.textFiled}
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            <div className="button">
-              <ButtonGroup>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.buttonFiled}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" variant="contained" color="primary">
-                  Submit
-                </Button>
-              </ButtonGroup>
+            <div>
+              <Button type="submit" variant="contained" color="primary" className={classes.button}>
+                Submit
+              </Button>
             </div>
             <div className={Styles.loginText}>
               <h2>Doesn't have account ?</h2>

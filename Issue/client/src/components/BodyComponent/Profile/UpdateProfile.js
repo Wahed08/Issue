@@ -3,7 +3,7 @@ import { TextField, Typography, Button} from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../ShowError/ErrorModal";
 import { AuthContext } from "../../Auth/auth-context";
-import "./UpdateProfile.css";
+import Styles from "./UpdateProfile.module.css";
 
 const Profile = () => {
 
@@ -55,11 +55,11 @@ const Profile = () => {
   return (
     <React.Fragment>
        <ErrorModal error={error} />
-    <div className="profile_container">
-      <div className="profile_name">
+    <div className={Styles.profileContainer}>
+      <div className={Styles.profileName}>
         <Typography variant="h4">Update Profile</Typography>
       </div>
-      <div className="textfiled_container">
+      <div className={Styles.textfiledContainer}>
         <form onSubmit={submitHandler}>
           <div>
             <TextField
@@ -161,7 +161,7 @@ const Profile = () => {
               onChange={(e) => setProfileLink(e.target.value)}
             />
           </div>
-          <div className="button">
+          <div className={Styles.button}>
             <Button type="submit" variant="contained" color="primary">
               Save
             </Button>
