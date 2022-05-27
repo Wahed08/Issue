@@ -10,6 +10,12 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PeopleIcon from "@mui/icons-material/People";
 import BugReportIcon from "@mui/icons-material/BugReport";
+import MenuIcon from "@mui/icons-material/Menu";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -24,6 +30,7 @@ const Header = () => {
 
   const [anchorEl, setAnchorEl] = useState(false);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -32,9 +39,19 @@ const Header = () => {
   };
 
   const logOut = () => {
+    setOpenAlert(false);
     handleClose();
     navigate("/");
     auth.logout();
+  };
+
+  //for alert dialog
+  const [openAlert, setOpenAlert] = useState(false);
+  const handleOpenAlert = () => {
+    setOpenAlert(true);
+  };
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
   };
 
   return (
@@ -121,11 +138,39 @@ const Header = () => {
               </Link>
             )}
 
-            <MenuItem onClick={logOut}>
+            <MenuItem onClick={handleOpenAlert}>
               <LogoutIcon style={{ marginRight: "7px" }} /> Logout
             </MenuItem>
           </Menu>
         </nav>
+      </div>
+      <div>
+        <Dialog
+          open={openAlert}
+          onClose={handleCloseAlert}
+          className={{paper: classes.dialog}}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Log Out?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure? You want to log out?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleCloseAlert}
+              variant="contained"
+              color="primary"
+            >
+              No
+            </Button>
+            <Button onClick={logOut} variant="contained" color="primary">
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );

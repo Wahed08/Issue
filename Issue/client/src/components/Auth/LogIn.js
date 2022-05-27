@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
+import { TextField, Typography, Button } from "@material-ui/core";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./auth-context";
 import { makeStyles } from "@material-ui/core/styles";
@@ -67,7 +67,6 @@ const LogIn = () => {
                 type="email"
                 label="Email"
                 variant="outlined"
-                // className={classes.textFiled}
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -77,7 +76,6 @@ const LogIn = () => {
                 type="password"
                 label="Password"
                 variant="outlined"
-                // className={classes.textFiled}
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />

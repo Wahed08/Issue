@@ -55,7 +55,6 @@ const IssueDetails = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-
       <div className={Styles.mainIssue}>
         {isLoading && <CircularProgress />}
         <div className={Styles.issueHeader}>
