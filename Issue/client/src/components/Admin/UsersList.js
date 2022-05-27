@@ -8,7 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AuthContext } from "../Auth/auth-context";
 import CircularProgress from "@mui/material/CircularProgress";
-import Styles from "../BodyComponent/IssueBody.module.css"
+import Styles from "../BodyComponent/IssueBody.module.css";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);

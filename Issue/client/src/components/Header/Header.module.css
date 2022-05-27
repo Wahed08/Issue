@@ -63,19 +63,6 @@ h1 {
     transition-delay: 200ms;
 }
 
-/* //hamburger */
-/* .menuBtn {
-    cursor: pointer;
-    position: fixed;
-    top: 25px;
-    right: 30px;
-    color: var(--bs-dark);
-    border: 2px solid var(--bs-light);
-    padding: 3px 10px;
-    border-radius: 2px;
-    z-index: 2;
-    display: none;
-} */
 
 /* media */
 @media only screen and (max-width: 980px) {
@@ -86,10 +73,3 @@ h1 {
         padding-top: 10px;
     }
 }
-
-/* @media only screen and (max-width: 690px) {
-    .mainNav ul.rightMenu{
-        display: none;
-    }
-
-} */

@@ -28,4 +28,16 @@
     margin: 0.2em 0;
 }
 
+@media only screen and (max-width: 980px) {
+    .textField div{
+        width: 25em;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .textField div{
+        width: 18em;
+    }
+}
+
 

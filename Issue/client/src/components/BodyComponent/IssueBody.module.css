@@ -7,8 +7,6 @@
     align-items: center;
 }
 
-/*  */
-
 .heading{
     position: absolute;
     top: 7em;
@@ -58,5 +56,40 @@
 
 .gap{
     margin-bottom: 80%;
+}
+
+@media only screen and (max-width: 800px) {
+    .heading h1{
+        font-size: 1.5em;
+    }
+    .table thead tr th{
+        font-size: 1.3em;
+    }
+    .tableContainer{
+        top: 8%;
+    }
+}
+
+@media only screen and (max-width: 565px) {
+    .heading h1{
+        font-size: 1.3em;
+    }
+    .table thead tr th{
+        font-size: 1.2em;
+        vertical-align: left;
+        text-align: left;
+    }
+    .tableContainer{
+        top: 6%;
+    }
+    .gap{
+        margin-bottom: 100%;
+    }
+    .table{
+        border-collapse: collapse;
+    }
+    .table tbody tr td{
+        padding: 3px;
+    }
 }
 
