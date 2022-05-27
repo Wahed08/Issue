@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import "./SignUp.css";
 
+
 const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
     buttonFiled: {
@@ -24,9 +25,9 @@ const LogIn = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
 
+
   const submitHandler = async (e) => {
     e.preventDefault();
-
     const users = { email, password };
     if (users) {
       try {

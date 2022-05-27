@@ -15,7 +15,7 @@ const IssueBody = ({ admin }) => {
   const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   let index = 1;
-
+ 
   let value = admin === "admin" ? "api/posts/admin/issues-list" : "api/posts";
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const IssueBody = ({ admin }) => {
       return () => ac.abort();
     };
     fetchPost();
-  }, [posts, auth, value]);
+  }, [auth, value]); 
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure")) {
@@ -60,7 +60,7 @@ const IssueBody = ({ admin }) => {
     }
   };
 
-  return (
+    return (
     <React.Fragment>
       <ErrorModal error={error} />
       <div className="issue-container">

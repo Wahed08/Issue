@@ -163,9 +163,10 @@ const VerifyEmail = async (req, res, next) => {
   res.status(201).json({
     message: "Email verified",
     userId: verifyUser.id,
+    name: verifyUser.name,
     email: verifyUser.email,
+    isAdmin: verifyUser.isAdmin,
     token: jwtToken,
-    isAdmin: verifyUser.isAdmin
   });
 };
 
@@ -224,7 +225,7 @@ const LogIn = async (req, res, next) => {
 
   res
     .status(201)
-    .json({ userId: existingUser.id, email: existingUser.email, token: token, isAdmin: existingUser.isAdmin});
+    .json({ userId: existingUser.id, name: existingUser.name, email: existingUser.email, isAdmin: existingUser.isAdmin, token: token});
 };
 
 

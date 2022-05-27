@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import IssueBody from "./components/BodyComponent/IssueBody";
@@ -49,7 +49,6 @@ const App = () => {
 
   let routes;
   if (token) {
-    
     routes = (
       <Routes>
         <Route path="/create-issue" element={<CreateIssue />}></Route>
