@@ -9,7 +9,8 @@ import Styles from "./SignUp.module.css";
 const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
     button:{
-      width: "34.5em"
+      width: "34.5em",
+      height: "3em",
     }
   }));
 

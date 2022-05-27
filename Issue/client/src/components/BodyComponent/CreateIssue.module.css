@@ -1,30 +1,31 @@
-.section{
+.container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+}
+
+.title{
+    top: 20%;
+    position: absolute;
+}
+.title h1{
+    font-size: 2em;
+}
+
+.textField{
+    top: 28%;
+    position: absolute;
+}
+
+.textField div{
     display: flex;
     justify-content: center;
-    text-align: center;
-    height: 100vh;
-}  
-
-.section form, input, textarea{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 68%;
-    padding: 12px 5px;
-    margin: 10px auto;
-    cursor: pointer;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+    width: 34em;
+    margin: 0.2em 0;
 }
 
-
-.section .container .title{
-    display: inline-block;
-    text-align: center;
-    margin-top: 20px;
-}
-.section .container .title h1{
-    font-size: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
 

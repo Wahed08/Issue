@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Styles from "../BodyComponent/CreateIssue.module.css";
 import { AuthContext } from "../Auth/auth-context";
-import { Button, makeStyles } from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
 
 const CreateIssue = () => {
   const useStyles = makeStyles((theme) => ({
@@ -41,35 +41,43 @@ const CreateIssue = () => {
   };
 
   return (
-    <div className={Styles.section}>
-      <div className={Styles.container}>
-        <div className={Styles.title}>
-          <h1>Create An Issue?</h1>
-        </div>
+    <div className={Styles.container}>
+      <div className={Styles.title}>
+        <h1>Create An Issue?</h1>
+      </div>
+      <div className={Styles.textField}>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="context"
-            required
-            placeholder="Please Enter a Context"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            type="text"
-            name="details"
-            rows={4}
-            required
-            placeholder="Please Enter Details..."
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <div className={classes.button}>
+          <div>
+            <TextField
+              type="text"
+              name="context"
+              variant="outlined"
+              required
+              placeholder="Please Enter a Context"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <TextField
+              type="text"
+              name="details"
+              variant="outlined"
+              multiline
+              rows={5}
+              required
+              placeholder="Please Enter Details..."
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div>
             <Button
               type="submit"
               color="primary"
               variant="contained"
               size="large"
+              className={classes.button}
             >
-              Add
+              Add Issue
             </Button>
           </div>
         </form>
