@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../BodyComponent/IssueBody.css";
+import Styles from "../BodyComponent/IssueBody.module.css";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import EditIcon from "@mui/icons-material/Edit";
@@ -63,13 +63,13 @@ const IssueBody = ({ admin }) => {
     return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="issue-container">
-        <div className="heading">
+      <div className={Styles.issueContainer}>
+        <div className={Styles.heading}>
           <h1>All Issues</h1>
         </div>
         {isLoading && <CircularProgress />}
-        <div className="table-container">
-          <table className="table">
+        <div className={Styles.tableContainer}>
+          <table className={Styles.table}>
             <thead>
               <tr>
                 <th style={{ width: "10%" }}>No.</th>
@@ -124,7 +124,7 @@ const IssueBody = ({ admin }) => {
                     )}
                   </tr>
                 ))}
-              <div className="gap"></div>
+              <div className={Styles.gap}></div>
             </tbody>
           </table>
         </div>

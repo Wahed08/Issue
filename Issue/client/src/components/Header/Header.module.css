@@ -1,14 +1,7 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-}
-.container{
+.container {
     width: 80%;
     max-width: 1200px;
-    margin: auto;
+    margin: auto 0;
 }
 
 a {
@@ -27,7 +20,7 @@ h1 {
     margin: 0;
 }
 
-.header{
+.header {
     background-color: white;
     position: fixed;
     width: 100%;
@@ -36,7 +29,9 @@ h1 {
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .3);
 }
 
-.main-nav {
+.mainNav {
+    margin: 0 auto;
+    width: 80%;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -44,21 +39,24 @@ h1 {
     padding-top: 5px;
 }
 
-.main-nav h2{
+.mainNav h2 {
     font-size: 2.1em;
 }
-.main-nav ul.right-menu {
+
+.mainNav ul.rightMenu {
     display: flex;
 }
 
-.main-nav ul.right-menu li {
+.mainNav ul.rightMenu li {
     padding: 0 20px;
 }
-.main-nav ul.right-menu li:hover{
-    color:lightcyan;
+
+.mainNav ul.rightMenu li:hover {
+    color: lightcyan;
 }
 
-.main-nav ul.right-menu .about:hover, .create:hover{
+.mainNav ul.rightMenu .about:hover,
+.create:hover {
     border-radius: 10px;
     border: 0px solid;
     background-color: darkgrey;

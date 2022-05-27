@@ -8,6 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AuthContext } from "../Auth/auth-context";
 import CircularProgress from "@mui/material/CircularProgress";
+import Styles from "../BodyComponent/IssueBody.module.css"
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
@@ -68,14 +69,14 @@ const UsersList = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="issue-container">
+      <div className={Styles.issueContainer}>
        
-        <div className="heading">
+        <div className={Styles.heading}>
           <h1>All Users</h1>
         </div>
         {isLoading && <CircularProgress />}
-        <div className="table-container">
-          <table className="table">
+        <div className={Styles.tableContainer}>
+          <table className={Styles.table}>
             <thead>
               <tr>
                 <th>Id</th>
@@ -109,7 +110,7 @@ const UsersList = () => {
                     </td>
                   </tr>
                 ))}
-              <div className="gap"></div>
+              <div className={Styles.gap}></div>
             </tbody>
           </table>
         </div>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Header.css";
+import Styles from "./Header.module.css";
 import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
 import Menu from "@mui/material/Menu";
@@ -38,18 +38,18 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <div className="container">
-        <nav className="main-nav">
+    <div className={Styles.container}>
+      <div className={Styles.header}>
+        <nav className={Styles.mainNav}>
           <Link to="/">
             <h2>SUST Teacher's Association</h2>
           </Link>
-          <ul className="right-menu">
-            <li className="about">
+          <ul className={Styles.rightMenu}>
+            <li className={Styles.about}>
               <Link to="/about">About</Link>
             </li>
             {auth.isLoggedIn && (
-              <li className="create">
+              <li className={Styles.create}>
                 <Link to="/create-issue">Create Issue</Link>
               </li>
             )}
@@ -105,18 +105,22 @@ const Header = () => {
               </MenuItem>
             </Link>
 
-            {auth.isAdmin && <Link to="/admin/users-list">
-              <MenuItem onClick={handleClose}>
-                <PeopleIcon style={{ marginRight: "5px" }} /> Users
-              </MenuItem>
-            </Link>}
+            {auth.isAdmin && (
+              <Link to="/admin/users-list">
+                <MenuItem onClick={handleClose}>
+                  <PeopleIcon style={{ marginRight: "5px" }} /> Users
+                </MenuItem>
+              </Link>
+            )}
 
-            {auth.isAdmin && <Link to="/admin/issues-list">
-              <MenuItem onClick={handleClose}>
-                <BugReportIcon style={{ marginRight: "5px" }} /> Issues
-              </MenuItem>
-            </Link>}
-            
+            {auth.isAdmin && (
+              <Link to="/admin/issues-list">
+                <MenuItem onClick={handleClose}>
+                  <BugReportIcon style={{ marginRight: "5px" }} /> Issues
+                </MenuItem>
+              </Link>
+            )}
+
             <MenuItem onClick={logOut}>
               <LogoutIcon style={{ marginRight: "7px" }} /> Logout
             </MenuItem>

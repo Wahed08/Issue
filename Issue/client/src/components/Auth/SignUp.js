@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { TextField, Typography, Button, ButtonGroup } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
-import "./SignUp.css";
+import Styles from "./SignUp.module.css";
 
 const SignUp = () => {
   const useStyles = makeStyles((theme) => ({
@@ -53,11 +53,11 @@ const SignUp = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="main_container">
-        <div className="sign-up">
+      <div className={Styles.container}>
+        <div className={Styles.signup}>
           <Typography variant="h4">Sign Up</Typography>
         </div>
-        <div className="form_container">
+        <div className={Styles.formContainer}>
           <form onSubmit={submitHandler}>
             <div>
               <TextField
@@ -113,7 +113,7 @@ const SignUp = () => {
                 </Button>
               </ButtonGroup>
             </div>
-            <div className="login-text">
+            <div className={Styles.logintext}>
               <h2>Already have an account ?</h2>
               <Link to="/auth/login">Log In</Link>
             </div>

@@ -1,4 +1,4 @@
-.main_container{
+.container{
     min-width: 100%;
     min-height: 100vh;
     display: flex;
@@ -7,7 +7,7 @@
     position: relative;
 }
 
-.sign-up{
+.signup{
     top: 20%;
     position: absolute;
     display: flex;
@@ -15,29 +15,29 @@
     align-items: center;
 }
 
-.form_container{
+.formContainer{
     top: 27%;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.form_container div{
+.formContainer div{
     width: 30em;
     margin: 0.3em 0;
 }
 
-.login-text{
+.loginText{
     display: inline-flex;
     margin-top: 3em;
 }
 
-.login-text a{
+.loginText a{
     margin-left: 20px;
     text-decoration: underline;
     font-size: 1em;
     font-weight: 400;
 }
-.login-text a:hover{
+.loginText a:hover{
     text-decoration: none;
 }

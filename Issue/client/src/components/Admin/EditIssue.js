@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../BodyComponent/CreateIssue.css";
+import Styles from "../BodyComponent/CreateIssue.module.css";
 import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
@@ -63,9 +63,9 @@ const EditIssue = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="section">
-        <div className="container">
-          <div className="title">
+      <div className={Styles.section}>
+        <div className={Styles.container}>
+          <div className={Styles.title}>
             <h1>Update Status</h1>
           </div>
           <form onSubmit={editHandler}>

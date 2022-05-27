@@ -7,18 +7,18 @@
     position: relative;
 }
 
-.parent .child-1{
+.parent .child1{
     top: 30%;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.parent .child-1{
+.parent .child1{
     font-size: 2em;
 }
 
-.parent .child-2{
+.parent .child2{
     top: 20%;
     display: flex;
     justify-content: center;

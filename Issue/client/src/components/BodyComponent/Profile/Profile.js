@@ -5,7 +5,7 @@ import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { AuthContext } from "../../Auth/auth-context";
 import CircularProgress from "@mui/material/CircularProgress";
-import "./Profile.css";
+import Styles from "./Profile.module.css";
 
 const Profile = () => {
   const useStyles = makeStyles((theme) => ({
@@ -62,10 +62,10 @@ const Profile = () => {
 
   return (
     <React.Fragment>
-      <div className="profile-body">
+      <div className={Styles.profileBody}>
         {isLoading && <CircularProgress />}
         {!isLoading && (
-          <div className="items">
+          <div className={Styles.items}>
             {profile ? (
               <section>
                 <Typography variant="h4" className={classes.root}>

@@ -1,4 +1,4 @@
-.issue-container{
+.issueContainer{
     min-height: 100vh;
     width: 100%;
     position: relative;
@@ -19,7 +19,7 @@
 .heading h1{
     font-size: 2em;
 }
-.table-container{
+.tableContainer{
     width: 70%;
     display: flex;
     justify-content: center;

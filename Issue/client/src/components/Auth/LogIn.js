@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./auth-context";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
-import "./SignUp.css";
-
+import Styles from "./SignUp.module.css";
 
 const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
@@ -57,11 +56,11 @@ const LogIn = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="main_container">
-        <div className="sign-up">
+      <div className={Styles.container}>
+        <div className={Styles.sugnup}>
           <Typography variant="h4">Log In</Typography>
         </div>
-        <div className="form_container">
+        <div className={Styles.formContainer}>
           <form onSubmit={submitHandler}>
             <div>
               <TextField
@@ -98,7 +97,7 @@ const LogIn = () => {
                 </Button>
               </ButtonGroup>
             </div>
-            <div className="login-text">
+            <div className={Styles.loginText}>
               <h2>Doesn't have account ?</h2>
               <Link to="/auth/signup">Sign Up</Link>
             </div>

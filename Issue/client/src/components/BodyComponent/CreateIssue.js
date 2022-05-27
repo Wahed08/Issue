@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../BodyComponent/CreateIssue.css";
+import Styles from "../BodyComponent/CreateIssue.module.css";
 import { AuthContext } from "../Auth/auth-context";
 import { Button, makeStyles } from "@material-ui/core";
 
@@ -41,9 +41,9 @@ const CreateIssue = () => {
   };
 
   return (
-    <div className="section">
-      <div className="container">
-        <div className="title">
+    <div className={Styles.section}>
+      <div className={Styles.container}>
+        <div className={Styles.title}>
           <h1>Create An Issue?</h1>
         </div>
         <form onSubmit={handleSubmit}>

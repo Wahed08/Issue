@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@mui/material/CircularProgress";
-import "./IssueDetails.css";
+import Styles from "./IssueDetails.module.css";
 
 const IssueDetails = () => {
   const useStyles = makeStyles((theme) => ({
@@ -56,9 +56,9 @@ const IssueDetails = () => {
     <React.Fragment>
       <ErrorModal error={error} />
 
-      <div className="main-issue">
+      <div className={Styles.mainIssue}>
         {isLoading && <CircularProgress />}
-        <div className="issue-header">
+        <div className={Styles.issueHeader}>
           <div>
             <Typography variant="h5">About Issue</Typography>
           </div>
@@ -71,7 +71,7 @@ const IssueDetails = () => {
           </div>
         </div>
 
-        <div className="issue-details">
+        <div className={Styles.issueDetails}>
           {issue && (
             <Typography variant="body1">
               <Typography variant="h5">Issue details: </Typography>

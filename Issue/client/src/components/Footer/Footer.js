@@ -1,9 +1,9 @@
 import React from "react";
-import "./Footer.css";
+import Styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <section className="main-footer">
+    <section className={Styles.mainFooter}>
       <h3>&copy; By SUST.Teacher Association</h3>
     </section>
   );

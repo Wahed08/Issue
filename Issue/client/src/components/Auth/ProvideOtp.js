@@ -4,7 +4,7 @@ import { TextField, Typography, Button } from "@material-ui/core";
 import ErrorModal from "../BodyComponent/ShowError/ErrorModal";
 import { makeStyles } from "@material-ui/core/styles";
 import {AuthContext} from "./auth-context";
-import "./ProvideOtp.css";
+import Styles from "./ProvideOtp.module.css";
 
 const ProvideOtp = () => {
   const useStyles = makeStyles((theme) => ({
@@ -52,11 +52,11 @@ const ProvideOtp = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className="parent">
-          <div className="child-1">
+      <div className={Styles.parent}>
+          <div className={Styles.child1}>
             <Typography variant="h4">Verification code send to your email,provide a 4-digit OTP</Typography>
           </div>
-          <div className="child-2">
+          <div className={Styles.child2}>
             <form onSubmit={submitHandler}>
               <div className="">
                 <TextField

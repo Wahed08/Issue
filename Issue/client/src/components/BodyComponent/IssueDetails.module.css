@@ -1,4 +1,4 @@
-.main-issue{
+.mainIssue{
     width: 80%;
     min-height: 100vh;
     display: flex;
@@ -9,7 +9,7 @@
     margin: auto;
 }
 
-.main-issue .issue-header{
+.mainIssue .issueHeader{
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -17,7 +17,7 @@
     top: 15%;
 }
 
-.main-issue .issue-details{
+.mainIssue .issueDetails{
     position: absolute;
     top: 25%;
     left: 0;
