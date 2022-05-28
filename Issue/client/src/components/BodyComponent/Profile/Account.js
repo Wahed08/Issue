@@ -59,7 +59,7 @@ const Account = () => {
               <Typography variant="h5">Name : {user.name}</Typography>
               <Typography variant="h5">Email : {user.email}</Typography>
 
-              <Link to={`/${user._id}/profile`}>
+              <Link to={`/${auth.userId}/profile`}>
                 <Button
                   variant="contained"
                   color="primary"
