@@ -69,7 +69,7 @@ h1 {
     .mainNav h2 {
         font-size: 1.5em;
     }
-    .mainNav ul.rightMenu li {
+    .mainNav {
         padding-top: 10px;
     }
 }
