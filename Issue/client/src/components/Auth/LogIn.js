@@ -8,10 +8,20 @@ import Styles from "./SignUp.module.css";
 
 const LogIn = () => {
   const useStyles = makeStyles((theme) => ({
-    button:{
+    button: {
       width: "34.5em",
       height: "3em",
-    }
+    },
+    "@media(max-width: 815px)": {
+      button: {
+        width: "28.5em",
+      },
+    },
+    "@media(max-width: 650px)": {
+      button: {
+        width: "23em",
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -82,7 +92,12 @@ const LogIn = () => {
             </div>
 
             <div>
-              <Button type="submit" variant="contained" color="primary" className={classes.button}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
                 Submit
               </Button>
             </div>

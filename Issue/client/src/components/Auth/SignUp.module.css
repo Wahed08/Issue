@@ -1,4 +1,4 @@
-.container{
+.container {
     min-width: 100%;
     min-height: 100vh;
     display: flex;
@@ -7,7 +7,7 @@
     position: relative;
 }
 
-.signup{
+.signup {
     top: 20%;
     position: absolute;
     display: flex;
@@ -15,29 +15,46 @@
     align-items: center;
 }
 
-.formContainer{
+.formContainer {
     top: 27%;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.formContainer div{
+
+.formContainer div {
     width: 30em;
     margin: 0.3em 0;
 }
 
-.loginText{
+.loginText {
     display: inline-flex;
     margin-top: 3em;
 }
 
-.loginText a{
+.loginText a {
     margin-left: 20px;
     text-decoration: underline;
     font-size: 1em;
     font-weight: 400;
 }
-.loginText a:hover{
+
+.loginText a:hover {
     text-decoration: none;
+}
+
+@media only screen and (max-width: 815px) {
+    .formContainer div {
+        width: 25em;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .formContainer div {
+        width: 20em;
+    }
+    .signup h4{
+        font-size: 1.8em;
+    }
 }

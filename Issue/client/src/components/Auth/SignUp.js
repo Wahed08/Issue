@@ -10,7 +10,17 @@ const SignUp = () => {
     button:{
       width: "34.5em",
       height: "3em",
-    }
+    },
+    '@media(max-width: 815px)':{
+        button:{
+          width: "28.5em",
+        }
+    },
+    '@media(max-width: 650px)':{
+      button:{
+        width: "23em",
+      }
+  }
   }));
 
   const classes = useStyles();
