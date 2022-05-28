@@ -10,17 +10,17 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PeopleIcon from "@mui/icons-material/People";
 import BugReportIcon from "@mui/icons-material/BugReport";
-import MenuIcon from "@mui/icons-material/Menu";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Hamburger from "./Hamburger";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(1),
     },
   }));
 
@@ -89,6 +89,7 @@ const Header = () => {
                 </Link>
               </li>
             ) : null}
+            
             {auth.isLoggedIn ? (
               <li>
                 <Button
@@ -107,6 +108,7 @@ const Header = () => {
               </li>
             ) : null}
           </ul>
+          <div className={Styles.hamburger}> <Hamburger/></div>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}

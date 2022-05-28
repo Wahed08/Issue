@@ -63,6 +63,10 @@ h1 {
     transition-delay: 200ms;
 }
 
+/* hamburger */
+.hamburger{
+    display: none;
+}
 
 /* media */
 @media only screen and (max-width: 980px) {
@@ -77,6 +81,15 @@ h1 {
 @media only screen and (max-width: 815px) {
     .mainNav h2 {
         font-size: 1.2em;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .hamburger{
+        display: block;
+    }
+    .mainNav ul.rightMenu li {
+        display: none;
     }
 }
 
