@@ -54,7 +54,7 @@ const ProvideOtp = () => {
       <ErrorModal error={error} />
       <div className={Styles.parent}>
           <div className={Styles.child1}>
-            <Typography variant="h4">Verification code send to your email,provide a 4-digit OTP</Typography>
+            <Typography variant="h5">Verification code send to your email,provide a 4-digit OTP</Typography>
           </div>
           <div className={Styles.child2}>
             <form onSubmit={submitHandler}>

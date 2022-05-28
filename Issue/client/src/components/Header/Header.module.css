@@ -67,9 +67,16 @@ h1 {
 /* media */
 @media only screen and (max-width: 980px) {
     .mainNav h2 {
-        font-size: 1.2em;
+        font-size: 1.5em;
     }
     .mainNav ul.rightMenu li {
         padding-top: 10px;
     }
 }
+
+@media only screen and (max-width: 815px) {
+    .mainNav h2 {
+        font-size: 1.2em;
+    }
+}
+

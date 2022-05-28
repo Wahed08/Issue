@@ -70,7 +70,6 @@ const UsersList = () => {
     <React.Fragment>
       <ErrorModal error={error} />
       <div className={Styles.issueContainer}>
-       
         <div className={Styles.heading}>
           <h1>All Users</h1>
         </div>
@@ -79,11 +78,11 @@ const UsersList = () => {
           <table className={Styles.table}>
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Admin</th>
-                <th></th>
+                <th style={{ width: "10%" }}>Id</th>
+                <th style={{ width: "8%" }}>Name</th>
+                <th style={{ width: "10%" }}>Email</th>
+                <th style={{ width: "10%" }}>Admin</th>
+                <th style={{ width: "13%" }}></th>
               </tr>
             </thead>
 

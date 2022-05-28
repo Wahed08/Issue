@@ -15,7 +15,7 @@
     align-items: center;
 }
 .parent .child1{
-    font-size: 2em;
+    font-size: 4em;
 }
 
 .parent .child2{
@@ -25,4 +25,10 @@
     align-items: center;
     position: absolute;
     margin-top: 10em;
+}
+
+@media only screen and (max-width: 700px){
+    .parent .child1{
+        top: 25%;
+    }
 }

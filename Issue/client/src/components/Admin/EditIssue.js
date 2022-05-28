@@ -63,19 +63,11 @@ const EditIssue = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-      <div className={Styles.section}>
         <div className={Styles.container}>
-          <div className={Styles.title}>
+          <div className={Styles.titleForEditIssue}>
             <h1>Update Status</h1>
           </div>
           <form onSubmit={editHandler}>
-            {/* <input
-              type="text"
-              name="status"
-              required
-              placeholder="Please Enter status"
-              onChange={(e) => setStatus(e.target.value)}
-            /> */}
             <FormControl className={classes.field} required>
               <RadioGroup
                 defaultValue="Pending"
@@ -111,7 +103,7 @@ const EditIssue = () => {
             </div>
           </form>
         </div>
-      </div>
+
     </React.Fragment>
   );
 };

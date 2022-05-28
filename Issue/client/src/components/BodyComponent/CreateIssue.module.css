@@ -14,6 +14,16 @@
 .title h1{
     font-size: 2em;
 }
+/*  */
+.titleForEditIssue{
+    position: absolute;
+    top: 25%;
+}
+
+.titleForEditIssue h1{
+    font-size: 2em;
+}
+
 
 .textField{
     top: 28%;
@@ -37,6 +47,9 @@
 @media only screen and (max-width: 550px) {
     .textField div{
         width: 18em;
+    }
+    .titleForEditIssue h1{
+        font-size: 1.4em;
     }
 }
 
