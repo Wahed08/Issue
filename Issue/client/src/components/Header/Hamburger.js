@@ -31,7 +31,9 @@ const Hamburger = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        size="large"
+        size="small"
+        variant="outlined"
+        color="secondary"
       >
         <MenuIcon />
       </Button>
