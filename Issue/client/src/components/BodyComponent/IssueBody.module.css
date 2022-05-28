@@ -67,7 +67,12 @@
     }
     .tableContainer{
         top: 8%;
+        /* width: 30%; */
     }
+    /* .table{
+        padding: 0;
+        border-collapse: collapse;
+    } */
 }
 
 @media only screen and (max-width: 565px) {

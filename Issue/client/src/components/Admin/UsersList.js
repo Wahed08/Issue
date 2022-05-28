@@ -80,9 +80,9 @@ const UsersList = () => {
               <tr>
                 <th style={{ width: "10%" }}>Id</th>
                 <th style={{ width: "8%" }}>Name</th>
-                <th style={{ width: "10%" }}>Email</th>
-                <th style={{ width: "10%" }}>Admin</th>
-                <th style={{ width: "13%" }}></th>
+                <th style={{ width: "6%" }}>Email</th>
+                <th style={{ width: "8%" }}>Admin</th>
+                <th style={{ width: "7%" }}></th>
               </tr>
             </thead>
 

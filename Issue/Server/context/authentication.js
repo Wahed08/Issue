@@ -34,6 +34,15 @@ const admin = (req, res, next) =>{
     }
 }
 
+const normalUser = (req, res, next) =>{
+  if(req.userId && !req.user.isAdmin){
+    next();
+  }else{
+    const error = new HttpError("User Authentication failed", 403);
+    return next(error);
+  }
+}
+
 module.exports = {
-  auth, admin
+  auth, admin, normalUser
 }

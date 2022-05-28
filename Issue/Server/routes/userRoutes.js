@@ -1,7 +1,7 @@
 const express = require('express');
 const userController = require("../controller/userContoller");
 const router = express.Router();
-const {admin, auth} = require("../context/authentication");
+const {admin, auth, normalUser} = require("../context/authentication");
 
 router.post("/signup", userController.SignUp);
 router.post("/:uid/verify-email", userController.VerifyEmail);

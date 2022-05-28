@@ -32,3 +32,12 @@
     margin-bottom: 10em;
 }
 
+@media only screen and (max-width: 630px){
+    .textfiledContainer div{
+        width: 20em;
+    }
+    .profileName h4{
+        font-size: 1.5em;
+    }
+}
+

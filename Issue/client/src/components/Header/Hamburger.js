@@ -59,6 +59,10 @@ const Hamburger = () => {
           <MenuItem onClick={handleClose}>Create Issue</MenuItem>
         </Link>}
 
+        {auth.isLoggedIn && <Link to={`/${auth.userId}/account`}>
+          <MenuItem onClick={handleClose}>My Account</MenuItem>
+        </Link>}
+
         {!auth.isLoggedIn && <Link to="/auth/signup">
           <MenuItem onClick={handleClose}>Sign Up</MenuItem>
         </Link>}
