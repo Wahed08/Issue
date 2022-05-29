@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AuthContext } from "../../Auth/auth-context";
 import CircularProgress from "@mui/material/CircularProgress";
 import Styles from "./Profile.module.css";
+import ErrorModal from "../ShowError/ErrorModal";
 
 const Profile = () => {
   const useStyles = makeStyles((theme) => ({
@@ -26,17 +27,19 @@ const Profile = () => {
   }));
 
   const [profile, setProfile] = useState();
+  const [error, setError] = useState();
   const { uid } = useParams();
   const classes = useStyles();
   const auth = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const uId = auth.userId === uid && uid;
 
   useEffect(() => {
     setIsLoading(true);
     const fetchUser = async () => {
       try {
         const profileData = await fetch(
-          `http://localhost:5000/api/accounts/${uid}/profile`,
+          `http://localhost:5000/api/accounts/${uId}/profile`,
           {
             method: "GET",
             headers: {
@@ -49,19 +52,21 @@ const Profile = () => {
         setProfile(responseProfileData.userProfile);
 
         if (!profileData.ok) {
-          throw new Error(responseProfileData.message);
+          setError(responseProfileData.message);
         }
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
+        setError(err.message);
         throw err;
       }
     };
     fetchUser();
-  }, [uid, auth]);
+  }, [uId, auth]);
 
   return (
     <React.Fragment>
+      <ErrorModal error={error} />
       <div className={Styles.profileBody}>
         {isLoading && <CircularProgress />}
         {!isLoading && (
@@ -104,20 +109,22 @@ const Profile = () => {
                 </Typography>
               </section>
             ) : (
-              <section>
-                <Typography variant="h4">
-                  You didn't update profile yet!
-                </Typography>
-                <Link to={`/${auth.userId}/update-profile`}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.btn}
-                  >
-                    Update Profile
-                  </Button>
-                </Link>
-              </section>
+              uId && (
+                <section>
+                  <Typography variant="h4">
+                    Didn't update profile yet!
+                  </Typography>
+                  <Link to={`/${uId}/update-profile`}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.btn}
+                    >
+                      Update Profile
+                    </Button>
+                  </Link>
+                </section>
+              )
             )}
           </div>
         )}
