@@ -6,14 +6,16 @@
     align-items: center;
     position: relative;
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .mainIssue .issueHeader{
     position: absolute;
+    width: 100%;
     display: flex;
+    align-items: center;
     flex-direction: row;
-    left: 0;
+    justify-content: space-between;
     top: 15%;
 }
 
@@ -22,4 +24,11 @@
     top: 25%;
     left: 0;
     margin-top: 2em;
+}
+
+
+@media only screen and (max-width: 485px) {
+    .mainIssue .issueHeader{
+        display: block;
+    }
 }
