@@ -62,6 +62,9 @@ h1 {
     background-color: darkgrey;
     transition-delay: 200ms;
 }
+.mainNav ul.rightMenu .search{
+    height: 20px;
+}
 
 /* hamburger */
 .hamburger{

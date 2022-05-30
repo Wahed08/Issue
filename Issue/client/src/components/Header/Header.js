@@ -16,6 +16,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Hamburger from "./Hamburger";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const useStyles = makeStyles((theme) => ({
@@ -62,6 +63,11 @@ const Header = () => {
             <h2>SUST Teacher's Association</h2>
           </Link>
           <ul className={Styles.rightMenu}>
+
+          <li className={Styles.search}>
+              <SearchBar />
+            </li>
+
             <li className={Styles.about}>
               <Link to="/about">About</Link>
             </li>

@@ -10,8 +10,6 @@ import Styles from "./IssueDetails.module.css";
 const IssueDetails = () => {
   const useStyles = makeStyles((theme) => ({
     status: {
-      // marginTop: "0.4em",
-      // marginLeft: "48em",
       fontWeight: "bold",
     },
   }));
