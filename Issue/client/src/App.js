@@ -16,6 +16,7 @@ import UsersList from "./components/Admin/UsersList";
 import IssuesList from "./components/Admin/IssuesList";
 import EditIssue from "./components/Admin/EditIssue";
 import IssueDetails from "./components/BodyComponent/IssueDetails";
+import SearchAppBar from "./components/Header/SearchBar";
 
 const App = () => {
   const [userId, setUserId] = useState(false);
@@ -60,6 +61,7 @@ const App = () => {
         <Route path="/admin/issues-list" element={<IssuesList />}></Route>
         <Route path="/admin/:pid/edit-issue" element={<EditIssue />}></Route>
         <Route path="/:pid/issue-details" element={<IssueDetails />}></Route>
+        <Route path="/search/:keyword" element={<SearchAppBar />}></Route>
       </Routes>
     );
   } else {

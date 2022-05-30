@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -19,7 +19,7 @@ const Search = styled("div")(({ theme }) => ({
   marginLeft: 0,
   marginBottom: 40,
   width: "100%",
-  height:"30px",
+  height: "30px",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(2),
     width: "auto",
@@ -53,18 +53,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+const SearchAppBar = ({ navigate }) => {
+
+  const [keyword, setKeyword] = useState("");
+
+  const submitHandler = async (e) =>{
+        e.preventDefault();
+        if(keyword.trim()){
+            navigate(`/search/${keyword}`);
+        }else{
+            navigate("/");
+        }
+  }
+
   return (
     <Toolbar>
-      <Search>
+      <Search onSubmit={submitHandler}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+        <StyledInputBase
+          type="submit"
+          style={{display: "none"}}
         />
       </Search>
     </Toolbar>
   );
-}
+};
+
+export default SearchAppBar;
