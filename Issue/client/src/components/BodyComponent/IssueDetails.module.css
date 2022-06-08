@@ -25,7 +25,9 @@
     left: 0;
     margin-top: 2em;
 }
-
+.mainIssue .button{
+    margin-top: 3rem;
+}
 
 @media only screen and (max-width: 485px) {
     .mainIssue .issueHeader{

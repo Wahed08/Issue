@@ -71,11 +71,7 @@ const Header = () => {
             </Link>
             <ul className={Styles.rightMenu}>
               <li className={Styles.search}>
-                {/* <Routes> */}
-                  {/* <Route> */}
-                   <SearchBar navigate={navigate} />
-                  {/* </Route> */}
-                {/* </Routes> */}
+                <SearchBar navigate={navigate} />
               </li>
 
               <li className={Styles.about}>

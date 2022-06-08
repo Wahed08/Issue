@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "./ShowError/ErrorModal";
 import { useParams } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import Styles from "./IssueDetails.module.css";
@@ -75,6 +75,15 @@ const IssueDetails = () => {
               {issue.description}
             </Typography>
           )}
+
+          <div className={Styles.button}>
+            <Button color="primary" variant="contained" size="small">
+              Edit
+            </Button>
+            <Button color="secondary" variant="contained" size="small">
+              Delete
+            </Button>
+          </div>
         </div>
       </div>
     </React.Fragment>

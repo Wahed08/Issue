@@ -131,10 +131,43 @@ const getIssueDetails = async (req, res, next) => {
   res.status(200).json({ Issue: issue });
 };
 
+//Issue edit by own user
+const editIssue = async (req, res, next) => {
+  const { title, description } = req.body;
+  const postId = req.params.pid;
+
+  let issue;
+  try {
+    issue = await Post.findById(postId);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not update issue.",
+      500
+    );
+    return next(error);
+  }
+
+  issue.title = title;
+  issue.description = description;
+
+  try {
+    await issue.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not update issue.",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ updateIssue: issue });
+};
+
 module.exports = {
   getAllIssue,
   createIssue,
   updateIssue,
   deleteIssue,
   getIssueDetails,
+  editIssue,
 };
