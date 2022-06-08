@@ -12,6 +12,9 @@ const IssueDetails = () => {
     status: {
       fontWeight: "bold",
     },
+    btn: {
+      marginRight: "0.5em",
+    },
   }));
 
   const classes = useStyles();
@@ -76,14 +79,21 @@ const IssueDetails = () => {
             </Typography>
           )}
 
-          <div className={Styles.button}>
-            <Button color="primary" variant="contained" size="small">
-              Edit
-            </Button>
-            <Button color="secondary" variant="contained" size="small">
-              Delete
-            </Button>
-          </div>
+          {issue && (
+            <div className={Styles.button}>
+              <Button
+                color="primary"
+                variant="contained"
+                size="small"
+                className={classes.btn}
+              >
+                Edit
+              </Button>
+              <Button color="secondary" variant="contained" size="small">
+                Delete
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </React.Fragment>

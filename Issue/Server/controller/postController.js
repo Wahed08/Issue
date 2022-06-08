@@ -24,12 +24,15 @@ const getAllIssue = async (req, res, next) => {
 
   res
     .status(200)
-    .json({ All_post: All.map((user) => user.toObject({ getters: true })) });
+    .json({ All_post: All.map((user) => user.toObject({ getters: true }))});
 };
 
 //createIssue
 const createIssue = async (req, res, next) => {
+  
   const { title, description, status, date } = req.body;
+  const id = req.userId;
+
   const createdPost = new Post({
     title,
     description,
@@ -41,6 +44,7 @@ const createIssue = async (req, res, next) => {
       minute: "2-digit",
     }),
     status,
+    creatorId: id,
   });
 
   try {
@@ -141,7 +145,7 @@ const editIssue = async (req, res, next) => {
     issue = await Post.findById(postId);
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not update issue.",
+      "Something went wrong, could not update issue!.",
       500
     );
     return next(error);
