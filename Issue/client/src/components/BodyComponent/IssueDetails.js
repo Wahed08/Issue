@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth/auth-context";
 import ErrorModal from "./ShowError/ErrorModal";
 import { useParams } from "react-router-dom";
@@ -81,14 +82,16 @@ const IssueDetails = () => {
 
           {issue && issue.creatorId === auth.userId && (
             <div className={Styles.button}>
-              <Button
-                color="primary"
-                variant="contained"
-                size="small"
-                className={classes.btn}
-              >
-                Edit
-              </Button>
+              <Link to={`/${issue._id}/edit-issue`}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  size="small"
+                  className={classes.btn}
+                >
+                  Edit
+                </Button>
+              </Link>
               <Button color="secondary" variant="contained" size="small">
                 Delete
               </Button>
