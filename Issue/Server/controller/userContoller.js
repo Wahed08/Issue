@@ -284,7 +284,7 @@ const UpdateUserProfile = async (req, res, next) => {
 
   res
     .status(201)
-    .json({ message: "Profile update Successful", profileDetails: profile });
+    .json({ message: "Profile updated Successfully", profileDetails: profile });
 };
 
 //get single user profile

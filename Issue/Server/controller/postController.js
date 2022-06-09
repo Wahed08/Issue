@@ -29,9 +29,8 @@ const getAllIssue = async (req, res, next) => {
 
 //createIssue
 const createIssue = async (req, res, next) => {
-  
+
   const { title, description, status, date } = req.body;
-  const id = req.userId;
 
   const createdPost = new Post({
     title,
@@ -44,7 +43,7 @@ const createIssue = async (req, res, next) => {
       minute: "2-digit",
     }),
     status,
-    creatorId: id,
+    creatorId: req.user._id
   });
 
   try {

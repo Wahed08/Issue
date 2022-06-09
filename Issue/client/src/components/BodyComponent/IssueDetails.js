@@ -79,7 +79,7 @@ const IssueDetails = () => {
             </Typography>
           )}
 
-          {issue && (
+          {issue && issue.creatorId === auth.userId && (
             <div className={Styles.button}>
               <Button
                 color="primary"
