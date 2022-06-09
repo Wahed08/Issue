@@ -70,10 +70,6 @@ const Header = () => {
               <h2>SUST Teacher's Association</h2>
             </Link>
             <ul className={Styles.rightMenu}>
-              <li className={Styles.search}>
-                <SearchBar navigate={navigate} />
-              </li>
-
               <li className={Styles.about}>
                 <Link to="/about">About</Link>
               </li>

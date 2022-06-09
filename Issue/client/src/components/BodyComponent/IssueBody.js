@@ -7,15 +7,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
+import SearchBar from "../Header/SearchBar";
 
 const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState();
   const [isLoading, setIsloading] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
   const navigate = useNavigate();
   let index = 1;
- 
+
   let value = admin === "admin" ? "api/posts/admin/issues-list" : "api/posts";
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const IssueBody = ({ admin }) => {
       return () => ac.abort();
     };
     fetchPost();
-  }, [auth, value]); 
+  }, [auth, value]);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure")) {
@@ -60,13 +62,21 @@ const IssueBody = ({ admin }) => {
     }
   };
 
-    return (
+  const handleSearch = (e) => {
+      setSearchItem(e.target.value);
+  }
+
+  return (
     <React.Fragment>
       <ErrorModal error={error} />
       <div className={Styles.issueContainer}>
         <div className={Styles.heading}>
           <h1>All Issues</h1>
+          <div className={Styles.search}>
+            <SearchBar change={handleSearch}/>
+          </div>
         </div>
+
         {isLoading && <CircularProgress />}
         <div className={Styles.tableContainer}>
           <table className={Styles.table}>
@@ -80,12 +90,27 @@ const IssueBody = ({ admin }) => {
               </tr>
             </thead>
             <tbody>
-              {posts &&
-                posts.map((post) => (
+              {posts
+                .filter((val) => {
+                  if (searchItem === "") {
+                    return val;
+                  } else if (
+                    val.title.toLowerCase().includes(searchItem.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((post) => (
                   <tr key={index}>
                     <td>{index++}</td>
                     <td>
-                      <Link to={auth.isLoggedIn ? `/${post._id}/issue-details`: "/auth/login"}>
+                      <Link
+                        to={
+                          auth.isLoggedIn
+                            ? `/${post._id}/issue-details`
+                            : "/auth/login"
+                        }
+                      >
                         {post.title}
                       </Link>
                     </td>
@@ -124,6 +149,7 @@ const IssueBody = ({ admin }) => {
                     )}
                   </tr>
                 ))}
+
               <div className={Styles.gap}></div>
             </tbody>
           </table>

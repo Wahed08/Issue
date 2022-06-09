@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
@@ -34,7 +34,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
+    padding: theme.spacing(1, 10, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -48,33 +48,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchAppBar = ({ navigate }) => {
-
-  const [keyword, setKeyword] = useState("");
-
-  const submitHandler = async (e) =>{
-        e.preventDefault();
-        if(keyword.trim()){
-            navigate(`/search/${keyword}`);
-        }else{
-            navigate("/");
-        }
-  }
-
+const SearchAppBar = ({ change }) => {
   return (
     <Toolbar>
-      <Search onSubmit={submitHandler}>
+      <Search onChange={change}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-        <StyledInputBase
-          type="submit"
-          style={{display: "none"}}
         />
       </Search>
     </Toolbar>

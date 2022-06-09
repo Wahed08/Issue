@@ -12,11 +12,19 @@
     top: 7em;
     display: flex;
     justify-content: center;
+    flex-direction: row;
     align-items: center;
 }
 .heading h1{
     font-size: 2em;
 }
+
+.heading .search{
+    margin-left: 39em;
+    position: absolute;
+    height: 20px;
+}
+
 .tableContainer{
     width: 70%;
     display: flex;
@@ -58,6 +66,16 @@
     margin-bottom: 80%;
 }
 
+@media only screen and (max-width: 1200px) {
+    .heading .search{
+        margin-left: 27em;
+    }
+}
+@media only screen and (max-width: 930px) {
+    .heading .search{
+       display: none;
+    }
+}
 @media only screen and (max-width: 800px) {
     .heading h1{
         font-size: 1.5em;
@@ -67,12 +85,7 @@
     }
     .tableContainer{
         top: 8%;
-        /* width: 30%; */
     }
-    /* .table{
-        padding: 0;
-        border-collapse: collapse;
-    } */
 }
 
 @media only screen and (max-width: 565px) {

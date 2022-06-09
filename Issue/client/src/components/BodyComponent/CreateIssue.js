@@ -63,7 +63,7 @@ const CreateIssue = () => {
               name="details"
               variant="outlined"
               multiline
-              rows={5}
+              minRows={5}
               required
               placeholder="Please Enter Details..."
               onChange={(e) => setDescription(e.target.value)}
