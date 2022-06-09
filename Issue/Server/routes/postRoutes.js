@@ -5,7 +5,7 @@ const {auth, admin} = require("../context/authentication");
 
 
 router.post("/create",auth, postController.createIssue);
-router.get("/", auth, postController.getAllIssue);
+router.get("/", postController.getAllIssue);
 router.get("/admin/issues-list", [auth, admin], postController.getAllIssue);
 router.patch("/admin/:pid/edit-issue",[auth,admin], postController.updateIssue);
 router.delete("/admin/:pid/delete-issue",[auth,admin], postController.deleteIssue);

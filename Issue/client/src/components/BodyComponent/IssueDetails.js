@@ -92,9 +92,6 @@ const IssueDetails = () => {
                   Edit
                 </Button>
               </Link>
-              <Button color="secondary" variant="contained" size="small">
-                Delete
-              </Button>
             </div>
           )}
         </div>

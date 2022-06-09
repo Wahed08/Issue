@@ -50,9 +50,9 @@ const EditIssue = () => {
     fetchIssue();
   }, [auth, pid, navigate]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const update = { title, description };
     try {
       if (title && description) {
