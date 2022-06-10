@@ -78,11 +78,11 @@ const UsersList = () => {
           <table className={Styles.table}>
             <thead>
               <tr>
-                <th style={{ width: "10%" }}>Id</th>
-                <th style={{ width: "8%" }}>Name</th>
-                <th style={{ width: "6%" }}>Email</th>
-                <th style={{ width: "8%" }}>Admin</th>
-                <th style={{ width: "7%" }}></th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -90,10 +90,10 @@ const UsersList = () => {
               {users &&
                 users.map((user) => (
                   <tr key={user._id}>
-                    <td>{user._id}</td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.isAdmin ? <CheckBoxIcon /> : <CancelIcon />}</td>
+                    <td data-label="Id">{user._id}</td>
+                    <td data-label="Name">{user.name}</td>
+                    <td data-label="Email">{user.email}</td>
+                    <td data-label="Admin">{user.isAdmin ? <CheckBoxIcon /> : <CancelIcon />}</td>
                     <td>
                       <Button variant="contained" size="small" color="primary">
                         {<EditIcon />}

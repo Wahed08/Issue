@@ -102,8 +102,8 @@ const IssueBody = ({ admin }) => {
                 })
                 .map((post) => (
                   <tr key={index}>
-                    <td>{index++}</td>
-                    <td>
+                    <td data-label="No.">{index++}</td>
+                    <td data-label="Details:">
                       <Link
                         to={
                           auth.isLoggedIn
@@ -114,15 +114,15 @@ const IssueBody = ({ admin }) => {
                         {post.title}
                       </Link>
                     </td>
-                    <td>{post.date}</td>
+                    <td data-label="Date">{post.date}</td>
                     {post.status === "Processing" && (
-                      <td style={{ color: "#1b5e20", fontWeight: "bold" }}>
+                      <td data-label="Status" style={{ color: "#1b5e20", fontWeight: "bold" }}>
                         {post.status}
                       </td>
                     )}
-                    {post.status === "Pending" && <td>{post.status}</td>}
+                    {post.status === "Pending" && <td data-label="Status">{post.status}</td>}
                     {post.status === "Finished" && (
-                      <td style={{ color: "red", fontWeight: "bold" }}>
+                      <td data-label="Status" style={{ color: "red", fontWeight: "bold" }}>
                         {post.status}
                       </td>
                     )}

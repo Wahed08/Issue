@@ -1,4 +1,4 @@
-.issueContainer{
+.issueContainer {
     min-height: 100vh;
     width: 100%;
     position: relative;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.heading{
+.heading {
     position: absolute;
     top: 7em;
     display: flex;
@@ -15,17 +15,18 @@
     flex-direction: row;
     align-items: center;
 }
-.heading h1{
+
+.heading h1 {
     font-size: 2em;
 }
 
-.heading .search{
+.heading .search {
     margin-left: 39em;
     position: absolute;
     height: 20px;
 }
 
-.tableContainer{
+.tableContainer {
     width: 70%;
     display: flex;
     justify-content: center;
@@ -34,15 +35,17 @@
     top: 10%;
     margin-top: 7em;
 }
-.table{
+
+.table {
     width: 100%;
     border-collapse: collapse;
 }
-.table thead{
+
+.table thead {
     background-color: burlywood;
 }
 
-.table thead tr th{
+.table thead tr th {
     font-size: 1.5em;
     font-weight: 500;
     letter-spacing: 0.35px;
@@ -51,63 +54,116 @@
     border: 1px solid;
 }
 
-.table tbody tr td{
+.table tbody tr td {
     background-color: azure;
     font-weight: normal;
     padding: 8px;
     text-align: center;
     border: 1px solid;
 }
-.table tbody tr td a:hover{
+
+.table tbody tr td a:hover {
     text-decoration: underline;
 }
 
-.gap{
-    margin-bottom: 80%;
+.gap {
+    margin-bottom: 50%;
 }
 
 @media only screen and (max-width: 1200px) {
-    .heading .search{
+    .heading .search {
         margin-left: 27em;
     }
 }
+
 @media only screen and (max-width: 930px) {
-    .heading .search{
-       display: none;
+    .heading .search {
+        display: none;
     }
 }
+
 @media only screen and (max-width: 800px) {
-    .heading h1{
+    .heading h1 {
         font-size: 1.5em;
     }
-    .table thead tr th{
+
+    .table thead tr th {
         font-size: 1.3em;
     }
-    .tableContainer{
+
+    .tableContainer {
         top: 8%;
     }
 }
 
+/*  */
+@media only screen and (max-width: 700px) {
+    table {
+        border: 0;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        /* text-transform: uppercase; */
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+/*  */
+/* 
 @media only screen and (max-width: 565px) {
-    .heading h1{
+    .heading h1 {
         font-size: 1.3em;
     }
-    .table thead tr th{
+
+    .table thead tr th {
         font-size: 1.2em;
         vertical-align: left;
         text-align: left;
     }
-    .tableContainer{
+
+    .tableContainer {
         top: 6%;
     }
-    .gap{
+
+    .gap {
         margin-bottom: 100%;
     }
-    .table{
+
+    .table {
         border-collapse: collapse;
     }
-    .table tbody tr td{
+
+    .table tbody tr td {
         padding: 3px;
     }
-}
-
+} */
