@@ -95,7 +95,7 @@ const UsersList = () => {
                     <td data-label="Email">{user.email}</td>
                     <td data-label="Admin">{user.isAdmin ? <CheckBoxIcon /> : <CancelIcon />}</td>
                     <td>
-                      <Button variant="contained" size="small" color="primary">
+                      <Button variant="contained" size="small" color="primary"  style={{marginRight: "5px"}}>
                         {<EditIcon />}
                       </Button>
                       <Button

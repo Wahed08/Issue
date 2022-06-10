@@ -133,6 +133,7 @@ const IssueBody = ({ admin }) => {
                             variant="contained"
                             size="small"
                             color="primary"
+                            style={{marginRight: "5px"}}
                           >
                             {<EditIcon />}
                           </Button>
