@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const HttpError = require("./ErrorModel/errorModel");
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
+const path = require('path');
 require("dotenv").config();
 
 const app = express();
@@ -16,11 +17,17 @@ app.use(cors());
 app.use("/api/posts", postRoutes);
 app.use("/api/accounts", userRoutes);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.use((req, res, next) => {
-    const error = new HttpError("Could not find this route", 404);
-    return next(error);
-  });
+  const error = new HttpError("Could not find this route", 404);
+  return next(error);
+});
 
 //error middleware
 app.use((error, req, res, next) => {
@@ -36,7 +43,11 @@ const port = process.env.PORT;
 
 //connect to db
 mongoose
-  .connect(Database_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+  .connect(Database_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => app.listen(port || process.env.PORT))
   .then(() => console.log("Database Connected"))
   .catch((err) => {
