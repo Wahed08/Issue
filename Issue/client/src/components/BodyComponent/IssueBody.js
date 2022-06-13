@@ -25,13 +25,16 @@ const IssueBody = ({ admin }) => {
     const ac = new AbortController();
     const fetchPost = async () => {
       try {
-        const postData = await fetch(`http://localhost:5000/${value}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
+        const postData = await fetch(
+          `https://tracker-issue.herokuapp.com/${value}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+          }
+        );
         const responseData = await postData.json();
         setPosts(responseData.All_post);
 
@@ -50,12 +53,15 @@ const IssueBody = ({ admin }) => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure")) {
-      await fetch(`http://localhost:5000/api/posts/admin/${id}/delete-issue`, {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + auth.token,
-        },
-      });
+      await fetch(
+        `https://tracker-issue.herokuapp.com/api/posts/admin/${id}/delete-issue`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          },
+        }
+      );
       const newPost = posts.filter((post) => post.id !== id);
       setPosts(newPost);
       navigate("/admin/issues-list");
@@ -63,8 +69,8 @@ const IssueBody = ({ admin }) => {
   };
 
   const handleSearch = (e) => {
-      setSearchItem(e.target.value);
-  }
+    setSearchItem(e.target.value);
+  };
 
   return (
     <React.Fragment>
@@ -73,7 +79,7 @@ const IssueBody = ({ admin }) => {
         <div className={Styles.heading}>
           <h1>All Issues</h1>
           <div className={Styles.search}>
-            <SearchBar change={handleSearch}/>
+            <SearchBar change={handleSearch} />
           </div>
         </div>
 
@@ -116,13 +122,21 @@ const IssueBody = ({ admin }) => {
                     </td>
                     <td data-label="Date">{post.date}</td>
                     {post.status === "Processing" && (
-                      <td data-label="Status" style={{ color: "#1b5e20", fontWeight: "bold" }}>
+                      <td
+                        data-label="Status"
+                        style={{ color: "#1b5e20", fontWeight: "bold" }}
+                      >
                         {post.status}
                       </td>
                     )}
-                    {post.status === "Pending" && <td data-label="Status">{post.status}</td>}
+                    {post.status === "Pending" && (
+                      <td data-label="Status">{post.status}</td>
+                    )}
                     {post.status === "Finished" && (
-                      <td data-label="Status" style={{ color: "red", fontWeight: "bold" }}>
+                      <td
+                        data-label="Status"
+                        style={{ color: "red", fontWeight: "bold" }}
+                      >
                         {post.status}
                       </td>
                     )}
@@ -133,7 +147,7 @@ const IssueBody = ({ admin }) => {
                             variant="contained"
                             size="small"
                             color="primary"
-                            style={{marginRight: "5px"}}
+                            style={{ marginRight: "5px" }}
                           >
                             {<EditIcon />}
                           </Button>

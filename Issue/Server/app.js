@@ -49,7 +49,7 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then(() => app.listen(port || process.env.PORT))
+  .then(() => app.listen(port || 5000))
   .then(() => console.log("Database Connected"))
   .catch((err) => {
     console.log(err);
