@@ -39,7 +39,7 @@ const Profile = () => {
     const fetchUser = async () => {
       try {
         const profileData = await fetch(
-          `http://localhost:5000/api/accounts/${uId}/profile`,
+          `https://tracker-issue.herokuapp.com/accounts/${uId}/profile`,
           {
             method: "GET",
             headers: {

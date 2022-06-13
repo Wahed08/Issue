@@ -8,7 +8,6 @@ import SignUp from "./components/Auth/SignUp";
 import LogIn from "./components/Auth/LogIn";
 import ProvideOtp from "./components/Auth/ProvideOtp";
 import { AuthContext } from "./components/Auth/auth-context";
-// import jwt from "jsonwebtoken";
 import UpdateProfile from "./components/BodyComponent/Profile/UpdateProfile";
 import Account from "./components/BodyComponent/Profile/Account";
 import Profile from "./components/BodyComponent/Profile/Profile";

@@ -35,7 +35,7 @@ const EditIssue = () => {
     try {
       if (value) {
         const response = await fetch(
-          `http://localhost:5000/api/posts/admin/${pid}/edit-issue`,
+          `https://tracker-issue.herokuapp.com/api/posts/admin/${pid}/edit-issue`,
           {
             method: "PATCH",
             body: JSON.stringify(value),

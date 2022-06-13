@@ -41,7 +41,7 @@ const Profile = () => {
     if (profile) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/accounts/${uId}/update-profile`,
+          `https://tracker-issue.herokuapp.com/accounts/${uId}/update-profile`,
           {
             method: "POST",
             headers: {
