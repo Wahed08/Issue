@@ -27,7 +27,7 @@ const ProvideOtp = () => {
     if (OTP) {
       try {
         const response = await fetch(
-          `https://tracker-issue.herokuapp.com/accounts/${uid}/verify-email/`,
+          `http://localhost:5000/api/accounts/${uid}/verify-email/`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

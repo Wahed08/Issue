@@ -16,7 +16,7 @@ const EditIssue = () => {
     },
     field: {
       display: "flex",
-      justifyContent:"center",
+      justifyContent: "center",
       alignItems: "center",
     },
   }));
@@ -35,7 +35,7 @@ const EditIssue = () => {
     try {
       if (value) {
         const response = await fetch(
-          `https://tracker-issue.herokuapp.com/api/posts/admin/${pid}/edit-issue`,
+          `http://localhost:5000/api/posts/admin/${pid}/edit-issue`,
           {
             method: "PATCH",
             body: JSON.stringify(value),
@@ -63,47 +63,46 @@ const EditIssue = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} />
-        <div className={Styles.container}>
-          <div className={Styles.titleForEditIssue}>
-            <h1>Update Status</h1>
-          </div>
-          <form onSubmit={editHandler}>
-            <FormControl className={classes.field} required>
-              <RadioGroup
-                defaultValue="Pending"
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-              >
-                <FormControlLabel
-                  value="Pending"
-                  control={<Radio />}
-                  label="Pending"
-                />
-                <FormControlLabel
-                  value="Processing"
-                  control={<Radio />}
-                  label="Processing"
-                />
-                <FormControlLabel
-                  value="Finished"
-                  control={<Radio />}
-                  label="Finished"
-                />
-              </RadioGroup>
-            </FormControl>
-            <div className={classes.button}>
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                size="large"
-              >
-                Update
-              </Button>
-            </div>
-          </form>
+      <div className={Styles.container}>
+        <div className={Styles.titleForEditIssue}>
+          <h1>Update Status</h1>
         </div>
-
+        <form onSubmit={editHandler}>
+          <FormControl className={classes.field} required>
+            <RadioGroup
+              defaultValue="Pending"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <FormControlLabel
+                value="Pending"
+                control={<Radio />}
+                label="Pending"
+              />
+              <FormControlLabel
+                value="Processing"
+                control={<Radio />}
+                label="Processing"
+              />
+              <FormControlLabel
+                value="Finished"
+                control={<Radio />}
+                label="Finished"
+              />
+            </RadioGroup>
+          </FormControl>
+          <div className={classes.button}>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              size="large"
+            >
+              Update
+            </Button>
+          </div>
+        </form>
+      </div>
     </React.Fragment>
   );
 };

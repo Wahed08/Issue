@@ -56,7 +56,7 @@ const SearchAppBar = ({ change }) => {
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Search…"
+          placeholder="Search Title..."
           inputProps={{ "aria-label": "search" }}
         />
       </Search>

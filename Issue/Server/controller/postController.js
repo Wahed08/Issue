@@ -1,11 +1,22 @@
+const { query } = require("express");
 const HttpError = require("../ErrorModel/errorModel");
 const Post = require("../models/postModel");
 
 //getAllIssue
 const getAllIssue = async (req, res, next) => {
   let All;
+  const searchField={};
+
+  if(req.query.keyword){
+    searchField.$or=[
+      {"title" : {$regex: req.query.keyword, $options: 'i'}},
+      {"description" : {$regex: req.query.keyword, $options: 'i'}},
+      {"status" : {$regex: req.query.keyword, $options: 'i'}}
+    ]
+  }
+
   try {
-    All = await Post.find();
+    All = await Post.find(searchField);
   } catch (err) {
     const error = new HttpError(
       "Could not find any post, try again later",
@@ -24,12 +35,11 @@ const getAllIssue = async (req, res, next) => {
 
   res
     .status(200)
-    .json({ All_post: All.map((user) => user.toObject({ getters: true }))});
+    .json({ All_post: All.map((user) => user.toObject({ getters: true })) });
 };
 
 //createIssue
 const createIssue = async (req, res, next) => {
-
   const { title, description, status, date } = req.body;
 
   const createdPost = new Post({
@@ -43,7 +53,7 @@ const createIssue = async (req, res, next) => {
       minute: "2-digit",
     }),
     status,
-    creatorId: req.user._id
+    creatorId: req.user._id,
   });
 
   try {

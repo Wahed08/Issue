@@ -30,7 +30,7 @@ const IssueDetails = () => {
     const fetchIssue = async () => {
       try {
         const response = await fetch(
-          `https://tracker-issue.herokuapp.com/api/posts/${pid}/issue-details`,
+          `http://localhost:5000/api/posts/${pid}/issue-details`,
           {
             method: "GET",
             headers: {

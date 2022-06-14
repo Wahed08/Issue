@@ -23,7 +23,7 @@ const CreateIssue = () => {
 
     if (title && description) {
       try {
-        const response = await fetch("https://tracker-issue.herokuapp.com/api/posts/create", {
+        const response = await fetch("http://localhost:5000/api/posts/create", {
           method: "POST",
           body: JSON.stringify(post),
           headers: {
