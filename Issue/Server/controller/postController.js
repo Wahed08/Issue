@@ -10,7 +10,7 @@ const getAllIssue = async (req, res, next) => {
   if(req.query.keyword){
     searchField.$or=[
       {"title" : {$regex: req.query.keyword, $options: 'i'}},
-      {"description" : {$regex: req.query.keyword, $options: 'i'}},
+      {"date" : {$regex: req.query.keyword, $options: 'i'}},
       {"status" : {$regex: req.query.keyword, $options: 'i'}}
     ]
   }

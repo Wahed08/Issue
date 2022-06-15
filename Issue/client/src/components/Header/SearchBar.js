@@ -48,16 +48,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchAppBar = ({ change }) => {
+const SearchAppBar = ({ change, handleKeyDown }) => {
+  
   return (
     <Toolbar>
-      <Search onChange={change}>
+      <Search onKeyDown={handleKeyDown}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Search Title..."
+          placeholder="Search Title,Status,Date"
           inputProps={{ "aria-label": "search" }}
+          onChange={change}
         />
       </Search>
     </Toolbar>

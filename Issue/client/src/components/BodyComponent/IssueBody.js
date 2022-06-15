@@ -62,8 +62,27 @@ const IssueBody = ({ admin }) => {
     }
   };
 
-  const handleSearch = (e) => {
-      setSearchItem(e.target.value);
+  const handleSearch = async () => {
+    const postData = await fetch(
+      `http://localhost:5000/api/posts?keyword=${searchItem}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      }
+    );
+
+    const responseData = await postData.json();
+    setPosts(responseData.All_post);
+  };
+
+  const handleKeyDown = (e) =>{
+      if(e.key === 'Enter'){
+        handleSearch();
+      }
+
   }
 
   return (
@@ -73,7 +92,10 @@ const IssueBody = ({ admin }) => {
         <div className={Styles.heading}>
           <h1>All Issues</h1>
           <div className={Styles.search}>
-            <SearchBar change={handleSearch}/>
+            <SearchBar
+              change={(e) => setSearchItem(e.target.value)}
+              handleKeyDown={handleKeyDown}
+            />
           </div>
         </div>
 
@@ -90,66 +112,64 @@ const IssueBody = ({ admin }) => {
               </tr>
             </thead>
             <tbody>
-              {posts
-                .filter((val) => {
-                  if (searchItem === "") {
-                    return val;
-                  } else if (
-                    val.title.toLowerCase().includes(searchItem.toLowerCase())
-                  ) {
-                    return val;
-                  }
-                })
-                .map((post) => (
-                  <tr key={index}>
-                    <td data-label="No.">{index++}</td>
-                    <td data-label="Details:">
-                      <Link
-                        to={
-                          auth.isLoggedIn
-                            ? `/${post._id}/issue-details`
-                            : "/auth/login"
-                        }
-                      >
-                        {post.title}
-                      </Link>
+              {posts.map((post) => (
+                <tr key={index}>
+                  <td data-label="No.">{index++}</td>
+                  <td data-label="Details:">
+                    <Link
+                      to={
+                        auth.isLoggedIn
+                          ? `/${post._id}/issue-details`
+                          : "/auth/login"
+                      }
+                    >
+                      {post.title}
+                    </Link>
+                  </td>
+                  <td data-label="Date">{post.date}</td>
+                  {post.status === "Processing" && (
+                    <td
+                      data-label="Status"
+                      style={{ color: "#1b5e20", fontWeight: "bold" }}
+                    >
+                      {post.status}
                     </td>
-                    <td data-label="Date">{post.date}</td>
-                    {post.status === "Processing" && (
-                      <td data-label="Status" style={{ color: "#1b5e20", fontWeight: "bold" }}>
-                        {post.status}
-                      </td>
-                    )}
-                    {post.status === "Pending" && <td data-label="Status">{post.status}</td>}
-                    {post.status === "Finished" && (
-                      <td data-label="Status" style={{ color: "red", fontWeight: "bold" }}>
-                        {post.status}
-                      </td>
-                    )}
-                    {admin === "admin" && (
-                      <td>
-                        <Link to={`/admin/${post._id}/edit-issue`}>
-                          <Button
-                            variant="contained"
-                            size="small"
-                            color="primary"
-                            style={{marginRight: "5px"}}
-                          >
-                            {<EditIcon />}
-                          </Button>
-                        </Link>
+                  )}
+                  {post.status === "Pending" && (
+                    <td data-label="Status">{post.status}</td>
+                  )}
+                  {post.status === "Finished" && (
+                    <td
+                      data-label="Status"
+                      style={{ color: "red", fontWeight: "bold" }}
+                    >
+                      {post.status}
+                    </td>
+                  )}
+                  {admin === "admin" && (
+                    <td>
+                      <Link to={`/admin/${post._id}/edit-issue`}>
                         <Button
                           variant="contained"
                           size="small"
-                          color="error"
-                          onClick={() => handleDelete(post._id)}
+                          color="primary"
+                          style={{ marginRight: "5px" }}
                         >
-                          {<DeleteIcon />}
+                          {<EditIcon />}
                         </Button>
-                      </td>
-                    )}
-                  </tr>
-                ))}
+                      </Link>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="error"
+                        onClick={() => handleDelete(post._id)}
+                      >
+                        {<DeleteIcon />}
+                      </Button>
+                    </td>
+                  )}
+                </tr>
+              ))}
 
               <div className={Styles.gap}></div>
             </tbody>
