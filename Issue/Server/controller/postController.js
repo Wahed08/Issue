@@ -4,6 +4,7 @@ const Post = require("../models/postModel");
 
 //getAllIssue
 const getAllIssue = async (req, res, next) => {
+
   let All;
   const searchField={};
 
@@ -14,9 +15,8 @@ const getAllIssue = async (req, res, next) => {
       {"status" : {$regex: req.query.keyword, $options: 'i'}}
     ]
   }
-
   try {
-    All = await Post.find(searchField);
+    All = await Post.find(searchField).sort({createdAt: -1});
   } catch (err) {
     const error = new HttpError(
       "Could not find any post, try again later",
@@ -35,7 +35,7 @@ const getAllIssue = async (req, res, next) => {
 
   res
     .status(200)
-    .json({ All_post: All.map((user) => user.toObject({ getters: true })) });
+    .json({ All_post: All.map((user) => user.toObject({ getters: true }))});
 };
 
 //createIssue

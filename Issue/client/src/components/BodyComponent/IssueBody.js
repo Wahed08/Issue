@@ -63,6 +63,7 @@ const IssueBody = ({ admin }) => {
   };
 
   const handleSearch = async () => {
+    navigate(`?keyword=${searchItem}`);
     const postData = await fetch(
       `http://localhost:5000/api/posts?keyword=${searchItem}`,
       {
