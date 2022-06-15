@@ -328,7 +328,7 @@ const getUsersAll = async (req, res, next) =>{
 
   let allUser;
   try {
-    allUser = await User.find();
+    allUser = await User.find().populate("issues");
   } catch (err) {
     const error = new HttpError(
       "Could not find any existing user",

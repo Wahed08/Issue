@@ -1,22 +1,25 @@
 const { query } = require("express");
 const HttpError = require("../ErrorModel/errorModel");
 const Post = require("../models/postModel");
+const User = require("../models/userModel");
 
 //getAllIssue
 const getAllIssue = async (req, res, next) => {
-
   let All;
-  const searchField={};
+  const searchField = {};
 
-  if(req.query.keyword){
-    searchField.$or=[
-      {"title" : {$regex: req.query.keyword, $options: 'i'}},
-      {"date" : {$regex: req.query.keyword, $options: 'i'}},
-      {"status" : {$regex: req.query.keyword, $options: 'i'}}
-    ]
+  if (req.query.keyword) {
+    searchField.$or = [
+      { title: { $regex: req.query.keyword, $options: "i" } },
+      { date: { $regex: req.query.keyword, $options: "i" } },
+      { status: { $regex: req.query.keyword, $options: "i" } },
+    ];
   }
+
   try {
-    All = await Post.find(searchField).sort({createdAt: -1});
+    All = await Post.find(searchField)
+      .populate("creatorId", "name email isAdmin verified")
+      .sort({ createdAt: -1 });
   } catch (err) {
     const error = new HttpError(
       "Could not find any post, try again later",
@@ -35,7 +38,7 @@ const getAllIssue = async (req, res, next) => {
 
   res
     .status(200)
-    .json({ All_post: All.map((user) => user.toObject({ getters: true }))});
+    .json({ All_post: All.map((user) => user.toObject({ getters: true })) });
 };
 
 //createIssue
@@ -57,7 +60,15 @@ const createIssue = async (req, res, next) => {
   });
 
   try {
-    await createdPost.save();
+    const issue = await createdPost.save();
+    await User.updateOne(
+      { _id: req.user._id },
+      {
+        $push: {
+          issues: issue._id,
+        },
+      }
+    );
   } catch (err) {
     const error = new HttpError("Post Uploaded failed, please try again", 501);
     return next(error);
