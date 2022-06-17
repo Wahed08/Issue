@@ -8,12 +8,18 @@ const getAllIssue = async (req, res, next) => {
   let All;
   const searchField = {};
 
+  // search by keyword
   if (req.query.keyword) {
     searchField.$or = [
       { title: { $regex: req.query.keyword, $options: "i" } },
       { date: { $regex: req.query.keyword, $options: "i" } },
       { status: { $regex: req.query.keyword, $options: "i" } },
     ];
+  }
+
+  //filter
+  if (req.query.filterBy) {
+    searchField.$or = [{ status: { $regex: req.query.filterBy, $options: "i" } }];
   }
 
   try {

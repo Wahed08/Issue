@@ -8,6 +8,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
 import SearchBar from "../Header/SearchBar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
 
 const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
@@ -79,18 +83,76 @@ const IssueBody = ({ admin }) => {
     setPosts(responseData.All_post);
   };
 
-  const handleKeyDown = (e) =>{
-      if(e.key === 'Enter'){
-        handleSearch();
-      }
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
-  }
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleFilter = async (value) => {
+    setIsloading(true);
+    navigate(`?filterBy=${value}`);
+    handleClose();
+    const postData = await fetch(
+      `http://localhost:5000/api/posts?filterBy=${value}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      }
+    );
+
+    const responseData = await postData.json();
+    setPosts(responseData.All_post);
+    setIsloading(false);
+  };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} />
       <div className={Styles.issueContainer}>
         <div className={Styles.heading}>
+          <div className={Styles.filterbtn}>
+            <Button variant="contained" size="small" onClick={handleClick}>
+              FilterBy
+            </Button>
+            <Menu
+              id="demo-positioned-menu"
+              aria-labelledby="demo-positioned-button"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+            >
+              <MenuItem onClick={() => handleFilter("Pending")}>
+                Pending
+              </MenuItem>
+              <MenuItem onClick={() => handleFilter("Processing")}>
+                Processing
+              </MenuItem>
+              <MenuItem onClick={() => handleFilter("Finished")}>
+                Finished
+              </MenuItem>
+            </Menu>
+          </div>
           <h1>All Issues</h1>
           <div className={Styles.search}>
             <SearchBar

@@ -26,6 +26,12 @@
     height: 20px;
 }
 
+.heading .filterbtn{
+    margin-left: -39em;
+    position: absolute;
+    height: 20px;
+}
+
 .tableContainer {
     width: 70%;
     display: flex;
@@ -77,7 +83,7 @@
 }
 
 @media only screen and (max-width: 930px) {
-    .heading .search {
+    .heading .search,.filterbtn{
         display: none;
     }
 }
