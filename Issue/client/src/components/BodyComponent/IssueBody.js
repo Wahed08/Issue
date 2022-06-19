@@ -10,8 +10,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import SearchBar from "../Header/SearchBar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 
 const IssueBody = ({ admin }) => {
   const auth = useContext(AuthContext);
@@ -124,7 +122,7 @@ const IssueBody = ({ admin }) => {
       <div className={Styles.issueContainer}>
         <div className={Styles.heading}>
           <div className={Styles.filterbtn}>
-            <Button variant="contained" size="small" onClick={handleClick}>
+          <Button variant="contained" size="small" onClick={handleClick}>
               FilterBy
             </Button>
             <Menu
@@ -143,13 +141,13 @@ const IssueBody = ({ admin }) => {
               }}
             >
               <MenuItem onClick={() => handleFilter("Pending")}>
-                Pending
+                1.Pending
               </MenuItem>
               <MenuItem onClick={() => handleFilter("Processing")}>
-                Processing
+                2.Processing
               </MenuItem>
               <MenuItem onClick={() => handleFilter("Finished")}>
-                Finished
+                3.Finished
               </MenuItem>
             </Menu>
           </div>
