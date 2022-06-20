@@ -4,24 +4,24 @@ const mongoose = require("mongoose");
 const HttpError = require("./ErrorModel/errorModel");
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
-const path = require('path');
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
 
 //middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true})); 
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 //routes
 app.use("/api/posts", postRoutes);
 app.use("/api/accounts", userRoutes);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-  app.get('*', (req, res, next) => {
-    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/client/build')));
+  app.get("*", (req, res, next) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
@@ -35,12 +35,12 @@ app.use((error, req, res, next) => {
   if (res.headerSent) {
     return next(error);
   }
-  res.status(error.code || 500);
+  res.status(error.status || 500);
   res.json({ message: error.message || "An unknown error occurred!" });
 });
 
 const Database_URL = process.env.DB_URL;
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 //connect to db
 mongoose
@@ -49,7 +49,7 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then(() => app.listen(port || 5000))
+  .then(() => app.listen(port))
   .then(() => console.log("Database Connected"))
   .catch((err) => {
     console.log(err);
