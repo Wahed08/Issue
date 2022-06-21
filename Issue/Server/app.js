@@ -47,7 +47,6 @@ mongoose
   .connect(Database_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
   })
   .then(() => app.listen(port))
   .then(() => console.log("Database Connected"))

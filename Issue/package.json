@@ -1,7 +1,7 @@
 {
   "name": "issue",
   "version": "1.0.0",
-  "description": "MERN Issue Tracker",
+  "description": "MERN-Issue-Tracker",
   "engines": {
     "node": "15.6.0"
   },
@@ -28,5 +28,10 @@
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.16",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/node": "^7.18.5",
+    "@babel/preset-env": "^7.18.2"
   }
 }
