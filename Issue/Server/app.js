@@ -19,9 +19,9 @@ app.use("/api/posts", postRoutes);
 app.use("/api/accounts", userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/client/build')));
+  app.use(express.static(path.join(process.cwd(), '/client/build')));
   app.get("*", (req, res, next) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve('client', 'build', 'index.html'));
   });
 }
 
