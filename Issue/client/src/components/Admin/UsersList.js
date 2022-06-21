@@ -23,7 +23,7 @@ const UsersList = () => {
     const fetchUsers = async () => {
       try {
         const userData = await fetch(
-          "http://localhost:5000/api/accounts/admin/users-list",
+          "/api/accounts/admin/users-list",
           {
             method: "GET",
             headers: {
@@ -52,7 +52,7 @@ const UsersList = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure")) {
       await fetch(
-        `http://localhost:5000/api/accounts/admin/${id}/delete-user`,
+        `/api/accounts/admin/${id}/delete-user`,
         {
           method: "DELETE",
           headers: {

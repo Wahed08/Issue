@@ -28,7 +28,7 @@ const EditIssue = () => {
     const fetchIssue = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/posts/${pid}/issue-details`,
+          `/api/posts/${pid}/issue-details`,
           {
             method: "GET",
             headers: {
@@ -57,7 +57,7 @@ const EditIssue = () => {
     try {
       if (title && description) {
         const response = await fetch(
-          `http://localhost:5000/api/posts/${pid}/edit-issue`,
+          `/api/posts/${pid}/edit-issue`,
           {
             method: "PATCH",
             body: JSON.stringify(update),

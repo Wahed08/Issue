@@ -27,7 +27,7 @@ const IssueBody = ({ admin }) => {
     const ac = new AbortController();
     const fetchPost = async () => {
       try {
-        const postData = await fetch(`http://localhost:5000/${value}`, {
+        const postData = await fetch(`/${value}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const IssueBody = ({ admin }) => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure")) {
-      await fetch(`http://localhost:5000/api/posts/admin/${id}/delete-issue`, {
+      await fetch(`/api/posts/admin/${id}/delete-issue`, {
         method: "DELETE",
         headers: {
           Authorization: "Bearer " + auth.token,
@@ -67,7 +67,7 @@ const IssueBody = ({ admin }) => {
   const handleSearch = async () => {
     navigate(`?keyword=${searchItem}`);
     const postData = await fetch(
-      `http://localhost:5000/api/posts?keyword=${searchItem}`,
+      `/api/posts?keyword=${searchItem}`,
       {
         method: "GET",
         headers: {
@@ -101,7 +101,7 @@ const IssueBody = ({ admin }) => {
     navigate(`?filterBy=${value}`);
     handleClose();
     const postData = await fetch(
-      `http://localhost:5000/api/posts?filterBy=${value}`,
+      `/api/posts?filterBy=${value}`,
       {
         method: "GET",
         headers: {
