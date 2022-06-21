@@ -93,19 +93,17 @@ const UsersList = () => {
                     <td data-label="Id">{user._id}</td>
                     <td data-label="Name">{user.name}</td>
                     <td data-label="Email">{user.email}</td>
-                    <td data-label="Admin">{user.isAdmin ? <CheckBoxIcon /> : <CancelIcon />}</td>
+                    <td data-label="Admin">
+                      {user.isAdmin ? <CheckBoxIcon /> : <CancelIcon />}
+                    </td>
                     <td>
-                      <Button variant="contained" size="small" color="primary"  style={{marginRight: "5px"}}>
-                        {<EditIcon />}
-                      </Button>
-                      <Button
-                        variant="contained"
-                        size="small"
-                        color="error"
-                        onClick={() => handleDelete(user._id)}
-                      >
-                        {<DeleteIcon />}
-                      </Button>
+                      {<EditIcon style={{ cursor: "pointer" }}/>}
+                      {
+                        <DeleteIcon
+                          onClick={() => handleDelete(user._id)}
+                          style={{ cursor: "pointer" }}
+                        />
+                      }
                     </td>
                   </tr>
                 ))}

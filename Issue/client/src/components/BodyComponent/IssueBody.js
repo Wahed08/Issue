@@ -122,7 +122,7 @@ const IssueBody = ({ admin }) => {
       <div className={Styles.issueContainer}>
         <div className={Styles.heading}>
           <div className={Styles.filterbtn}>
-          <Button variant="contained" size="small" onClick={handleClick}>
+            <Button variant="contained" size="small" onClick={handleClick}>
               FilterBy
             </Button>
             <Menu
@@ -210,23 +210,15 @@ const IssueBody = ({ admin }) => {
                   {admin === "admin" && (
                     <td>
                       <Link to={`/admin/${post._id}/edit-issue`}>
-                        <Button
-                          variant="contained"
-                          size="small"
-                          color="primary"
-                          style={{ marginRight: "5px" }}
-                        >
-                          {<EditIcon />}
-                        </Button>
+                        {<EditIcon style={{ cursor: "pointer" }} />}
                       </Link>
-                      <Button
-                        variant="contained"
-                        size="small"
-                        color="error"
-                        onClick={() => handleDelete(post._id)}
-                      >
-                        {<DeleteIcon />}
-                      </Button>
+
+                      {
+                        <DeleteIcon
+                          onClick={() => handleDelete(post._id)}
+                          style={{ cursor: "pointer" }}
+                        />
+                      }
                     </td>
                   )}
                 </tr>
