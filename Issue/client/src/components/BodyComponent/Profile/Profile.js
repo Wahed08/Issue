@@ -110,7 +110,7 @@ const Profile = () => {
               </section>
             ) : (
               uId && (
-                <section>
+                <section className={Styles.account}>
                   <Typography variant="h4">
                     Didn't update profile yet!
                   </Typography>

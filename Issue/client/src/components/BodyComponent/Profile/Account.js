@@ -62,7 +62,7 @@ const Account = () => {
         {!isLoading && (
           <div className="userData">
             {user && (
-              <section>
+              <section className={Styles.account}>
                 <Typography variant="h5">Name : {user.name}</Typography>
                 <Typography variant="h5">Email : {user.email}</Typography>
 

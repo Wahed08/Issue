@@ -143,7 +143,7 @@ const VerifyEmail = async (req, res, next) => {
   try {
     jwtToken = jwt.sign(
       { userId: verifyUser.id, email: verifyUser.email},
-      process.env.Secret_Key,
+      process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
   } catch (err) {
@@ -215,7 +215,7 @@ const LogIn = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email},
-      process.env.Secret_Key,
+      process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
   } catch (err) {
